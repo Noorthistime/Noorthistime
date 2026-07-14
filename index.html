@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Saiyed Noor Mohammad | Portfolio</title>
+    <meta name="title" content="Saiyed Noor Mohammad | Computer Engineering Portfolio">
+    <meta name="description" content="Personal portfolio of Saiyed Noor Mohammad, a Computer Engineering student at Theem College of Engineering. Aspiring software engineer and web developer.">
+    <meta name="keywords" content="Saiyed Noor Mohammad, Noor Mohammad, Portfolio, Computer Engineering, Theem College of Engineering, Web Developer, Software Engineer, Mumbai">
+    <meta name="author" content="Saiyed Noor Mohammad">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Saiyed Noor Mohammad | Portfolio">
+    <meta property="og:description" content="Personal portfolio of Saiyed Noor Mohammad, a Computer Engineering student at Theem College of Engineering.">
+    
+    <!-- Styling & Icons -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Remix Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Animated Background Blobs -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="nav-container">
+            <a href="#hero" class="logo" id="nav-logo">
+                Noor Mohammad<span class="logo-dot"></span>
+            </a>
+            
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+                <i class="ri-menu-line"></i>
+            </button>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-grid">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span class="badge-pulse"></span> Available for Opportunities
+                </div>
+                <h1 class="hero-title">
+                    Hi, I'm <br>
+                    <span class="name-gradient">Saiyed Noor Mohammad</span>
+                </h1>
+                <div class="hero-subtitle">
+                    I am a <span id="typed-text"></span><span class="typed-cursor">|</span>
+                </div>
+                <p class="hero-desc">
+                    A passionate Computer Engineering student focused on building robust, high-performance web applications and solving complex algorithmic challenges.
+                </p>
+                
+                <!-- Live Age Counter -->
+                <div class="age-card">
+                    <div class="age-label">
+                        <i class="ri-time-line"></i> Live Time Elapsed on Earth
+                    </div>
+                    <div class="age-number" id="age-counter">00.000000000</div>
+                    <div class="age-label" style="font-size: 0.75rem; margin-top: 0.25rem;">
+                        Years Old (Updating Live)
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <a href="#contact" class="btn btn-primary">
+                        Get In Touch <i class="ri-arrow-right-line"></i>
+                    </a>
+                    <a href="#projects" class="btn btn-secondary">
+                        View Projects <i class="ri-code-s-slash-line"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="visual-glow"></div>
+                <div class="avatar-wrapper">
+                    <!-- Premium Developer SVG Illustration -->
+                    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="neonGrad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#00f2fe" />
+                                <stop offset="50%" stop-color="#4facfe" />
+                                <stop offset="100%" stop-color="#7f00ff" />
+                            </linearGradient>
+                            <linearGradient id="glowGrad" x1="0" y1="0" x2="0" y2="200" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#00f2fe" stop-opacity="0.5"/>
+                                <stop offset="100%" stop-color="#7f00ff" stop-opacity="0.0"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Grid Background inside illustration -->
+                        <path d="M 20,20 L 180,20 L 180,180 L 20,180 Z" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+                        <path d="M 20,60 L 180,60" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+                        <path d="M 20,100 L 180,100" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+                        <path d="M 20,140 L 180,140" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+                        <path d="M 60,20 L 60,180" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+                        <path d="M 100,20 L 100,180" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+                        <path d="M 140,20 L 140,180" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+                        
+                        <!-- Screen Outline -->
+                        <rect x="35" y="35" width="130" height="95" rx="10" stroke="url(#neonGrad)" stroke-width="2" fill="rgba(7, 9, 19, 0.6)"/>
+                        <!-- Terminal Title Bar Dots -->
+                        <circle cx="50" cy="47" r="3" fill="#ff5f56"/>
+                        <circle cx="60" cy="47" r="3" fill="#ffbd2e"/>
+                        <circle cx="70" cy="47" r="3" fill="#27c93f"/>
+                        
+                        <!-- Graphic Lines representing code -->
+                        <path d="M45,65 L85,65" stroke="var(--primary)" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M45,78 L125,78" stroke="var(--text-secondary)" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M45,91 L105,91" stroke="var(--purple)" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M45,104 L75,104" stroke="var(--pink)" stroke-width="3" stroke-linecap="round"/>
+                        
+                        <!-- Laptop keyboard/stand base -->
+                        <path d="M15,145 L185,145 C190,145 190,150 185,150 L15,150 C10,150 10,145 15,145 Z" fill="url(#neonGrad)"/>
+                        <rect x="80" y="130" width="40" height="15" fill="rgba(255, 255, 255, 0.15)"/>
+                        
+                        <!-- Glowing virtual console beam -->
+                        <polygon points="50,145 150,145 180,200 20,200" fill="url(#glowGrad)"/>
+                        
+                        <!-- Binary details -->
+                        <text x="145" y="65" fill="rgba(0, 242, 254, 0.3)" font-family="monospace" font-size="10">10</text>
+                        <text x="140" y="85" fill="rgba(127, 0, 255, 0.3)" font-family="monospace" font-size="10">01</text>
+                        <text x="148" y="105" fill="rgba(0, 242, 254, 0.2)" font-family="monospace" font-size="10">11</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I am Saiyed Noor Mohammad, a dedicated Computer Engineering student. Currently pursuing my Bachelor of Engineering (B.E) in Computer Engineering, I strive to merge technical proficiency with creative problem-solving.
+                </p>
+                <p>
+                    My academic journey has introduced me to deep logic, system designs, databases, and modern programming languages. I actively work on web development projects, mastering both frontend interactivity and backend efficiency.
+                </p>
+                
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Full Name</div>
+                        <div class="info-val">Saiyed Noor Mohammad</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Date of Birth</div>
+                        <div class="info-val">February 7, 2006</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Location</div>
+                        <div class="info-val">Maharashtra, India</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Status</div>
+                        <div class="info-val">Student & Engineer</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--secondary);">Education</h3>
+                <div class="edu-timeline">
+                    <div class="timeline-item">
+                        <span class="timeline-dot"></span>
+                        <span class="timeline-date">2025 - 2028 (Pursuing)</span>
+                        <h4 class="timeline-title">Bachelor of Engineering (B.E.)</h4>
+                        <div class="timeline-sub">Computer Engineering</div>
+                        <div class="timeline-desc">Theem College of Engineering</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="timeline-dot" style="border-color: var(--purple); box-shadow: 0 0 10px var(--purple);"></span>
+                        <span class="timeline-date">2023 - 2025</span>
+                        <h4 class="timeline-title">Higher Secondary Education (HSC)</h4>
+                        <div class="timeline-sub">Science Stream</div>
+                        <div class="timeline-desc">Focusing on Physics, Chemistry, and Mathematics.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2 class="section-title">My Skills</h2>
+        
+        <div class="skills-grid">
+            <!-- Skill Category 1 -->
+            <div class="skill-category">
+                <div class="skill-cat-title">
+                    <i class="ri-braces-line"></i> Languages
+                </div>
+                <div class="skill-list">
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">HTML5 / CSS3</span>
+                    <span class="skill-tag">SQL</span>
+                </div>
+            </div>
+            
+            <!-- Skill Category 2 -->
+            <div class="skill-category">
+                <div class="skill-cat-title">
+                    <i class="ri-window-line"></i> Web & Frameworks
+                </div>
+                <div class="skill-list">
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Express.js</span>
+                    <span class="skill-tag">REST APIs</span>
+                    <span class="skill-tag">Bootstrap</span>
+                    <span class="skill-tag">Vanilla JS DOM</span>
+                </div>
+            </div>
+            
+            <!-- Skill Category 3 -->
+            <div class="skill-category">
+                <div class="skill-cat-title">
+                    <i class="ri-terminal-window-line"></i> Tools & Databases
+                </div>
+                <div class="skill-list">
+                    <span class="skill-tag">Git & GitHub</span>
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">Command Line</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <i class="ri-share-line project-icon"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">WebRTC</span>
+                        <span class="project-tag">CSS Grid</span>
+                    </div>
+                    <h3 class="project-title">ByteShare</h3>
+                    <p class="project-desc">
+                        A secure, peer-to-peer file sharing platform running directly inside browser sessions using WebRTC. Bypasses intermediate cloud servers to ensure complete file privacy.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/Noorthistime" target="_blank" class="project-link">
+                            <i class="ri-github-fill"></i> Source
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-img">
+                    <i class="ri-terminal-box-line project-icon"></i>
+                </div>
+                <div class="project-content">
+                    <div class="project-tags">
+                        <span class="project-tag">Node.js</span>
+                        <span class="project-tag">Socket.io</span>
+                        <span class="project-tag">Express</span>
+                    </div>
+                    <h3 class="project-title">DevSpace</h3>
+                    <p class="project-desc">
+                        A real-time collaborative code editor supporting multi-user workspaces, sync-cursors, and active lobby chat rooms for team projects.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/Noorthistime" target="_blank" class="project-link">
+                            <i class="ri-github-fill"></i> Source
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        
+        <div class="contact-grid">
+            <!-- Contact Details -->
+            <div class="contact-card">
+                <h3 style="font-size: 1.5rem; margin-bottom: 2rem;">Let's collaborate on something awesome!</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                    If you have any questions, want to talk about a project, or just want to connect, feel free to reach out. I will get back to you as soon as possible.
+                </p>
+                
+                <div class="contact-method">
+                    <div class="contact-icon-box">
+                        <i class="ri-mail-line"></i>
+                    </div>
+                    <div>
+                        <div class="contact-text-label">Email Me</div>
+                        <div class="email-copy-wrapper">
+                            <span class="contact-value">noorsayyed.atwork@gmail.com</span>
+                            <button class="btn-copy" id="copy-email-btn" title="Copy to clipboard">
+                                <i class="ri-file-copy-line"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-method">
+                    <div class="contact-icon-box">
+                        <i class="ri-calendar-line"></i>
+                    </div>
+                    <div>
+                        <div class="contact-text-label">Date of Birth</div>
+                        <div class="contact-value">07-02-2006</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" class="form-input" placeholder=" " required>
+                        <label for="name" class="form-label">Your Name</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" class="form-input" placeholder=" " required>
+                        <label for="email" class="form-label">Your Email</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="message" class="form-textarea" placeholder=" " required></textarea>
+                        <label for="message" class="form-label">Your Message</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="align-self: flex-start;">
+                        Send Message <i class="ri-send-plane-line"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo">
+                Noor Mohammad<span class="logo-dot"></span>
+            </div>
+            <div class="footer-text">
+                &copy; 2026 Saiyed Noor Mohammad. Built with passion & HTML/CSS/JS.
+            </div>
+            <div class="footer-socials">
+                <a href="https://github.com/Noorthistime" target="_blank" class="footer-link" aria-label="GitHub">
+                    <i class="ri-github-fill"></i>
+                </a>
+                <a href="#" class="footer-link" aria-label="LinkedIn">
+                    <i class="ri-linkedin-box-fill"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="ri-checkbox-circle-line toast-icon"></i>
+        <span class="toast-text">Message sent!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
