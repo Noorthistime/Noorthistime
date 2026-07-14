@@ -11,7 +11,7 @@
     <meta name="author" content="Saiyed Noor Mohammad">
     
     <!-- Fonts & Icons -->
-    <link rel="stylesheet" href="style.css?v=1.0.3">
+    <link rel="stylesheet" href="style.css?v=1.0.4">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
@@ -181,6 +181,35 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Experience & Education Timeline (Moved here below Profile Card) -->
+                <section id="experience" class="card section-card">
+                    <h3 class="section-header">Education & Experience</h3>
+                    
+                    <div class="timeline">
+                        <!-- Timeline Item 1 -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-date">2025 - 2028 (Pursuing)</div>
+                            <h4 class="timeline-title">Bachelor of Engineering (B.E.)</h4>
+                            <div class="timeline-sub">Computer Engineering • Theem College of Engineering</div>
+                            <p class="timeline-desc">
+                                Core studies in advanced programming, software design paradigms, database management, and operating systems.
+                            </p>
+                        </div>
+                        
+                        <!-- Timeline Item 2 -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot" style="background: var(--muted); box-shadow: none;"></span>
+                            <div class="timeline-date">2023 - 2025</div>
+                            <h4 class="timeline-title">Higher Secondary Education (HSC)</h4>
+                            <div class="timeline-sub">Science stream • HSC Board</div>
+                            <p class="timeline-desc">
+                                Specialized in Physics, Chemistry, Mathematics, and Computer Science foundation.
+                            </p>
+                        </div>
+                    </div>
+                </section>
             </aside>
             
             <!-- Right Primary Content Column (65% width) -->
@@ -250,115 +279,86 @@
                         </div>
                     </div>
                 </section>
-                
-                <!-- Experience & Education Timeline -->
-                <section id="experience" class="card section-card">
-                    <h3 class="section-header">Education & Experience</h3>
-                    
-                    <div class="timeline">
-                        <!-- Timeline Item 1 -->
-                        <div class="timeline-item">
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-date">2025 - 2028 (Pursuing)</div>
-                            <h4 class="timeline-title">Bachelor of Engineering (B.E.)</h4>
-                            <div class="timeline-sub">Computer Engineering • Theem College of Engineering</div>
-                            <p class="timeline-desc">
-                                Core studies in advanced programming, software design paradigms, database management, and operating systems.
-                            </p>
-                        </div>
-                        
-                        <!-- Timeline Item 2 -->
-                        <div class="timeline-item">
-                            <span class="timeline-dot" style="background: var(--muted); box-shadow: none;"></span>
-                            <div class="timeline-date">2023 - 2025</div>
-                            <h4 class="timeline-title">Higher Secondary Education (HSC)</h4>
-                            <div class="timeline-sub">Science stream • HSC Board</div>
-                            <p class="timeline-desc">
-                                Specialized in Physics, Chemistry, Mathematics, and Computer Science foundation.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Contact Section & Form -->
-                <section id="contact" class="card section-card">
-                    <h3 class="section-header">Get In Touch</h3>
-                    
-                    <div class="contact-container">
-                        <div class="contact-info-list">
-                            <h4 style="font-family: var(--font-heading); font-size: 1.3rem;">Let's talk about projects or ideas!</h4>
-                            
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="ri-mail-line"></i>
-                                </div>
-                                <div>
-                                    <div class="contact-lbl">Email Address</div>
-                                    <div class="email-copy-wrapper">
-                                        <span class="contact-val">noorsayyed.atwork@gmail.com</span>
-                                        <button class="btn-copy" id="copy-email-btn">Copy</button>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="ri-calendar-line"></i>
-                                </div>
-                                <div>
-                                    <div class="contact-lbl">Date of Birth</div>
-                                    <div class="contact-val">07-02-2006</div>
-                                </div>
-                            </div>
-                            
-                            <div class="contact-item">
-                                <div class="contact-icon">
-                                    <i class="ri-map-pin-line"></i>
-                                </div>
-                                <div>
-                                    <div class="contact-lbl">Location</div>
-                                    <div class="contact-val">Maharashtra, India</div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Contact Form -->
-                        <form id="contact-form" class="contact-form">
-                            <div class="form-group">
-                                <input type="text" id="name" class="form-input" placeholder=" " required>
-                                <label for="name" class="form-label">Your Name</label>
-                            </div>
-                            
-                            <div class="form-group">
-                                <input type="email" id="email" class="form-input" placeholder=" " required>
-                                <label for="email" class="form-label">Your Email</label>
-                            </div>
-                            
-                            <div class="form-group">
-                                <textarea id="message" class="form-textarea" placeholder=" " required></textarea>
-                                <label for="message" class="form-label">Your Message</label>
-                            </div>
-                            
-                            <button type="submit" class="btn-pill btn-primary" style="align-self: flex-start;">
-                                Send Message <i class="ri-send-plane-line" style="margin-left: 6px;"></i>
-                            </button>
-                        </form>
-                    </div>
-                </section>
-                
-                <!-- Footer -->
-                <footer>
-                    <div class="footer-text">
-                        &copy; 2026 Saiyed Noor Mohammad. Configured in AirBeam theme layout.
-                    </div>
-                    <div style="display: flex; gap: 14px;">
-                        <a href="https://github.com/Noorthistime" target="_blank" style="color: var(--muted); font-size: 1.25rem;"><i class="ri-github-fill"></i></a>
-                        <a href="#" style="color: var(--muted); font-size: 1.25rem;"><i class="ri-linkedin-box-fill"></i></a>
-                    </div>
-                </footer>
             </div>
             
         </div>
+
+        <!-- Contact Section & Form (Moved outside main-grid to span full-width) -->
+        <section id="contact" class="card section-card" style="margin-top: 8px;">
+            <h3 class="section-header">Get In Touch</h3>
+            
+            <div class="contact-container">
+                <div class="contact-info-list">
+                    <h4 style="font-family: var(--font-heading); font-size: 1.3rem;">Let's talk about projects or ideas!</h4>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="ri-mail-line"></i>
+                        </div>
+                        <div>
+                            <div class="contact-lbl">Email Address</div>
+                            <div class="email-copy-wrapper">
+                                <span class="contact-val">noorsayyed.atwork@gmail.com</span>
+                                <button class="btn-copy" id="copy-email-btn">Copy</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="ri-calendar-line"></i>
+                        </div>
+                        <div>
+                            <div class="contact-lbl">Date of Birth</div>
+                            <div class="contact-val">07-02-2006</div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="ri-map-pin-line"></i>
+                        </div>
+                        <div>
+                            <div class="contact-lbl">Location</div>
+                            <div class="contact-val">Maharashtra, India</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" class="form-input" placeholder=" " required>
+                        <label for="name" class="form-label">Your Name</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" class="form-input" placeholder=" " required>
+                        <label for="email" class="form-label">Your Email</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="message" class="form-textarea" placeholder=" " required></textarea>
+                        <label for="message" class="form-label">Your Message</label>
+                    </div>
+                    
+                    <button type="submit" class="btn-pill btn-primary" style="align-self: flex-start;">
+                        Send Message <i class="ri-send-plane-line" style="margin-left: 6px;"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+        
+        <!-- Footer (Moved outside main-grid to span full-width) -->
+        <footer>
+            <div class="footer-text">
+                &copy; 2026 Saiyed Noor Mohammad. Configured in AirBeam theme layout.
+            </div>
+            <div style="display: flex; gap: 14px;">
+                <a href="https://github.com/Noorthistime" target="_blank" style="color: var(--muted); font-size: 1.25rem;"><i class="ri-github-fill"></i></a>
+                <a href="#" style="color: var(--muted); font-size: 1.25rem;"><i class="ri-linkedin-box-fill"></i></a>
+            </div>
+        </footer>
     </main>
 
     <!-- Clipboard Copy Toast Notification -->
@@ -367,6 +367,6 @@
         <span class="toast-text">Address Copied!</span>
     </div>
 
-    <script src="script.js?v=1.0.3"></script>
+    <script src="script.js?v=1.0.4"></script>
 </body>
 </html>
