@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!typedTextElement) return;
 
         const currentWord = words[wordIndex];
-        
+
         if (isDeleting) {
             typedTextElement.textContent = currentWord.substring(0, charIndex - 1);
             charIndex--;
@@ -246,40 +246,55 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2500);
     }
 
-    // 10. Contact Form Submission (Active FormSubmit AJAX endpoint)
+    // 10. Contact Form Submission via EmailJS
+    // ─────────────────────────────────────────────────────────────
+    // HOW TO SET UP (takes ~2 minutes):
+    // 1. Go to https://www.emailjs.com/ → Sign Up (free)
+    // 2. Dashboard → "Email Services" → Add Gmail → copy your SERVICE_ID
+    // 3. Dashboard → "Email Templates" → Create template with variables:
+    //      {{from_name}}, {{from_email}}, {{message}}
+    //    Set "To Email" to noorsayyed.atwork@gmail.com → copy TEMPLATE_ID
+    // 4. Dashboard → "Account" → API Keys → copy your PUBLIC_KEY
+    // 5. Replace the three placeholders below with your actual values
+    // ─────────────────────────────────────────────────────────────
+    const EMAILJS_SERVICE_ID = "portfolioredirect";   // e.g. "service_abc123"
+    const EMAILJS_TEMPLATE_ID = "template_3y0zuhd";  // e.g. "template_xyz789"
+    const EMAILJS_PUBLIC_KEY = "cF3wK97L1mlSzPQhB";   // e.g. "aBcDeFgHiJ1234"
+
+    if (typeof emailjs !== "undefined") {
+        emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
+
     const contactForm = document.getElementById("contact-form");
     if (contactForm) {
         contactForm.addEventListener("submit", (e) => {
             e.preventDefault();
             const submitBtn = contactForm.querySelector("button[type='submit']");
             const originalHTML = submitBtn.innerHTML;
- 
+
             submitBtn.disabled = true;
             submitBtn.innerHTML = `Sending... <span class="accent-dot-swatch" style="display:inline-block; width:10px; height:10px; margin-left:6px; animation: pulse 1s infinite alternate;"></span>`;
- 
-            const formData = new FormData(contactForm);
- 
-            fetch("https://formsubmit.co/ajax/noorsayyed.atwork@gmail.com", {
-                method: "POST",
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    showToast("Thank you! Message received.");
+
+            const templateParams = {
+                name: contactForm.querySelector("#name").value.trim(),
+                email: contactForm.querySelector("#email").value.trim(),
+                message: contactForm.querySelector("#message").value.trim()
+            };
+
+            emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+                .then(() => {
+                    showToast("Message sent! I'll get back to you soon 🚀");
                     contactForm.reset();
-                } else {
-                    showToast("Failed to send message. Please try again.");
-                }
-            })
-            .catch(err => {
-                console.error("Submission error:", err);
-                showToast("Connection error. Message not sent.");
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalHTML;
-                contactForm.querySelectorAll("input, textarea").forEach(i => i.blur());
-            });
+                })
+                .catch(err => {
+                    console.error("EmailJS error:", err);
+                    showToast("Failed to send. Please email me directly!");
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalHTML;
+                    contactForm.querySelectorAll("input, textarea").forEach(i => i.blur());
+                });
         });
     }
 
