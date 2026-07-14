@@ -246,26 +246,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 2500);
     }
 
-    // 10. Contact Form Simulation
+    // 10. Contact Form Submission (Active FormSubmit AJAX endpoint)
     const contactForm = document.getElementById("contact-form");
     if (contactForm) {
         contactForm.addEventListener("submit", (e) => {
             e.preventDefault();
             const submitBtn = contactForm.querySelector("button[type='submit']");
             const originalHTML = submitBtn.innerHTML;
-
+ 
             submitBtn.disabled = true;
             submitBtn.innerHTML = `Sending... <span class="accent-dot-swatch" style="display:inline-block; width:10px; height:10px; margin-left:6px; animation: pulse 1s infinite alternate;"></span>`;
-
-            setTimeout(() => {
-                showToast("Thank you! Message received.");
-                contactForm.reset();
+ 
+            const formData = new FormData(contactForm);
+ 
+            fetch("https://formsubmit.co/ajax/noorsayyed.atwork@gmail.com", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    showToast("Thank you! Message received.");
+                    contactForm.reset();
+                } else {
+                    showToast("Failed to send message. Please try again.");
+                }
+            })
+            .catch(err => {
+                console.error("Submission error:", err);
+                showToast("Connection error. Message not sent.");
+            })
+            .finally(() => {
                 submitBtn.disabled = false;
                 submitBtn.innerHTML = originalHTML;
-
-                // Clear labels active state
                 contactForm.querySelectorAll("input, textarea").forEach(i => i.blur());
-            }, 1500);
+            });
         });
     }
 

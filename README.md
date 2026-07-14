@@ -16,7 +16,7 @@ I am a passionate **Computer Engineering** student based in Maharashtra, India. 
   - **Secondary School Certificate (SSC)** • *MSBSHSE Board* (2021 - 2022) | Grade: **85%**
 - 🍰 **DOB**: February 7, 2006
 - 💻 **Tech Stack**: Full-Stack Development, Algorithmic Problem Solving, Databases.
-- 📫 **Contact**: [noorsayyed.atwork@gmail.com](mailto:noorsayyed.atwork@gmail.com)
+- 📫 **Contact**: [noorsayyed.atwork@gmail.com](mailto:noorsayyed.atwork@gmail.com) | [LinkedIn](https://www.linkedin.com/in/saiyed-noor-9407a43a9/)
 
 ---
 
