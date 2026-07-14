@@ -11,7 +11,7 @@
     <meta name="author" content="Saiyed Noor Mohammad">
     
     <!-- Fonts & Icons -->
-    <link rel="stylesheet" href="style.css?v=1.0.4">
+    <link rel="stylesheet" href="style.css?v=1.0.5">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
@@ -135,11 +135,78 @@
                             <i class="ri-mail-line"></i>
                         </a>
                     </div>
+                </div>
+                
+                <!-- Experience & Education Timeline -->
+                <section id="experience" class="card section-card">
+                    <h3 class="section-header">Education & Experience</h3>
                     
-                    <!-- Tech Stack Dotted Skill Meters -->
-                    <div class="skills-wrapper">
-                        <h3 class="skills-title">Technical Skills</h3>
+                    <div class="timeline">
+                        <!-- Timeline Item 1 -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-date">2025 - 2028 (Pursuing)</div>
+                            <h4 class="timeline-title">Bachelor of Engineering (B.E.)</h4>
+                            <div class="timeline-sub">Computer Engineering • Theem College of Engineering</div>
+                            <p class="timeline-desc">
+                                Pursuing B.E. with a **7.4 CGPA**. Core studies in advanced software systems, database designs, and analysis of algorithms.
+                            </p>
+                        </div>
                         
+                        <!-- Timeline Item 2 -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot"></span>
+                            <div class="timeline-date">2022 - 2025</div>
+                            <h4 class="timeline-title">Diploma in Computer Engineering</h4>
+                            <div class="timeline-sub">Government Polytechnic, Mumbai</div>
+                            <p class="timeline-desc">
+                                Graduated with **82%**. Focused on foundational software, object-oriented concepts, and basic networking.
+                            </p>
+                        </div>
+                        
+                        <!-- Timeline Item 3 -->
+                        <div class="timeline-item">
+                            <span class="timeline-dot" style="background: var(--muted); box-shadow: none;"></span>
+                            <div class="timeline-date">2021 - 2022</div>
+                            <h4 class="timeline-title">Secondary School Certificate (SSC)</h4>
+                            <div class="timeline-sub">MSBSHSE Board</div>
+                            <p class="timeline-desc">
+                                Completed high school with **85%**.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+            
+            <!-- Right Primary Content Column (65% width) -->
+            <div class="primary-column">
+                
+                <!-- About & Live Age Counter Block -->
+                <section id="about" class="card section-card">
+                    <h3 class="section-header">About Me</h3>
+                    <p>
+                        I am Saiyed Noor Mohammad, a dedicated Computer Engineering student. Currently pursuing my Bachelor of Engineering (B.E) in Computer Engineering, I strive to merge technical proficiency with premium creative designs.
+                    </p>
+                    <p>
+                        My academic path exposes me to data structures, databases, and software engineering. Outside lectures, I design web layouts and construct private network tools to bridge code utility and premium interfaces.
+                    </p>
+                    
+                    <!-- Premium Age Counter Card -->
+                    <div class="card age-card">
+                        <div class="age-details">
+                            <div class="age-label">Live Time Elapsed on Earth</div>
+                            <div class="age-number" id="age-counter">00.000000000</div>
+                        </div>
+                        <div>
+                            <a href="#contact" class="btn-pill btn-primary">Let's Connect <i class="ri-arrow-right-line"></i></a>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Technical Skills Section Card (Moved here from Left Profile Card to balance height) -->
+                <section id="skills" class="card section-card">
+                    <h3 class="section-header">Technical Skills</h3>
+                    <div class="skills-grid">
                         <div class="skill-item">
                             <div class="skill-info">
                                 <span>Java / C++</span>
@@ -178,61 +245,6 @@
                             <div class="skill-track">
                                 <div class="skill-bar" data-progress="80"></div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Experience & Education Timeline (Moved here below Profile Card) -->
-                <section id="experience" class="card section-card">
-                    <h3 class="section-header">Education & Experience</h3>
-                    
-                    <div class="timeline">
-                        <!-- Timeline Item 1 -->
-                        <div class="timeline-item">
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-date">2025 - 2028 (Pursuing)</div>
-                            <h4 class="timeline-title">Bachelor of Engineering (B.E.)</h4>
-                            <div class="timeline-sub">Computer Engineering • Theem College of Engineering</div>
-                            <p class="timeline-desc">
-                                Core studies in advanced programming, software design paradigms, database management, and operating systems.
-                            </p>
-                        </div>
-                        
-                        <!-- Timeline Item 2 -->
-                        <div class="timeline-item">
-                            <span class="timeline-dot" style="background: var(--muted); box-shadow: none;"></span>
-                            <div class="timeline-date">2023 - 2025</div>
-                            <h4 class="timeline-title">Higher Secondary Education (HSC)</h4>
-                            <div class="timeline-sub">Science stream • HSC Board</div>
-                            <p class="timeline-desc">
-                                Specialized in Physics, Chemistry, Mathematics, and Computer Science foundation.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-            </aside>
-            
-            <!-- Right Primary Content Column (65% width) -->
-            <div class="primary-column">
-                
-                <!-- About & Live Age Counter Block -->
-                <section id="about" class="card section-card">
-                    <h3 class="section-header">About Me</h3>
-                    <p>
-                        I am Saiyed Noor Mohammad, a dedicated Computer Engineering student. Currently pursuing my Bachelor of Engineering (B.E) in Computer Engineering, I strive to merge technical proficiency with premium creative designs.
-                    </p>
-                    <p>
-                        My academic path exposes me to data structures, databases, and software engineering. Outside lectures, I design web layouts and construct private network tools to bridge code utility and premium interfaces.
-                    </p>
-                    
-                    <!-- Premium Age Counter Card -->
-                    <div class="card age-card">
-                        <div class="age-details">
-                            <div class="age-label">Live Time Elapsed on Earth</div>
-                            <div class="age-number" id="age-counter">00.000000000</div>
-                        </div>
-                        <div>
-                            <a href="#contact" class="btn-pill btn-primary">Let's Connect <i class="ri-arrow-right-line"></i></a>
                         </div>
                     </div>
                 </section>
@@ -367,6 +379,6 @@
         <span class="toast-text">Address Copied!</span>
     </div>
 
-    <script src="script.js?v=1.0.4"></script>
+    <script src="script.js?v=1.0.5"></script>
 </body>
 </html>

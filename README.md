@@ -10,7 +10,10 @@
 
 I am a passionate **Computer Engineering** student based in Maharashtra, India. I enjoy building responsive, modern web applications, designing intuitive user experiences, and exploring new backend/frontend technologies.
 
-- 🔭 **Education**: Pursuing my **B.E. in Computer Engineering** from *Theem College of Engineering* (2025 - 2028).
+- 🔭 **Education**: 
+  - **Bachelor of Engineering (B.E.)** in Computer Engineering • *Theem College of Engineering* (2025 - 2028) | Grade: **7.4 CGPA** (Pursuing)
+  - **Diploma in Computer Engineering** • *Government Polytechnic, Mumbai* (2022 - 2025) | Grade: **82%**
+  - **Secondary School Certificate (SSC)** • *MSBSHSE Board* (2021 - 2022) | Grade: **85%**
 - 🍰 **DOB**: February 7, 2006
 - 💻 **Tech Stack**: Full-Stack Development, Algorithmic Problem Solving, Databases.
 - 📫 **Contact**: [noorsayyed.atwork@gmail.com](mailto:noorsayyed.atwork@gmail.com)

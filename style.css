@@ -537,8 +537,21 @@ html[data-theme="dark"] .profile-card {
     margin-bottom: 18px;
 }
 
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
 .skill-item {
-    margin-bottom: 16px;
+    margin-bottom: 0;
 }
 
 .skill-info {
