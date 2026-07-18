@@ -1,8 +1,4 @@
-# Saiyed Noor Mohammad
-
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Inter&weight=500&size=22&pause=1000&color=58A6FF&center=true&vCenter=true&width=600&lines=Computer+Engineering+Student;Aspiring+Software+Engineer;Full-Stack+Web+Developer;Problem+Solver" alt="Typing SVG" />
-</p>
+<h1 align="center">Saiyed Noor Mohammad</h1>
 
 ---
 
@@ -47,6 +43,7 @@ Computer Engineering student based in Maharashtra, India, with a focus on buildi
   <img src="https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white" alt="Git" />
   <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white" alt="GitHub" />
   <img src="https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visual-studio-code&logoColor=white" alt="VS Code" />
+  <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel" />
 </p>
 
 ---
