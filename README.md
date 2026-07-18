@@ -1,4 +1,6 @@
-<h1 align="center">Saiyed Noor Mohammad</h1>
+<p align="center">
+  <img src="banner.svg" alt="Saiyed Noor Mohammad" />
+</p>
 
 ---
 
