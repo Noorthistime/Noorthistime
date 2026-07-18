@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="#_"><img src="banner.svg" alt="Saiyed Noor Mohammad" /></a>
+  <a href="#_"><img src="banner.svg?v=2" alt="Saiyed Noor Mohammad" /></a>
 </p>
 
 ---
