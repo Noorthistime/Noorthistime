@@ -19,7 +19,7 @@
 
 
 <p align="center">
-  <a href="#_"><img src="techstack.svg" alt="Tech Stack & Skills" /></a>
+  <a href="#_"><img src="techstack.svg?v=2" alt="Tech Stack & Skills" /></a>
 </p>
 
 ---
