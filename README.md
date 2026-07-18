@@ -25,5 +25,5 @@
 ---
 
 <p align="right">
-  <a href="#_"><img src="views_label.svg" alt="Profile Views" /></a><a href="#_"><img src="https://komarev.com/ghpvc/?username=Noorthistime&color=333333&label_color=333333&style=flat-square&label=" alt="" /></a>
+  <a href="#_"><img src="views_label.svg?v=2" alt="Profile Views" /></a><a href="#_"><img src="https://komarev.com/ghpvc/?username=Noorthistime&color=333333&label_color=333333&style=flat-square&label=" alt="" /></a>
 </p>
