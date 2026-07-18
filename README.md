@@ -4,18 +4,12 @@
 
 ---
 
-### About Me
-
-Computer Engineering student based in Maharashtra, India, with a focus on building responsive web applications, designing clean user interfaces, and exploring backend systems.
-
-- **Education**
-  - B.E. in Computer Engineering — *Theem College of Engineering* (2025 – 2028) · **7.4 CGPA** *(Pursuing)*
-  - Diploma in Computer Engineering — *Government Polytechnic, Mumbai* (2022 – 2025) · **82%**
-  - SSC — *MSBSHSE Board* (2021 – 2022) · **85%**
-
-- **Contact** — [noorsayyed.atwork@gmail.com](mailto:noorsayyed.atwork@gmail.com) · [LinkedIn](https://www.linkedin.com/in/saiyed-noor-9407a43a9/)
+<p align="center">
+  <img src="about.svg" alt="About Saiyed Noor Mohammad" />
+</p>
 
 ---
+
 
 ### Tech Stack & Skills
 
