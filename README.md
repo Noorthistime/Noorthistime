@@ -11,12 +11,9 @@
 ---
 
 <p align="center">
-  <img src="contact.svg" alt="Contact" />
-</p>
-<p align="center">
-  <a href="mailto:noorsayyed.atwork@gmail.com">noorsayyed.atwork@gmail.com</a>
-  &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="https://www.linkedin.com/in/saiyed-noor-9407a43a9/">Saiyed Noor Mohammad</a>
+  <img src="contact_heading.svg" alt="Contact" /><br>
+  <a href="mailto:noorsayyed.atwork@gmail.com"><img src="contact_email.svg" alt="Email" /></a><br>
+  <a href="https://www.linkedin.com/in/saiyed-noor-9407a43a9/"><img src="contact_linkedin.svg" alt="LinkedIn" /></a>
 </p>
 
 ---
