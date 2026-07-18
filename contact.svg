@@ -1,4 +1,4 @@
-﻿<svg width="860" height="400" viewBox="0 0 860 400" xmlns="http://www.w3.org/2000/svg">
+﻿<svg width="860" height="150" viewBox="0 0 860 150" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
       @font-face {
@@ -12,43 +12,17 @@
       <stop offset="100%" stop-color="#e30000" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  <rect width="860" height="400" fill="transparent"/>
+  <rect width="860" height="150" fill="transparent"/>
 
-  <!-- ABOUT ME -->
-  <text x="40" y="38" font-family="NType82, monospace" font-size="22" letter-spacing="5" fill="#e30000" opacity="0.95">ABOUT ME</text>
-  <rect x="40" y="50" width="600" height="1.2" fill="url(#rGrad)"/>
+  <!-- CONTACT heading -->
+  <text x="40" y="38" font-family="NType82, monospace" font-size="22" letter-spacing="5" fill="#e30000" opacity="0.95">CONTACT</text>
+  <rect x="40" y="50" width="500" height="1.2" fill="url(#rGrad)"/>
 
-  <text x="40" y="76"  font-family="NType82, monospace" font-size="14" letter-spacing="0.8" fill="#c9d1d9" opacity="0.9">Computer Engineering student based in Maharashtra, India, passionate about building responsive</text>
-  <text x="40" y="96"  font-family="NType82, monospace" font-size="14" letter-spacing="0.8" fill="#c9d1d9" opacity="0.9">web applications, designing clean user interfaces, and architecting efficient backend systems.</text>
-  <text x="40" y="116" font-family="NType82, monospace" font-size="14" letter-spacing="0.8" fill="#c9d1d9" opacity="0.9">Driven by a genuine curiosity for emerging technologies and a commitment to writing clean,</text>
-  <text x="40" y="136" font-family="NType82, monospace" font-size="14" letter-spacing="0.8" fill="#c9d1d9" opacity="0.9">maintainable code. Currently deepening expertise in full-stack development, data structures,</text>
-  <text x="40" y="156" font-family="NType82, monospace" font-size="14" letter-spacing="0.8" fill="#c9d1d9" opacity="0.9">and algorithms — with a long-term vision of building impactful, scalable software products.</text>
+  <!-- EMAIL row -->
+  <text x="40"  y="86" font-family="NType82, monospace" font-size="11" letter-spacing="3.5" fill="#e30000" opacity="0.85">EMAIL</text>
+  <text x="160" y="86" font-family="NType82, monospace" font-size="14" letter-spacing="0.6" fill="#c9d1d9">noorsayyed.atwork@gmail.com</text>
 
-  <!-- EDUCATION -->
-  <text x="40" y="194" font-family="NType82, monospace" font-size="22" letter-spacing="5" fill="#e30000" opacity="0.95">EDUCATION</text>
-  <rect x="40" y="206" width="420" height="1.2" fill="url(#rGrad)"/>
-
-  <!-- Entry 01 -->
-  <text x="40"  y="234" font-family="NType82, monospace" font-size="17" letter-spacing="2" fill="#e30000" opacity="0.45">01</text>
-  <text x="84"  y="234" font-family="NType82, monospace" font-size="16" letter-spacing="0.8" fill="#e6edf3">B.E. in Computer Engineering</text>
-  <text x="84"  y="255" font-family="NType82, monospace" font-size="12" letter-spacing="0.5" fill="#8b949e">Theem College of Engineering</text>
-  <text x="660" y="234" font-family="NType82, monospace" font-size="13" letter-spacing="1" fill="#e30000" opacity="0.75" text-anchor="end">2025 – 2028</text>
-  <text x="820" y="234" font-family="NType82, monospace" font-size="12" letter-spacing="0.5" fill="#8b949e" text-anchor="end">7.4 CGPA</text>
-  <text x="820" y="255" font-family="NType82, monospace" font-size="11" letter-spacing="0.5" fill="#e30000" opacity="0.6" text-anchor="end">Pursuing</text>
-  <rect x="84" y="268" width="736" height="0.7" fill="#e30000" opacity="0.12"/>
-
-  <!-- Entry 02 -->
-  <text x="40"  y="293" font-family="NType82, monospace" font-size="17" letter-spacing="2" fill="#e30000" opacity="0.45">02</text>
-  <text x="84"  y="293" font-family="NType82, monospace" font-size="16" letter-spacing="0.8" fill="#e6edf3">Diploma in Computer Engineering</text>
-  <text x="84"  y="314" font-family="NType82, monospace" font-size="12" letter-spacing="0.5" fill="#8b949e">Government Polytechnic, Mumbai</text>
-  <text x="660" y="293" font-family="NType82, monospace" font-size="13" letter-spacing="1" fill="#e30000" opacity="0.75" text-anchor="end">2022 – 2025</text>
-  <text x="820" y="293" font-family="NType82, monospace" font-size="12" letter-spacing="0.5" fill="#8b949e" text-anchor="end">82%</text>
-  <rect x="84" y="327" width="736" height="0.7" fill="#e30000" opacity="0.12"/>
-
-  <!-- Entry 03 -->
-  <text x="40"  y="352" font-family="NType82, monospace" font-size="17" letter-spacing="2" fill="#e30000" opacity="0.45">03</text>
-  <text x="84"  y="352" font-family="NType82, monospace" font-size="16" letter-spacing="0.8" fill="#e6edf3">Secondary School Certificate (SSC)</text>
-  <text x="84"  y="373" font-family="NType82, monospace" font-size="12" letter-spacing="0.5" fill="#8b949e">MSBSHSE Board</text>
-  <text x="660" y="352" font-family="NType82, monospace" font-size="13" letter-spacing="1" fill="#e30000" opacity="0.75" text-anchor="end">2021 – 2022</text>
-  <text x="820" y="352" font-family="NType82, monospace" font-size="12" letter-spacing="0.5" fill="#8b949e" text-anchor="end">85%</text>
+  <!-- LINKEDIN row -->
+  <text x="40"  y="120" font-family="NType82, monospace" font-size="11" letter-spacing="3.5" fill="#e30000" opacity="0.85">LINKEDIN</text>
+  <text x="160" y="120" font-family="NType82, monospace" font-size="14" letter-spacing="0.6" fill="#c9d1d9">Saiyed Noor Mohammad</text>
 </svg>

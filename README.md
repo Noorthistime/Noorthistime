@@ -10,6 +10,17 @@
 
 ---
 
+<p align="center">
+  <img src="contact.svg" alt="Contact" />
+</p>
+<p align="center">
+  <a href="mailto:noorsayyed.atwork@gmail.com">noorsayyed.atwork@gmail.com</a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="https://www.linkedin.com/in/saiyed-noor-9407a43a9/">Saiyed Noor Mohammad</a>
+</p>
+
+---
+
 
 ### Tech Stack & Skills
 
