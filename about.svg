@@ -23,7 +23,7 @@
 
   <rect width="860" height="420" fill="transparent"/>
 
-  <!-- ── ABOUT ME ── -->
+  <!-- ── ABOUT ME v2 ── -->
   <text x="40" y="36" font-family="NType82, monospace" font-size="20" letter-spacing="5" fill="#e30000" opacity="0.95">ABOUT ME</text>
   <rect x="40" y="46" width="580" height="1" fill="url(#rGrad)"/>
 
