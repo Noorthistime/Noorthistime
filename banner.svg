@@ -15,34 +15,8 @@
       <stop offset="100%" stop-color="#58A6FF" stop-opacity="0"/>
     </linearGradient>
   </defs>
-
   <rect width="860" height="160" fill="transparent"/>
-
-  <!-- Name text -->
-  <text
-    x="430"
-    y="90"
-    font-family="NType82, monospace"
-    font-size="52"
-    letter-spacing="6"
-    fill="#e6edf3"
-    text-anchor="middle"
-    dominant-baseline="middle"
-  >SAIYED NOOR MOHAMMAD</text>
-
-  <!-- Accent line below name -->
+  <text x="430" y="90" font-family="NType82, monospace" font-size="52" letter-spacing="6" fill="#e6edf3" text-anchor="middle" dominant-baseline="middle">SAIYED NOOR MOHAMMAD</text>
   <rect x="80" y="118" width="700" height="1.5" fill="url(#lineGrad)" rx="1"/>
-
-  <!-- Subtitle -->
-  <text
-    x="430"
-    y="143"
-    font-family="NType82, monospace"
-    font-size="13"
-    letter-spacing="3"
-    fill="#58A6FF"
-    text-anchor="middle"
-    dominant-baseline="middle"
-    opacity="0.85"
-  >COMPUTER ENGINEERING STUDENT</text>
+  <text x="430" y="143" font-family="NType82, monospace" font-size="13" letter-spacing="3" fill="#e30000" text-anchor="middle" dominant-baseline="middle" opacity="0.9">COMPUTER ENGINEERING STUDENT</text>
 </svg>
