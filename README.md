@@ -12,7 +12,7 @@
 
 <p align="center">
   <a href="#_"><img src="contact_heading.svg" alt="Contact" /></a><br>
-  <a href="mailto:noorsayyed.atwork@gmail.com"><img src="contact_email.svg" alt="Email" /></a><a href="https://www.linkedin.com/in/saiyed-noor-9407a43a9/"><img src="contact_linkedin.svg" alt="LinkedIn" /></a>
+  <a href="mailto:noorsayyed.atwork@gmail.com"><img src="contact_email.svg" alt="Email" /></a><a href="https://www.linkedin.com/in/noor-saiyed/"><img src="contact_linkedin.svg" alt="LinkedIn" /></a>
 </p>
 
 ---
