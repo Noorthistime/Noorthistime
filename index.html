@@ -1,412 +1,828 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light" data-accent="red">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Primary SEO Meta Tags -->
-    <title>Saiyed Noor Mohammad | Premium Portfolio</title>
-    <meta name="title" content="Saiyed Noor Mohammad | Computer Engineering Portfolio">
-    <meta name="description"
-        content="Personal portfolio of Saiyed Noor Mohammad, a Computer Engineering student at Theem College of Engineering. Built with high-end glassmorphism and custom themes.">
-    <meta name="author" content="Saiyed Noor Mohammad">
+  <!-- Primary SEO Meta Tags -->
+  <title>Saiyed Noor Mohammad | Portfolio</title>
+  <meta name="title" content="Saiyed Noor Mohammad | Computer Engineering Portfolio">
+  <meta name="description" content="Personal portfolio of Saiyed Noor Mohammad — Computer Engineering student, aspiring software engineer, and full-stack developer based in Maharashtra, India.">
+  <meta name="author" content="Saiyed Noor Mohammad">
+  <meta name="keywords" content="Saiyed Noor Mohammad, portfolio, computer engineering, web developer, full stack, Maharashtra">
 
-    <!-- Fonts & Icons -->
-    <link rel="stylesheet" href="style.css?v=1.0.8">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Saiyed Noor Mohammad | Portfolio">
+  <meta property="og:description" content="Computer Engineering student, aspiring software engineer, and full-stack developer.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=2.0.0">
 </head>
 
 <body>
 
-    <main class="page">
-        <!-- Capsule Header Navigation -->
-        <header>
-            <div class="logo">
-                <span class="logo-text" id="logoClick">Noor Mohammad</span>
-            </div>
+  <!-- ═══════════════════════════════════════ -->
+  <!--  HEADER NAVIGATION                     -->
+  <!-- ═══════════════════════════════════════ -->
+  <header id="header">
+    <div class="header-inner">
+      <a href="#hero" class="logo-mark" id="logoMark">
+        <span>SN</span>
+      </a>
 
-            <!-- Desktop Navigation Menu -->
-            <nav class="desktop-nav">
-                <ul class="nav-menu">
-                    <li><a href="#about" class="nav-link active">About</a></li>
-                    <li><a href="#projects" class="nav-link">Projects</a></li>
-                    <li><a href="#experience" class="nav-link">Experience</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#certifications" class="nav-link">Certifications</a>
+        <a href="#achievements" class="nav-link">Achievements</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
 
-            <div class="header-controls">
-                <div class="header-actions">
-                    <!-- Accent Color Selector Dropdown -->
-                    <div class="accent-selector">
-                        <button id="accentToggle" class="btn-circle" aria-label="Toggle accent selector">
-                            <span class="accent-dot-swatch"></span>
-                        </button>
-                        <div id="accentDropdown" class="accent-dropdown">
-                            <button class="accent-opt" data-accent="red">
-                                <span class="accent-swatch" style="background: #e30000;"></span>
-                                Nothing Red
-                            </button>
-                            <button class="accent-opt" data-accent="orange">
-                                <span class="accent-swatch" style="background: #f97316;"></span>
-                                Warmer Orange
-                            </button>
-                            <button class="accent-opt" data-accent="green">
-                                <span class="accent-swatch" style="background: #22c55e;"></span>
-                                Forest Green
-                            </button>
-                            <button class="accent-opt" data-accent="blue">
-                                <span class="accent-swatch" style="background: #0ea5e9;"></span>
-                                Ocean Blue
-                            </button>
-                        </div>
-                    </div>
+      <div class="header-right">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+          <i class="ri-moon-line" id="themeIcon"></i>
+        </button>
+        <button id="menuToggle" class="icon-btn mobile-only" aria-label="Open menu">
+          <i class="ri-menu-3-line"></i>
+        </button>
+      </div>
+    </div>
+  </header>
 
-                    <!-- Theme Toggle Button -->
-                    <button id="themeToggle" class="btn-circle theme-toggle" aria-label="Toggle light/dark theme">
-                        <span class="theme-icon">
-                            <!-- Moon SVG icon (Default for light mode) -->
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                            </svg>
-                        </span>
-                    </button>
-                </div>
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-inner">
+      <button id="drawerClose" class="icon-btn drawer-close" aria-label="Close menu">
+        <i class="ri-close-line"></i>
+      </button>
+      <div class="drawer-logo">SN</div>
+      <nav class="drawer-nav" aria-label="Mobile navigation">
+        <a href="#about" class="drawer-link">About</a>
+        <a href="#experience" class="drawer-link">Experience</a>
+        <a href="#education" class="drawer-link">Education</a>
+        <a href="#projects" class="drawer-link">Projects</a>
+        <a href="#skills" class="drawer-link">Skills</a>
+        <a href="#certifications" class="drawer-link">Certifications</a>
+        <a href="#achievements" class="drawer-link">Achievements</a>
+        <a href="#contact" class="drawer-link">Contact</a>
+      </nav>
+      <div class="drawer-socials">
+        <a href="https://github.com/Noorthistime" target="_blank" rel="noopener" aria-label="GitHub"><i class="ri-github-fill"></i></a>
+        <a href="https://www.linkedin.com/in/noor-saiyed" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
+        <a href="mailto:noorsayyed.atwork@gmail.com" aria-label="Email"><i class="ri-mail-line"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-overlay" id="drawerOverlay"></div>
 
-                <!-- Mobile Navigation Toggle -->
-                <button id="menuToggle" class="btn-circle menu-toggle" aria-label="Toggle navigation menu">
-                    <i class="ri-menu-line" style="font-size: 1.25rem;"></i>
-                </button>
-            </div>
-        </header>
-
-        <!-- Mobile Slide-down Navigation -->
-        <nav class="mobile-nav" id="mobileNav">
-            <a href="#about" class="nav-link active">About</a>
-            <a href="#projects" class="nav-link">Projects</a>
-            <a href="#experience" class="nav-link">Experience</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </nav>
-
-        <!-- Main Responsive Two-Column Grid -->
-        <div class="main-grid">
-
-            <!-- Left Aside Profile Column (35% width) -->
-            <aside class="aside-column">
-                <div class="profile-card">
-                    <div class="avatar-container">
-                        <!-- Custom Cyber Vector SVG Developer Avatar -->
-                        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="avatarGrad" x1="0" y1="0" x2="200" y2="200"
-                                    gradientUnits="userSpaceOnUse">
-                                    <stop offset="0%" stop-color="var(--accent)" />
-                                    <stop offset="100%" stop-color="var(--accent-dark)" />
-                                </linearGradient>
-                            </defs>
-                            <circle cx="100" cy="100" r="80" stroke="url(#avatarGrad)" stroke-width="2"
-                                fill="rgba(0, 0, 0, 0.05)" />
-                            <!-- Head -->
-                            <circle cx="100" cy="80" r="30" fill="var(--accent)" style="opacity: 0.85;" />
-                            <!-- Glasses -->
-                            <rect x="78" y="73" width="20" height="12" rx="3" stroke="var(--ink)" stroke-width="3"
-                                fill="none" />
-                            <rect x="102" y="73" width="20" height="12" rx="3" stroke="var(--ink)" stroke-width="3"
-                                fill="none" />
-                            <line x1="98" y1="79" x2="102" y2="79" stroke="var(--ink)" stroke-width="3" />
-                            <!-- Shoulders -->
-                            <path d="M50,150 C50,120 70,120 100,120 C130,120 150,120 150,150 Z"
-                                fill="url(#avatarGrad)" />
-                            <!-- Code Tag graphic overlay -->
-                            <path d="M 35,95 L 20,105 L 35,115" stroke="var(--accent)" stroke-width="3"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M 165,95 L 180,105 L 165,115" stroke="var(--accent)" stroke-width="3"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-
-                    <h2 class="profile-name">Noor Mohammad</h2>
-                    <div class="profile-subtitle" id="typed-text"></div>
-
-                    <p class="profile-bio">
-                        A passionate Computer Engineering student focused on building robust, high-performance web
-                        systems and crafting elegant visual aesthetics.
-                    </p>
-
-                    <!-- Social Media Links -->
-                    <div class="social-links">
-                        <a href="https://github.com/Noorthistime" target="_blank" class="social-btn"
-                            aria-label="GitHub">
-                            <i class="ri-github-fill"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/saiyed-noor-9407a43a9/" target="_blank" class="social-btn"
-                            aria-label="LinkedIn">
-                            <i class="ri-linkedin-box-fill"></i>
-                        </a>
-                        <a href="mailto:noorsayyed.atwork@gmail.com" class="social-btn" aria-label="Email">
-                            <i class="ri-mail-line"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Experience & Education Timeline -->
-                <section id="experience" class="card section-card">
-                    <h3 class="section-header">Education & Experience</h3>
-
-                    <div class="timeline">
-                        <!-- Timeline Item 1 -->
-                        <div class="timeline-item">
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-date">2025 - 2028 (Pursuing)</div>
-                            <h4 class="timeline-title">Bachelor of Engineering (B.E.)</h4>
-                            <div class="timeline-sub">Computer Engineering • Theem College of Engineering</div>
-                            <p class="timeline-desc">
-                                Pursuing B.E. with a 7.8 CGPA. Core studies in advanced software systems, database
-                                designs, and analysis of algorithms.
-                            </p>
-                        </div>
-
-                        <!-- Timeline Item 2 -->
-                        <div class="timeline-item">
-                            <span class="timeline-dot"></span>
-                            <div class="timeline-date">2022 - 2025</div>
-                            <h4 class="timeline-title">Diploma in Computer Engineering</h4>
-                            <div class="timeline-sub">Government Polytechnic, Mumbai</div>
-                            <p class="timeline-desc">
-                                Graduated with 81.92%. Focused on foundational software, object-oriented concepts, and
-                                basic networking.
-                            </p>
-                        </div>
-
-                        <!-- Timeline Item 3 -->
-                        <div class="timeline-item">
-                            <span class="timeline-dot" style="background: var(--muted); box-shadow: none;"></span>
-                            <div class="timeline-date">2021 - 2022</div>
-                            <h4 class="timeline-title">Secondary School Certificate (SSC)</h4>
-                            <div class="timeline-sub">MSBSHSE Board</div>
-                            <p class="timeline-desc">
-                                Completed high school with 84.80%.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-            </aside>
-
-            <!-- Right Primary Content Column (65% width) -->
-            <div class="primary-column">
-
-                <!-- About & Live Age Counter Block -->
-                <section id="about" class="card section-card">
-                    <h3 class="section-header">About Me</h3>
-                    <p>
-                        I am Saiyed Noor Mohammad, a dedicated Computer Engineering student. Currently pursuing my
-                        Bachelor of Engineering (B.E) in Computer Engineering, I strive to merge technical proficiency
-                        with premium creative designs.
-                    </p>
-                    <p>
-                        My academic path exposes me to data structures, databases, and software engineering. Outside
-                        lectures, I design web layouts and construct private network tools to bridge code utility and
-                        premium interfaces.
-                    </p>
-
-                    <!-- Premium Age Counter Card -->
-                    <div class="card age-card">
-                        <div class="age-details">
-                            <div class="age-label">Live Time Elapsed on Earth</div>
-                            <div class="age-number" id="age-counter">00.000000000</div>
-                        </div>
-                        <div>
-                            <a href="#contact" class="btn-pill btn-primary">Let's Connect <i
-                                    class="ri-arrow-right-line"></i></a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Technical Skills Section Card (Moved here from Left Profile Card to balance height) -->
-                <section id="skills" class="card section-card">
-                    <h3 class="section-header">Technical Skills</h3>
-                    <div class="skills-grid">
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>Java / C++</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-track">
-                                <div class="skill-bar" data-progress="85"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>JavaScript / HTML5 / CSS3</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-track">
-                                <div class="skill-bar" data-progress="90"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>Node.js / Express</span>
-                                <span>75%</span>
-                            </div>
-                            <div class="skill-track">
-                                <div class="skill-bar" data-progress="75"></div>
-                            </div>
-                        </div>
-
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span>SQL / MySQL / MongoDB</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="skill-track">
-                                <div class="skill-bar" data-progress="80"></div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Projects Showcase Grid -->
-                <section id="projects" class="card section-card">
-                    <h3 class="section-header">Featured Projects</h3>
-
-                    <div class="projects-grid">
-                        <!-- Project 1 -->
-                        <div class="project-card">
-                            <div class="project-icon-box">
-                                <i class="ri-share-line"></i>
-                            </div>
-                            <h4>ByteShare</h4>
-                            <div class="project-tags">
-                                <span class="project-tag">JavaScript</span>
-                                <span class="project-tag">WebRTC</span>
-                            </div>
-                            <p>
-                                A secure, peer-to-peer file sharing platform running directly inside browser sessions
-                                using WebRTC.
-                            </p>
-                            <a href="https://github.com/Noorthistime" target="_blank" class="project-link">
-                                Source Code <i class="ri-arrow-right-up-line"></i>
-                            </a>
-                        </div>
-
-                        <!-- Project 2 -->
-                        <div class="project-card">
-                            <div class="project-icon-box">
-                                <i class="ri-terminal-box-line"></i>
-                            </div>
-                            <h4>DevSpace</h4>
-                            <div class="project-tags">
-                                <span class="project-tag">Node.js</span>
-                                <span class="project-tag">Socket.io</span>
-                            </div>
-                            <p>
-                                A real-time collaborative code editor supporting multi-user workspaces and sync cursors.
-                            </p>
-                            <a href="https://github.com/Noorthistime" target="_blank" class="project-link">
-                                Source Code <i class="ri-arrow-right-up-line"></i>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-        </div>
-
-        <!-- Contact Section & Form (Moved outside main-grid to span full-width) -->
-        <section id="contact" class="card section-card" style="margin-top: 8px;">
-            <h3 class="section-header">Get In Touch</h3>
-
-            <div class="contact-container">
-                <div class="contact-info-list">
-                    <h4 style="font-family: var(--font-heading); font-size: 1.3rem;">Let's talk about projects or ideas!
-                    </h4>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="ri-mail-line"></i>
-                        </div>
-                        <div>
-                            <div class="contact-lbl">Email Address</div>
-                            <div class="email-copy-wrapper">
-                                <span class="contact-val">noorsayyed.atwork@gmail.com</span>
-                                <button class="btn-copy" id="copy-email-btn">Copy</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="ri-calendar-line"></i>
-                        </div>
-                        <div>
-                            <div class="contact-lbl">Date of Birth</div>
-                            <div class="contact-val">07-02-2006</div>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="ri-map-pin-line"></i>
-                        </div>
-                        <div>
-                            <div class="contact-lbl">Location</div>
-                            <div class="contact-val">Maharashtra, India</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact Form -->
-                <form id="contact-form" class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" class="form-input" placeholder=" " required>
-                        <label for="name" class="form-label">Your Name</label>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" class="form-input" placeholder=" " required>
-                        <label for="email" class="form-label">Your Email</label>
-                    </div>
-
-                    <div class="form-group">
-                        <textarea id="message" name="message" class="form-textarea" placeholder=" " required></textarea>
-                        <label for="message" class="form-label">Your Message</label>
-                    </div>
-
-                    <button type="submit" class="btn-pill btn-primary" style="align-self: flex-start;">
-                        Send Message <i class="ri-send-plane-line" style="margin-left: 6px;"></i>
-                    </button>
-                </form>
-            </div>
-        </section>
-
-        <!-- Footer (Moved outside main-grid to span full-width) -->
-        <footer>
-            <div class="footer-text">
-                &copy; 2026 Saiyed Noor Mohammad. Configured in AirBeam theme layout.
-            </div>
-            <div style="display: flex; gap: 14px;">
-                <a href="https://github.com/Noorthistime" target="_blank"
-                    style="color: var(--muted); font-size: 1.25rem;"><i class="ri-github-fill"></i></a>
-                <a href="https://www.linkedin.com/in/saiyed-noor-9407a43a9/" target="_blank"
-                    style="color: var(--muted); font-size: 1.25rem;"><i class="ri-linkedin-box-fill"></i></a>
-            </div>
-        </footer>
-    </main>
-
-    <!-- Clipboard Copy Toast Notification -->
-    <div class="toast" id="toast">
-        <i class="ri-checkbox-circle-line toast-icon"></i>
-        <span class="toast-text">Address Copied!</span>
+  <!-- ═══════════════════════════════════════ -->
+  <!--  PAGE 1 — HERO / LANDING              -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="hero" class="section hero-section">
+    <!-- Animated background particles -->
+    <div class="hero-bg" aria-hidden="true">
+      <div class="grid-overlay"></div>
+      <div class="hero-glow glow-1"></div>
+      <div class="hero-glow glow-2"></div>
     </div>
 
-    <script src="script.js?v=1.0.8"></script>
+    <div class="hero-content">
+      <div class="hero-badge reveal-up" data-delay="0">
+        <span class="badge-dot"></span>
+        <span>Open to Opportunities</span>
+      </div>
+
+      <h1 class="hero-name reveal-up" data-delay="100">
+        Saiyed Noor<br><span class="accent-text">Mohammad</span>
+      </h1>
+
+      <div class="hero-typed reveal-up" data-delay="200">
+        <span id="typed-text"></span><span class="cursor-blink">|</span>
+      </div>
+
+      <p class="hero-intro reveal-up" data-delay="300">
+        A passionate Computer Engineering student dedicated to crafting robust, high-performance web systems and elegant digital experiences. With hands-on expertise in full-stack development and a strong foundation in data structures and algorithms, I bridge the gap between technical depth and visual sophistication. My academic journey through Computer Engineering constantly exposes me to modern software engineering practices, advanced database design, and systems thinking. I thrive at the intersection of clean code and premium interface design — building tools that are as powerful under the hood as they are beautiful on the surface. Currently seeking internship and collaborative project opportunities to apply my skills and grow alongside driven teams.
+      </p>
+
+      <div class="hero-ctas reveal-up" data-delay="400">
+        <a href="#about" class="btn btn-primary">
+          Learn More About Me <i class="ri-arrow-down-line"></i>
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          Get In Touch <i class="ri-send-plane-line"></i>
+        </a>
+      </div>
+
+      <div class="hero-socials reveal-up" data-delay="500">
+        <a href="https://github.com/Noorthistime" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub" data-bounce="0">
+          <i class="ri-github-fill"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/noor-saiyed" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn" data-bounce="1">
+          <i class="ri-linkedin-box-fill"></i>
+        </a>
+        <a href="mailto:noorsayyed.atwork@gmail.com" class="social-icon" aria-label="Email" data-bounce="2">
+          <i class="ri-mail-line"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal-right" data-delay="200" aria-hidden="true">
+      <div class="avatar-ring">
+        <div class="avatar-ring-inner">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" class="avatar-svg">
+            <defs>
+              <linearGradient id="avatarGrad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#e30000"/>
+                <stop offset="100%" stop-color="#990000"/>
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="100" r="78" stroke="url(#avatarGrad)" stroke-width="1.5" fill="rgba(227,0,0,0.04)"/>
+            <circle cx="100" cy="80" r="30" fill="#e30000" style="opacity:0.85;"/>
+            <rect x="78" y="73" width="20" height="12" rx="3" stroke="#f0f0f0" stroke-width="2.5" fill="none"/>
+            <rect x="102" y="73" width="20" height="12" rx="3" stroke="#f0f0f0" stroke-width="2.5" fill="none"/>
+            <line x1="98" y1="79" x2="102" y2="79" stroke="#f0f0f0" stroke-width="2.5"/>
+            <path d="M50,150 C50,120 70,120 100,120 C130,120 150,120 150,150 Z" fill="url(#avatarGrad)"/>
+            <path d="M 35,95 L 20,105 L 35,115" stroke="#e30000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 165,95 L 180,105 L 165,115" stroke="#e30000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="avatar-orbit orbit-1"><div class="orbit-dot"></div></div>
+        <div class="avatar-orbit orbit-2"><div class="orbit-dot"></div></div>
+      </div>
+
+      <div class="hero-stat-cards" aria-label="Quick stats">
+        <div class="stat-card">
+          <div class="stat-num" id="hero-age">0</div>
+          <div class="stat-lbl">Years Old</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">7.8</div>
+          <div class="stat-lbl">Current CGPA</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">2</div>
+          <div class="stat-lbl">Projects Built</div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+      <i class="ri-arrow-down-s-line"></i>
+    </a>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--  PAGE 2 — ABOUT ME                    -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="section-label reveal-up">About Me</div>
+      <h2 class="section-title reveal-up" data-delay="100">Crafting Code with<br><span class="accent-text">Purpose & Precision</span></h2>
+
+      <div class="about-grid">
+        <!-- Left: Photo + Quick-Nav -->
+        <div class="about-left reveal-left">
+          <div class="about-avatar-wrap">
+            <div class="about-avatar-frame">
+              <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="aboutGrad" x1="0" y1="0" x2="200" y2="200" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#e30000"/>
+                    <stop offset="100%" stop-color="#990000"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="100" cy="100" r="78" stroke="url(#aboutGrad)" stroke-width="1.5" fill="rgba(227,0,0,0.04)"/>
+                <circle cx="100" cy="80" r="30" fill="#e30000" style="opacity:0.85;"/>
+                <rect x="78" y="73" width="20" height="12" rx="3" stroke="#f0f0f0" stroke-width="2.5" fill="none"/>
+                <rect x="102" y="73" width="20" height="12" rx="3" stroke="#f0f0f0" stroke-width="2.5" fill="none"/>
+                <line x1="98" y1="79" x2="102" y2="79" stroke="#f0f0f0" stroke-width="2.5"/>
+                <path d="M50,150 C50,120 70,120 100,120 C130,120 150,120 150,150 Z" fill="url(#aboutGrad)"/>
+                <path d="M 35,95 L 20,105 L 35,115" stroke="#e30000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M 165,95 L 180,105 L 165,115" stroke="#e30000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="about-avatar-badge">
+              <i class="ri-code-s-slash-line"></i>
+              <span>Dev</span>
+            </div>
+          </div>
+
+          <div class="about-quicknav" aria-label="Jump to sections">
+            <p class="quicknav-label">View My Work</p>
+            <a href="#experience" class="quicknav-btn"><i class="ri-briefcase-line"></i> Experience</a>
+            <a href="#education" class="quicknav-btn"><i class="ri-graduation-cap-line"></i> Education</a>
+            <a href="#projects" class="quicknav-btn"><i class="ri-code-box-line"></i> Projects</a>
+            <a href="#skills" class="quicknav-btn"><i class="ri-bar-chart-grouped-line"></i> Skills</a>
+            <a href="#certifications" class="quicknav-btn"><i class="ri-medal-line"></i> Certifications</a>
+          </div>
+        </div>
+
+        <!-- Right: Bio + Mission/Vision -->
+        <div class="about-right">
+          <div class="about-bio reveal-up" data-delay="150">
+            <p>I am <strong>Saiyed Noor Mohammad</strong>, a dedicated Computer Engineering student currently pursuing my Bachelor of Engineering at Theem College of Engineering. I combine rigorous technical study with a deep passion for crafting premium digital experiences that marry functionality with aesthetic elegance.</p>
+            <p>My expertise spans across full-stack web development, from architecting responsive front-end interfaces with HTML5, CSS3, and JavaScript, to building scalable back-end services with Node.js and Express. I am equally comfortable working with relational databases like MySQL and NoSQL solutions like MongoDB.</p>
+            <p>Beyond academics, I consistently apply my skills to real-world projects — building peer-to-peer file-sharing platforms, real-time collaborative editors, and other tools that solve genuine problems. I believe that great software is not just functional — it should feel intuitive, responsive, and visually outstanding.</p>
+            <p>I am currently seeking internship opportunities and open-source collaborations where I can contribute meaningfully, learn from experienced engineers, and continue growing as a software professional.</p>
+          </div>
+
+          <div class="mission-vision-grid">
+            <!-- Mission Card -->
+            <div class="flip-card reveal-up" data-delay="200">
+              <div class="flip-inner">
+                <div class="flip-front">
+                  <div class="mv-icon"><i class="ri-focus-3-line"></i></div>
+                  <h4>Mission</h4>
+                  <p class="mv-hint">Hover to read</p>
+                </div>
+                <div class="flip-back">
+                  <div class="mv-icon"><i class="ri-focus-3-line"></i></div>
+                  <h4>Mission</h4>
+                  <p>To build robust, high-performance digital products that solve real-world problems — combining technical excellence with premium design sensibility at every layer of the stack.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vision Card -->
+            <div class="flip-card reveal-up" data-delay="300">
+              <div class="flip-inner">
+                <div class="flip-front">
+                  <div class="mv-icon"><i class="ri-eye-line"></i></div>
+                  <h4>Vision</h4>
+                  <p class="mv-hint">Hover to read</p>
+                </div>
+                <div class="flip-back">
+                  <div class="mv-icon"><i class="ri-eye-line"></i></div>
+                  <h4>Vision</h4>
+                  <p>To become a world-class software engineer who bridges the gap between engineering precision and creative innovation — building systems that are elegant, scalable, and impactful.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Age Counter -->
+          <div class="age-counter-card reveal-up" data-delay="350">
+            <div class="age-icon"><i class="ri-time-line"></i></div>
+            <div>
+              <div class="age-label">Live Time Elapsed on Earth</div>
+              <div class="age-number" id="age-counter">00.000000000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--  PAGE 3 — WORK EXPERIENCE             -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="experience" class="section experience-section">
+    <div class="container">
+      <div class="section-label reveal-up">Experience</div>
+      <h2 class="section-title reveal-up" data-delay="100">Work <span class="accent-text">Experience</span></h2>
+
+      <div class="experience-timeline">
+        <!-- Currently building experience -->
+        <div class="exp-card reveal-left">
+          <div class="exp-card-left">
+            <div class="exp-icon"><i class="ri-code-s-slash-line"></i></div>
+            <div class="exp-company">Self-Directed</div>
+          </div>
+          <div class="exp-card-right">
+            <div class="exp-header">
+              <div>
+                <h3 class="exp-title">Full-Stack Developer (Academic & Personal Projects)</h3>
+                <div class="exp-meta">
+                  <span class="exp-badge badge-student">Student</span>
+                  <span class="exp-location"><i class="ri-map-pin-line"></i> Maharashtra, India</span>
+                  <span class="exp-date"><i class="ri-calendar-line"></i> 2022 — Present</span>
+                </div>
+              </div>
+            </div>
+            <ul class="exp-bullets">
+              <li>Designed and developed peer-to-peer file-sharing web applications using WebRTC, enabling secure in-browser data transfer without external servers.</li>
+              <li>Built real-time collaborative code editors using Node.js and Socket.io supporting multi-user workspaces with synchronised cursors and live updates.</li>
+              <li>Implemented end-to-end full-stack systems — from database schema design in MySQL/MongoDB to REST API development in Express and responsive front-end interfaces.</li>
+              <li>Continuously applied computer engineering coursework (data structures, algorithms, networking) to practical projects that solve real user problems.</li>
+            </ul>
+            <ul class="exp-achievements">
+              <li><i class="ri-award-line"></i> Successfully delivered 2 independent technical projects recognised within academic and peer communities.</li>
+              <li><i class="ri-award-line"></i> Consistently maintained a 7.8 CGPA while building production-quality software in parallel with academic studies.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Placeholder for future roles -->
+        <div class="exp-placeholder reveal-up" data-delay="150">
+          <div class="exp-placeholder-icon"><i class="ri-briefcase-4-line"></i></div>
+          <p>Currently seeking internship and entry-level opportunities.</p>
+          <a href="#contact" class="btn btn-outline btn-sm">Get In Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--  PAGE 4 — EDUCATION                   -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="education" class="section education-section">
+    <div class="container">
+      <div class="section-label reveal-up">Education</div>
+      <h2 class="section-title reveal-up" data-delay="100">Academic <span class="accent-text">Journey</span></h2>
+
+      <div class="education-grid">
+        <!-- B.E. Card -->
+        <div class="edu-card edu-card--active reveal-up" data-delay="0">
+          <div class="edu-card-header">
+            <div class="edu-icon"><i class="ri-building-2-line"></i></div>
+            <div class="edu-badge">Current</div>
+          </div>
+          <div class="edu-body">
+            <div class="edu-date">2025 — 2028 (Pursuing)</div>
+            <h3 class="edu-degree">Bachelor of Engineering (B.E.)</h3>
+            <div class="edu-field">Computer Engineering</div>
+            <div class="edu-institution"><i class="ri-map-pin-2-line"></i> Theem College of Engineering</div>
+            <div class="edu-grade">CGPA: <strong>7.8</strong></div>
+            <ul class="edu-highlights">
+              <li>Advanced software systems design and architecture</li>
+              <li>Database engineering, SQL optimisation, and NoSQL systems</li>
+              <li>Analysis of algorithms, data structures, and complexity theory</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Diploma Card -->
+        <div class="edu-card reveal-up" data-delay="100">
+          <div class="edu-card-header">
+            <div class="edu-icon"><i class="ri-book-2-line"></i></div>
+            <div class="edu-badge edu-badge--done">Completed</div>
+          </div>
+          <div class="edu-body">
+            <div class="edu-date">2022 — 2025</div>
+            <h3 class="edu-degree">Diploma in Computer Engineering</h3>
+            <div class="edu-field">Computer Engineering</div>
+            <div class="edu-institution"><i class="ri-map-pin-2-line"></i> Government Polytechnic, Mumbai</div>
+            <div class="edu-grade">Score: <strong>81.92%</strong></div>
+            <ul class="edu-highlights">
+              <li>Foundational software design and object-oriented programming</li>
+              <li>Basic networking, operating systems, and computer organisation</li>
+              <li>Hands-on lab work in C, C++, and Java programming</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- SSC Card -->
+        <div class="edu-card reveal-up" data-delay="200">
+          <div class="edu-card-header">
+            <div class="edu-icon"><i class="ri-school-line"></i></div>
+            <div class="edu-badge edu-badge--done">Completed</div>
+          </div>
+          <div class="edu-body">
+            <div class="edu-date">2021 — 2022</div>
+            <h3 class="edu-degree">Secondary School Certificate (SSC)</h3>
+            <div class="edu-field">General Secondary Education</div>
+            <div class="edu-institution"><i class="ri-map-pin-2-line"></i> MSBSHSE Board</div>
+            <div class="edu-grade">Score: <strong>84.80%</strong></div>
+            <ul class="edu-highlights">
+              <li>Strong foundation in mathematics and science</li>
+              <li>Developed analytical reasoning and problem-solving mindset</li>
+              <li>Early exposure to logical thinking that led to engineering path</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--  PAGE 5 — PROJECTS                    -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <div class="section-label reveal-up">Projects</div>
+      <h2 class="section-title reveal-up" data-delay="100">Featured <span class="accent-text">Projects</span></h2>
+
+      <div class="projects-list">
+
+        <!-- Project 1: ByteShare -->
+        <div class="project-card reveal-left">
+          <div class="project-card-left">
+            <div class="project-number">01</div>
+            <div class="project-icon-wrap"><i class="ri-share-forward-line"></i></div>
+            <div class="project-type-badge">Web App</div>
+          </div>
+          <div class="project-card-right">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">ByteShare</h3>
+                <p class="project-desc">A secure, peer-to-peer file-sharing platform that runs entirely inside browser sessions using WebRTC data channels. ByteShare eliminates the need for intermediate servers — files travel directly between connected peers, ensuring maximum privacy and speed. The platform features a clean drag-and-drop interface, real-time transfer progress, and chunked file delivery to handle large payloads efficiently.</p>
+              </div>
+            </div>
+            <div class="project-outcomes">
+              <div class="outcome-item" data-n="1">
+                <span class="outcome-n">01</span>
+                <span>Zero-server architecture — files transferred directly between peers for maximum privacy</span>
+              </div>
+              <div class="outcome-item" data-n="2">
+                <span class="outcome-n">02</span>
+                <span>Chunked transfer protocol enabling reliable delivery of large binary files</span>
+              </div>
+              <div class="outcome-item" data-n="3">
+                <span class="outcome-n">03</span>
+                <span>Intuitive drag-and-drop UI with live progress tracking and connection status</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">JavaScript</span>
+              <span class="tag">WebRTC</span>
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+            </div>
+            <a href="https://github.com/Noorthistime" target="_blank" rel="noopener" class="project-link">
+              View Source <i class="ri-arrow-right-up-line"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2: DevSpace -->
+        <div class="project-card reveal-right">
+          <div class="project-card-left">
+            <div class="project-number">02</div>
+            <div class="project-icon-wrap"><i class="ri-terminal-box-line"></i></div>
+            <div class="project-type-badge">Web App</div>
+          </div>
+          <div class="project-card-right">
+            <div class="project-header">
+              <div>
+                <h3 class="project-title">DevSpace</h3>
+                <p class="project-desc">A real-time collaborative code editor supporting multi-user workspaces with synchronised cursors, live code sharing, and instant updates across all connected clients. Built on Node.js and Socket.io, DevSpace enables development teams to write, review, and debug code together in a shared browser environment — no extension or IDE plugin required.</p>
+              </div>
+            </div>
+            <div class="project-outcomes">
+              <div class="outcome-item" data-n="1">
+                <span class="outcome-n">01</span>
+                <span>Real-time multi-user collaboration with synchronised cursors and live code state</span>
+              </div>
+              <div class="outcome-item" data-n="2">
+                <span class="outcome-n">02</span>
+                <span>WebSocket-powered event system with sub-100ms update latency between peers</span>
+              </div>
+              <div class="outcome-item" data-n="3">
+                <span class="outcome-n">03</span>
+                <span>Zero-install access — fully functional inside any modern browser without plugins</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Node.js</span>
+              <span class="tag">Socket.io</span>
+              <span class="tag">Express</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <a href="https://github.com/Noorthistime" target="_blank" rel="noopener" class="project-link">
+              View Source <i class="ri-arrow-right-up-line"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--  PAGE 6 — SKILLS                      -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <div class="section-label reveal-up">Skills</div>
+      <h2 class="section-title reveal-up" data-delay="100">Technical <span class="accent-text">Expertise</span></h2>
+
+      <div class="skills-grid">
+
+        <!-- Languages -->
+        <div class="skill-category-card reveal-scale" data-delay="0">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon"><i class="ri-code-s-slash-line"></i></div>
+            <h3 class="skill-cat-title">Languages</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-row">
+              <div class="skill-row-info">
+                <span class="skill-name">Java</span>
+                <span class="skill-pct" data-target="85">0%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-bar" data-progress="85"></div>
+              </div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-info">
+                <span class="skill-name">C++</span>
+                <span class="skill-pct" data-target="85">0%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-bar" data-progress="85"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Web Technologies -->
+        <div class="skill-category-card reveal-scale" data-delay="100">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon"><i class="ri-global-line"></i></div>
+            <h3 class="skill-cat-title">Web Technologies</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-row">
+              <div class="skill-row-info">
+                <span class="skill-name">JavaScript</span>
+                <span class="skill-pct" data-target="90">0%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-bar" data-progress="90"></div>
+              </div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-info">
+                <span class="skill-name">HTML5 / CSS3</span>
+                <span class="skill-pct" data-target="90">0%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-bar" data-progress="90"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="skill-category-card reveal-scale" data-delay="200">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon"><i class="ri-server-line"></i></div>
+            <h3 class="skill-cat-title">Backend</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-row">
+              <div class="skill-row-info">
+                <span class="skill-name">Node.js</span>
+                <span class="skill-pct" data-target="75">0%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-bar" data-progress="75"></div>
+              </div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-info">
+                <span class="skill-name">Express.js</span>
+                <span class="skill-pct" data-target="75">0%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-bar" data-progress="75"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Databases -->
+        <div class="skill-category-card reveal-scale" data-delay="300">
+          <div class="skill-cat-header">
+            <div class="skill-cat-icon"><i class="ri-database-2-line"></i></div>
+            <h3 class="skill-cat-title">Databases</h3>
+          </div>
+          <div class="skill-items">
+            <div class="skill-row">
+              <div class="skill-row-info">
+                <span class="skill-name">SQL / MySQL</span>
+                <span class="skill-pct" data-target="80">0%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-bar" data-progress="80"></div>
+              </div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-row-info">
+                <span class="skill-name">MongoDB</span>
+                <span class="skill-pct" data-target="80">0%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-bar" data-progress="80"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--  PAGE 7 — CERTIFICATIONS              -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="certifications" class="section certs-section">
+    <div class="container">
+      <div class="section-label reveal-up">Certifications</div>
+      <h2 class="section-title reveal-up" data-delay="100">Certifications &amp; <span class="accent-text">Credentials</span></h2>
+
+      <div class="certs-placeholder reveal-up" data-delay="150">
+        <div class="placeholder-icon"><i class="ri-medal-line"></i></div>
+        <h3>Certifications Coming Soon</h3>
+        <p>This section will showcase verified professional certifications and credentials as they are earned. Check back soon — the pursuit of excellence is always ongoing.</p>
+        <div class="placeholder-chips">
+          <span class="placeholder-chip"><i class="ri-time-line"></i> In Progress</span>
+          <span class="placeholder-chip"><i class="ri-shield-check-line"></i> Verified Credentials</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--  PAGE 8 — ACHIEVEMENTS                -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="achievements" class="section achievements-section">
+    <div class="container">
+      <div class="section-label reveal-up">Achievements</div>
+      <h2 class="section-title reveal-up" data-delay="100">Achievements &amp; <span class="accent-text">Recognition</span></h2>
+      <p class="section-subtitle reveal-up" data-delay="150">Milestones, recognition, and impact — each marker on the journey toward engineering excellence.</p>
+
+      <!-- Stat Counters -->
+      <div class="achievement-stats reveal-up" data-delay="200">
+        <div class="ach-stat">
+          <div class="ach-stat-num" data-target="0">0</div>
+          <div class="ach-stat-lbl">Years Experience</div>
+        </div>
+        <div class="ach-stat">
+          <div class="ach-stat-num" data-target="0">0</div>
+          <div class="ach-stat-lbl">Certifications</div>
+        </div>
+        <div class="ach-stat">
+          <div class="ach-stat-num" data-target="2">0</div>
+          <div class="ach-stat-lbl">Projects Built</div>
+        </div>
+        <div class="ach-stat">
+          <div class="ach-stat-num" data-target="0">0</div>
+          <div class="ach-stat-lbl">Awards</div>
+        </div>
+      </div>
+
+      <!-- Achievements Placeholder -->
+      <div class="achievements-placeholder reveal-up" data-delay="250">
+        <div class="placeholder-icon"><i class="ri-trophy-line"></i></div>
+        <h3>Achievements Being Documented</h3>
+        <p>This section will display academic honours, competition wins, and recognition as they are accumulated. Every great achievement starts with the first step — and that step has been taken.</p>
+        <div class="placeholder-chips">
+          <span class="placeholder-chip"><i class="ri-trophy-line"></i> Academic Excellence</span>
+          <span class="placeholder-chip"><i class="ri-star-line"></i> Recognition Pending</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--  PAGE 9 — CONTACT                     -->
+  <!-- ═══════════════════════════════════════ -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="section-label reveal-up">Contact</div>
+      <h2 class="section-title reveal-up" data-delay="100">Let's <span class="accent-text">Talk</span></h2>
+      <p class="section-subtitle reveal-up" data-delay="150">Have a project, an idea, or just want to connect? I'm always open to interesting conversations.</p>
+
+      <div class="contact-grid">
+
+        <!-- LEFT: Contact Form -->
+        <div class="contact-form-wrap reveal-left">
+          <form id="contact-form" class="contact-form" novalidate>
+            <h3 class="form-title">Send Me a Message</h3>
+
+            <div class="form-group">
+              <input type="text" id="name" name="name" class="form-input" placeholder=" " required autocomplete="name">
+              <label for="name" class="form-label">Full Name</label>
+              <span class="form-underline"></span>
+            </div>
+
+            <div class="form-group">
+              <input type="email" id="email" name="email" class="form-input" placeholder=" " required autocomplete="email">
+              <label for="email" class="form-label">Email Address</label>
+              <span class="form-underline"></span>
+            </div>
+
+            <div class="form-group">
+              <input type="text" id="subject" name="subject" class="form-input" placeholder=" " required>
+              <label for="subject" class="form-label">Subject</label>
+              <span class="form-underline"></span>
+            </div>
+
+            <div class="form-group">
+              <textarea id="message" name="message" class="form-textarea" placeholder=" " required rows="5"></textarea>
+              <label for="message" class="form-label">Your Message</label>
+              <span class="form-underline"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+              <span class="btn-text">Send Message</span>
+              <i class="ri-send-plane-line"></i>
+              <span class="btn-shimmer"></span>
+            </button>
+          </form>
+        </div>
+
+        <!-- RIGHT: Contact Info Panel -->
+        <div class="contact-info-panel reveal-right">
+          <h3 class="info-panel-title">Get In Touch</h3>
+          <p class="info-panel-sub">Feel free to reach out through any of these channels. I respond within 24 hours.</p>
+
+          <div class="contact-info-rows">
+            <div class="contact-row">
+              <div class="contact-row-icon"><i class="ri-mail-line"></i></div>
+              <div class="contact-row-content">
+                <div class="contact-row-label">Email</div>
+                <a href="mailto:noorsayyed.atwork@gmail.com" class="contact-row-value">noorsayyed.atwork@gmail.com</a>
+              </div>
+            </div>
+
+            <div class="contact-row">
+              <div class="contact-row-icon"><i class="ri-map-pin-line"></i></div>
+              <div class="contact-row-content">
+                <div class="contact-row-label">Location</div>
+                <div class="contact-row-value">Maharashtra, India</div>
+              </div>
+            </div>
+
+            <div class="contact-row">
+              <div class="contact-row-icon"><i class="ri-calendar-line"></i></div>
+              <div class="contact-row-content">
+                <div class="contact-row-label">Date of Birth</div>
+                <div class="contact-row-value">07 February 2006</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-social-row">
+            <a href="https://www.linkedin.com/in/noor-saiyed" target="_blank" rel="noopener" class="contact-social-btn" aria-label="LinkedIn">
+              <i class="ri-linkedin-box-fill"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/Noorthistime" target="_blank" rel="noopener" class="contact-social-btn" aria-label="GitHub">
+              <i class="ri-github-fill"></i>
+              <span>GitHub</span>
+            </a>
+          </div>
+
+          <div class="contact-copy-row">
+            <span class="copy-label">noorsayyed.atwork@gmail.com</span>
+            <button class="btn-copy" id="copy-email-btn" aria-label="Copy email address">Copy</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--  FOOTER                               -->
+  <!-- ═══════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">SN</div>
+        <div>
+          <div class="footer-name">Saiyed Noor Mohammad</div>
+          <div class="footer-tagline">Crafting Code with Purpose &amp; Precision</div>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <a href="https://github.com/Noorthistime" target="_blank" rel="noopener" aria-label="GitHub"><i class="ri-github-fill"></i></a>
+        <a href="https://www.linkedin.com/in/noor-saiyed" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="ri-linkedin-box-fill"></i></a>
+        <a href="mailto:noorsayyed.atwork@gmail.com" aria-label="Email"><i class="ri-mail-line"></i></a>
+      </div>
+
+      <div class="footer-copy">&copy; 2026 Saiyed Noor Mohammad. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast" role="alert" aria-live="polite">
+    <i class="ri-checkbox-circle-line toast-icon"></i>
+    <span class="toast-text">Copied!</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="script.js?v=2.0.0"></script>
 </body>
 
 </html>
