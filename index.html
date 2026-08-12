@@ -67,9 +67,86 @@ a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 .sharp { border-radius: var(--radius) !important; }
 .border-grid { border: 1px solid var(--border-color); }
+
+/* ══════════════════════════════════════════════════════════════
+   PHASE 2: GLOBAL LAYOUT & NAVIGATION
+   ══════════════════════════════════════════════════════════════ */
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 64px;
+}
+@media (max-width: 1024px) { .container { padding: 0 32px; } }
+@media (max-width: 768px) { .container { padding: 0 16px; } }
+
+.section-divider {
+  border-top: 1px solid var(--border-color);
+  width: 100%;
+}
+.dot-matrix-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Nav */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 60px;
+  background: var(--glass-overlay);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 900;
+}
+.nav-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.nav-logo span { color: var(--accent-glare); }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+.nav-links a:hover {
+  color: var(--accent-glare);
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+}
+@media (max-width: 768px) { .nav-links { display: none; } }
 </style>
 </head>
 <body>
-  <!-- Layout will be built in Phase 2 -->
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo">Saiyed<span>.</span></a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main style="padding-top: 60px;">
+    <!-- Sections will be built here -->
+  </main>
 </body>
 </html>
