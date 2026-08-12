@@ -202,6 +202,61 @@ ul { list-style: none; }
   background-size: 8px 8px;
 }
 .readout-label { color: var(--accent-glare); margin-bottom: 16px; }
+
+/* ══════════════════════════════════════════════════════════════
+   PHASE 4: EXPERIENCE & PROJECTS
+   ══════════════════════════════════════════════════════════════ */
+.list-section, .projects-section {
+  padding: 100px 0;
+}
+.brutalist-card {
+  background: var(--surface-container);
+  border: 1px solid var(--border-color);
+  padding: 32px;
+  margin-bottom: 24px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.brutalist-card:hover {
+  border-color: var(--accent-glare);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+}
+@media (max-width: 768px) { .card-header { flex-direction: column; gap: 8px; } }
+.card-title {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+.card-subtitle { color: var(--accent-glare); font-size: 14px; }
+.card-meta { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); }
+
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+@media (max-width: 768px) { .project-grid { grid-template-columns: 1fr; } }
+.chip {
+  display: inline-block;
+  padding: 4px 8px;
+  border: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
 </style>
 </head>
 <body>
@@ -258,6 +313,80 @@ ul { list-style: none; }
               <li>> Education: B.E. Computer Engineering (7.8 CGPA)</li>
               <li>> Objective: Seeking engineering roles/internships</li>
             </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION / EXPERIENCE -->
+    <section id="experience" class="list-section">
+      <div class="container">
+        <h2 class="headline-lg" style="margin-bottom: 48px;">Education_Log</h2>
+        
+        <div class="brutalist-card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Theem College of Engineering</h3>
+              <div class="card-subtitle">B.E. Computer Engineering</div>
+            </div>
+            <div class="card-meta">2025 — 2028 | CGPA: 7.8</div>
+          </div>
+          <p style="color: var(--text-secondary);">Advanced coursework in computer architecture, software engineering, and system design.</p>
+        </div>
+
+        <div class="brutalist-card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Government Polytechnic, Mumbai</h3>
+              <div class="card-subtitle">Diploma in Computer Engineering</div>
+            </div>
+            <div class="card-meta">2022 — 2025 | Score: 81.92%</div>
+          </div>
+          <p style="color: var(--text-secondary);">Core foundation in programming, databases, and networking.</p>
+        </div>
+
+        <div class="brutalist-card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">MSBSHSE Board</h3>
+              <div class="card-subtitle">Secondary School Certificate (SSC)</div>
+            </div>
+            <div class="card-meta">2021 — 2022 | Score: 84.80%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="projects-section dot-matrix-bg">
+      <div class="container">
+        <h2 class="headline-lg" style="margin-bottom: 48px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px;">Deployed_Artifacts</h2>
+        
+        <div class="project-grid">
+          <!-- Project 1 -->
+          <div class="brutalist-card">
+            <h3 class="card-title" style="margin-bottom: 8px;">ByteShare</h3>
+            <div class="card-meta" style="margin-bottom: 16px;">Peer-to-Peer File Transfer</div>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">A WebRTC-based platform for decentralized, high-speed file sharing directly between browsers without intermediate storage.</p>
+            <div style="margin-bottom: 24px;">
+              <span class="chip">WebRTC</span>
+              <span class="chip">Node.js</span>
+              <span class="chip">Socket.io</span>
+            </div>
+            <a href="#" class="brutalist-btn">Execute_Link</a>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="brutalist-card">
+            <h3 class="card-title" style="margin-bottom: 8px;">DevSpace</h3>
+            <div class="card-meta" style="margin-bottom: 16px;">Real-time Collaborative Editor</div>
+            <p style="color: var(--text-secondary); margin-bottom: 24px;">A seamless, multi-user code editing environment featuring real-time synchronization and syntax highlighting for technical teams.</p>
+            <div style="margin-bottom: 24px;">
+              <span class="chip">React</span>
+              <span class="chip">Express</span>
+              <span class="chip">WebSockets</span>
+            </div>
+            <a href="#" class="brutalist-btn">Execute_Link</a>
           </div>
         </div>
       </div>
