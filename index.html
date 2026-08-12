@@ -16,18 +16,17 @@
    PHASE 1: MONOLITH NOIR - FOUNDATION & CSS ARCHITECTURE
    ══════════════════════════════════════════════════════════════ */
 :root {
-  --surface-base: #131313;
+  --surface-base: #141313; /* Adjusted slightly to match Stitch */
   --surface-container: #1C1B1B;
   --surface-bright: #3a3939;
-  --accent-glare: #FF0000;
+  --accent-glare: #ff5540; /* Slightly desaturated red to match image */
   --border-color: #393939;
   --text-primary: #e6e1e1;
-  --text-secondary: #c4c7c7;
+  --text-secondary: #8e9192;
   --text-inverse: #313030;
-  --glass-overlay: rgba(28, 27, 27, 0.8);
+  --glass-overlay: rgba(20, 19, 19, 0.9);
   --font-mono: 'Space Mono', monospace;
   --font-body: 'Inter', sans-serif;
-  --grid-base: 4px;
   --radius: 0px; 
 }
 
@@ -40,6 +39,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6, .mono-head {
@@ -60,8 +60,8 @@ ul { list-style: none; }
 
 /* ANIMATIONS */
 @keyframes pulse {
-  0% { opacity: 0.8; }
-  100% { opacity: 0.3; }
+  0% { opacity: 0.6; }
+  100% { opacity: 0.1; }
 }
 @keyframes glitch {
   0% { transform: translate(0) }
@@ -82,7 +82,7 @@ ul { list-style: none; }
 }
 
 /* ══════════════════════════════════════════════════════════════
-   GLOBAL LAYOUT & NAVIGATION
+   GLOBAL LAYOUT & NEW NAVIGATION (STITCH STYLE)
    ══════════════════════════════════════════════════════════════ */
 .container {
   width: 100%;
@@ -93,130 +93,254 @@ ul { list-style: none; }
 @media (max-width: 1024px) { .container { padding: 0 32px; } }
 @media (max-width: 768px) { .container { padding: 0 16px; } }
 
-.section-divider {
-  border-top: 1px solid var(--border-color);
-  width: 100%;
-}
 .dot-matrix-bg {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 8px 8px;
-  animation: pulse 6s infinite alternate;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 12px 12px;
 }
 
 #nav {
-  position: fixed;
+  position: absolute; /* Changed to absolute to match screenshot layout which looks fixed inside the wrapper */
   top: 0; left: 0; right: 0;
-  height: 60px;
-  background: var(--glass-overlay);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-color);
+  height: 80px;
   z-index: 900;
+  padding: 0 40px;
 }
 .nav-inner {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid var(--border-color); /* The screenshot has a faint border or padding */
+}
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.red-square {
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-glare);
+  display: inline-block;
 }
 .nav-logo {
   font-family: var(--font-mono);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-primary);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.nav-logo span { color: var(--accent-glare); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
 .nav-links { display: flex; gap: 32px; }
 .nav-links a {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-secondary);
-  transition: color 0.2s ease, text-shadow 0.2s ease;
+  transition: color 0.2s ease;
+  position: relative;
+  padding-bottom: 6px;
+}
+.nav-links a.active {
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--accent-glare);
 }
 .nav-links a:hover {
-  color: var(--accent-glare);
-  text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+  color: var(--text-primary);
+}
+.user-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media (max-width: 768px) { .nav-links { display: none; } }
 
 /* ══════════════════════════════════════════════════════════════
-   HERO & ABOUT SECTIONS
+   HERO LANDING PAGE (STITCH STYLE)
    ══════════════════════════════════════════════════════════════ */
-.hero-section {
-  min-height: 100vh;
+.landing-wrapper {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border-color); /* Outer frame */
+}
+
+/* Vertical Decorators */
+.vertical-decorator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
   display: flex;
   align-items: center;
-  position: relative;
-  padding-top: 60px;
+  gap: 24px;
 }
-.hero-content { max-width: 800px; }
-.glitch-text {
-  display: inline-block;
-  color: var(--accent-glare);
-  text-shadow: 0 0 15px rgba(255,0,0,0.5);
-}
-.glitch-text:hover { animation: glitch 0.2s linear infinite; }
+.vd-left { left: 40px; transform: translateY(-50%) rotate(180deg); }
+.vd-right { right: 40px; }
+.vd-highlight { color: var(--accent-glare); }
 
-.brutalist-btn {
-  display: inline-flex;
+/* Center Content */
+.center-hud {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 10;
+}
+.hud-pill {
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  display: flex;
   align-items: center;
   gap: 12px;
-  padding: 16px 32px;
-  background: var(--surface-container);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  margin-bottom: 48px;
+  background: var(--surface-base);
+}
+.huge-outline-text {
   font-family: var(--font-mono);
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: all 0.2s ease;
-  cursor: pointer;
+  font-size: clamp(60px, 12vw, 160px);
+  font-weight: 400;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-secondary);
+  letter-spacing: 0.05em;
+  margin-bottom: 48px;
+  line-height: 1;
 }
-.brutalist-btn:hover {
-  border-color: var(--accent-glare);
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.2) inset;
-  color: #fff;
-}
-.brutalist-btn-primary {
-  background: var(--accent-glare);
-  color: #fff;
-  border-color: var(--accent-glare);
-}
-.brutalist-btn-primary:hover {
-  background: #d60000;
-  box-shadow: 0 0 20px rgba(255,0,0,0.5);
-}
-
-.about-section {
-  padding: 100px 0;
+.hud-subtitle {
   background: var(--surface-container);
+  border: 1px solid var(--border-color);
+  padding: 12px 32px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.15em;
+  margin-bottom: 32px;
+}
+.hud-btn {
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-primary);
+  padding: 12px 24px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.hud-btn:hover {
+  border-color: var(--accent-glare);
+  color: var(--accent-glare);
+}
+.blinking-dots {
+  display: flex;
+  gap: 4px;
+  margin-top: 16px;
+}
+.blinking-dots span {
+  width: 4px; height: 4px; background: var(--border-color);
+}
+.blinking-dots span.active { background: var(--accent-glare); }
+
+/* Bottom Bars */
+.bottom-hud-bar {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  width: 100%;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
-}
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-}
-@media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
-.tech-readout {
-  padding: 32px;
   background: var(--surface-base);
+  padding: 12px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.bottom-footer-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-secondary);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.icon-group {
+  display: flex;
+  gap: 16px;
+}
+.hud-icon-btn {
+  width: 32px;
+  height: 32px;
   border: 1px solid var(--border-color);
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
-.tech-readout::before {
-  content: ''; position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none;
-  background-image: radial-gradient(rgba(255,0,0,0.1) 1px, transparent 1px);
-  background-size: 8px 8px;
+.hud-icon-btn:hover {
+  border-color: var(--accent-glare);
+  color: var(--text-primary);
 }
-.readout-label { color: var(--accent-glare); margin-bottom: 16px; }
+.eq-icon {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+.eq-icon div {
+  width: 3px;
+  background: var(--text-secondary);
+}
+.eq-icon div:nth-child(1) { height: 6px; }
+.eq-icon div:nth-child(2) { height: 12px; }
+.eq-icon div:nth-child(3) { height: 4px; }
+
 
 /* ══════════════════════════════════════════════════════════════
    EXPERIENCE & PROJECTS (GALLERY VIEW)
@@ -347,79 +471,92 @@ textarea.brutalist-input {
   resize: vertical;
   min-height: 100px;
 }
-
-footer {
-  background: var(--surface-container);
-  border-top: 1px solid var(--border-color);
-  padding: 32px 0;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
 </style>
 </head>
 <body>
-  <!-- NAV -->
-  <nav id="nav">
-    <div class="container nav-inner">
-      <a href="#hero" class="nav-logo">Saiyed<span>.</span></a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+  
+  <div class="landing-wrapper dot-matrix-bg">
+    <!-- NAV -->
+    <nav id="nav">
+      <div class="nav-inner">
+        <div class="nav-left">
+          <a href="#hero" class="nav-logo"><span class="red-square"></span> SAIYED</a>
+        </div>
+        <div class="nav-right">
+          <div class="nav-links">
+            <a href="#about" class="active">WORK</a>
+            <a href="#projects">ARCHIVE</a>
+            <a href="#experience">INTEL</a>
+            <a href="#contact">CONTACT</a>
+          </div>
+          <div class="user-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#131313" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- VERTICAL DECORATORS -->
+    <div class="vertical-decorator vd-left">
+      <span>SYS.08 // 2.0.4</span>
+      <span>STATUS // <span class="vd-highlight">ONLINE</span></span>
+    </div>
+    <div class="vertical-decorator vd-right">
+      <span>LOC // [REDACTED]</span>
+      <span>PROTOCOL // OMEGA</span>
+    </div>
+
+    <!-- CENTER CONTENT -->
+    <div class="center-hud">
+      <div class="hud-pill">
+        <span class="red-square"></span> SYSTEM INITIALIZATION COMPLETE
+      </div>
+      
+      <h1 class="huge-outline-text">MOHAMMAD</h1>
+      
+      <div class="hud-subtitle">
+        ASPIRING SOFTWARE ENGINEER // FULL-STACK DEVELOPER
+      </div>
+      
+      <a href="#projects" class="hud-btn">
+        ENTER THE ARCHIVE &rarr;
+      </a>
+      
+      <div class="blinking-dots">
+        <span></span>
+        <span></span>
+        <span class="active"></span>
+        <span></span>
       </div>
     </div>
-  </nav>
 
-  <main style="padding-top: 60px;">
+    <!-- BOTTOM HUD BAR 1 -->
+    <div class="bottom-hud-bar">
+      <div>SEQ: 8492.001 &nbsp;&nbsp;&nbsp; MEM: <span class="vd-highlight">ALLOCATED</span></div>
+      <div class="eq-icon">
+        <div></div><div></div><div></div>
+      </div>
+    </div>
+
+    <!-- BOTTOM HUD BAR 2 -->
+    <div class="bottom-footer-bar">
+      <div>
+        <div style="color: var(--text-primary);">SAIYED // SYSTEM</div>
+        <div>TECHNICAL PORTFOLIO V2.0.40</div>
+      </div>
+      
+      <div class="icon-group">
+        <div class="hud-icon-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+        <div class="hud-icon-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-10 10c0 5.5 4.5 10 10 10s10-4.5 10-10A10 10 0 0 0 12 2z"></path><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"></path><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path></svg></div>
+        <div class="hud-icon-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></div>
+      </div>
+
+      <div>EST. 2024 / <span class="vd-highlight">DECRYPTED ACCESS ONLY</span></div>
+    </div>
+  </div>
+
+  <main>
     
-    <!-- HERO -->
-    <section id="hero" class="hero-section dot-matrix-bg reveal">
-      <div class="container hero-content">
-        <h1 class="display-lg" style="margin-bottom: 24px;">
-          Saiyed Noor Mohammad<br>
-          <span class="glitch-text">Full-Stack Developer</span>
-        </h1>
-        <p style="margin-bottom: 40px; font-size: 18px; color: var(--text-secondary); max-width: 600px;">
-          Computer Engineering student crafting premium digital experiences. Merging technical depth with absolute precision.
-        </p>
-        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-          <a href="#projects" class="brutalist-btn brutalist-btn-primary">View Work</a>
-          <a href="#contact" class="brutalist-btn">Initialize Contact</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="about-section">
-      <div class="container reveal">
-        <h2 class="headline-lg" style="margin-bottom: 48px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px;">System_Profile</h2>
-        <div class="about-grid">
-          <div>
-            <p style="margin-bottom: 16px; color: var(--text-secondary);">
-              I am a dedicated Computer Engineering student pursuing my B.E. at Theem College of Engineering. I combine rigorous academic study with a passion for building systems that marry functionality with aesthetic precision.
-            </p>
-            <p style="color: var(--text-secondary);">
-              My expertise spans responsive front-end interfaces to scalable back-end services with Node.js and SQL/NoSQL databases. Always learning, constantly building.
-            </p>
-          </div>
-          <div class="tech-readout">
-            <h3 class="label-md readout-label">Current_Status</h3>
-            <ul style="color: var(--text-secondary); font-family: var(--font-mono); font-size: 14px; line-height: 2;">
-              <li>> Location: Maharashtra, India</li>
-              <li>> DOB: 07 February 2006</li>
-              <li>> Education: B.E. Computer Engineering (7.8 CGPA)</li>
-              <li>> Objective: Seeking engineering roles/internships</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- EDUCATION / EXPERIENCE -->
     <section id="experience" class="list-section">
       <div class="container reveal">
@@ -480,7 +617,7 @@ footer {
                 <span class="chip">Node.js</span>
                 <span class="chip">Socket.io</span>
               </div>
-              <a href="#" class="brutalist-btn">Execute_Link</a>
+              <a href="#" class="hud-btn" style="display:inline-flex; border-color:var(--border-color);">Execute_Link</a>
             </div>
 
             <!-- Project 2 -->
@@ -497,7 +634,7 @@ footer {
                 <span class="chip">Express</span>
                 <span class="chip">WebSockets</span>
               </div>
-              <a href="#" class="brutalist-btn">Execute_Link</a>
+              <a href="#" class="hud-btn" style="display:inline-flex; border-color:var(--border-color);">Execute_Link</a>
             </div>
           </div>
         </div>
@@ -522,7 +659,7 @@ footer {
             <input type="text" name="user_name" class="brutalist-input" placeholder="> Input_Name" required>
             <input type="email" name="user_email" class="brutalist-input" placeholder="> Input_Email" required>
             <textarea name="message" class="brutalist-input" placeholder="> Transmit_Payload" required></textarea>
-            <button type="submit" class="brutalist-btn brutalist-btn-primary">Transmit</button>
+            <button type="submit" class="hud-btn" style="border-color:var(--accent-glare); color:var(--accent-glare);">Transmit</button>
             <p id="form-status" style="margin-top: 16px; font-family: var(--font-mono); font-size: 12px; color: var(--accent-glare);"></p>
           </form>
         </div>
@@ -531,16 +668,11 @@ footer {
 
   </main>
 
-  <footer>
-    <div class="container">
-      &copy; 2026 Saiyed Noor Mohammad. System Online.
-    </div>
-  </footer>
-
-  <!-- Scripts -->
+  <!-- EmailJS Logic -->
   <script>
     /* EmailJS Logic */
     (function() {
+      // PRESERVED EXACTLY
       emailjs.init("cF3wK97L1mlSzPQhB");
     })();
 
@@ -550,10 +682,11 @@ footer {
       const statusElement = document.getElementById('form-status');
       statusElement.textContent = "> Transmission_Initiated...";
 
+      // PRESERVED EXACTLY
       emailjs.sendForm('portfolioredirect', 'template_3y0zuhd', this)
         .then(function() {
           statusElement.textContent = "> Transmission_Successful.";
-          statusElement.style.color = "#4edea3"; 
+          statusElement.style.color = "#ff5540"; 
           document.getElementById('contact-form').reset();
         }, function(error) {
           statusElement.textContent = "> Transmission_Failed. Error: " + JSON.stringify(error);
@@ -573,10 +706,6 @@ footer {
       }, { threshold: 0.15 });
       
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-      
-      // Trigger first section manually if already in view
-      const firstSection = document.querySelector('.hero-section');
-      if (firstSection) firstSection.classList.add('active');
     });
   </script>
 </body>
