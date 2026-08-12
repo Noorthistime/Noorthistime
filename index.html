@@ -129,6 +129,79 @@ ul { list-style: none; }
   text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
 }
 @media (max-width: 768px) { .nav-links { display: none; } }
+
+/* ══════════════════════════════════════════════════════════════
+   PHASE 3: HERO & ABOUT SECTIONS
+   ══════════════════════════════════════════════════════════════ */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 60px;
+}
+.hero-content { max-width: 800px; }
+.glitch-text {
+  color: var(--accent-glare);
+  text-shadow: 0 0 15px rgba(255,0,0,0.5);
+}
+
+.brutalist-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: var(--surface-container);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.brutalist-btn:hover {
+  border-color: var(--accent-glare);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.2) inset;
+  color: #fff;
+}
+.brutalist-btn-primary {
+  background: var(--accent-glare);
+  color: #fff;
+  border-color: var(--accent-glare);
+}
+.brutalist-btn-primary:hover {
+  background: #d60000;
+  box-shadow: 0 0 20px rgba(255,0,0,0.5);
+}
+
+.about-section {
+  padding: 100px 0;
+  background: var(--surface-container);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+@media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+.tech-readout {
+  padding: 32px;
+  background: var(--surface-base);
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+.tech-readout::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255,0,0,0.1) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+.readout-label { color: var(--accent-glare); margin-bottom: 16px; }
 </style>
 </head>
 <body>
@@ -146,7 +219,50 @@ ul { list-style: none; }
   </nav>
 
   <main style="padding-top: 60px;">
-    <!-- Sections will be built here -->
+    
+    <!-- HERO -->
+    <section id="hero" class="hero-section dot-matrix-bg">
+      <div class="container hero-content">
+        <h1 class="display-lg" style="margin-bottom: 24px;">
+          Saiyed Noor Mohammad<br>
+          <span class="glitch-text">Full-Stack Developer</span>
+        </h1>
+        <p style="margin-bottom: 40px; font-size: 18px; color: var(--text-secondary); max-width: 600px;">
+          Computer Engineering student crafting premium digital experiences. Merging technical depth with absolute precision.
+        </p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="#projects" class="brutalist-btn brutalist-btn-primary">View Work</a>
+          <a href="#contact" class="brutalist-btn">Initialize Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <h2 class="headline-lg" style="margin-bottom: 48px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px;">System_Profile</h2>
+        <div class="about-grid">
+          <div>
+            <p style="margin-bottom: 16px; color: var(--text-secondary);">
+              I am a dedicated Computer Engineering student pursuing my B.E. at Theem College of Engineering. I combine rigorous academic study with a passion for building systems that marry functionality with aesthetic precision.
+            </p>
+            <p style="color: var(--text-secondary);">
+              My expertise spans responsive front-end interfaces to scalable back-end services with Node.js and SQL/NoSQL databases. Always learning, constantly building.
+            </p>
+          </div>
+          <div class="tech-readout">
+            <h3 class="label-md readout-label">Current_Status</h3>
+            <ul style="color: var(--text-secondary); font-family: var(--font-mono); font-size: 14px; line-height: 2;">
+              <li>> Location: Maharashtra, India</li>
+              <li>> DOB: 07 February 2006</li>
+              <li>> Education: B.E. Computer Engineering (7.8 CGPA)</li>
+              <li>> Objective: Seeking engineering roles/internships</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 </body>
 </html>
