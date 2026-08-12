@@ -16,29 +16,21 @@
    PHASE 1: MONOLITH NOIR - FOUNDATION & CSS ARCHITECTURE
    ══════════════════════════════════════════════════════════════ */
 :root {
-  /* Colors */
   --surface-base: #131313;
   --surface-container: #1C1B1B;
   --surface-bright: #3a3939;
   --accent-glare: #FF0000;
   --border-color: #393939;
-  
   --text-primary: #e6e1e1;
   --text-secondary: #c4c7c7;
   --text-inverse: #313030;
-  
   --glass-overlay: rgba(28, 27, 27, 0.8);
-  
-  /* Typography */
   --font-mono: 'Space Mono', monospace;
   --font-body: 'Inter', sans-serif;
-  
-  /* Layout */
   --grid-base: 4px;
-  --radius: 0px; /* Strict Brutalism */
+  --radius: 0px; 
 }
 
-/* Reset & Base */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -50,7 +42,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Typography Scale */
 h1, h2, h3, h4, h5, h6, .mono-head {
   font-family: var(--font-mono);
   text-transform: uppercase;
@@ -62,14 +53,36 @@ h1, h2, h3, h4, h5, h6, .mono-head {
 .headline-sm { font-size: 18px; line-height: 1.4; letter-spacing: 0.1em; }
 .label-md { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; }
 
-/* Brutalist Utilities */
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 .sharp { border-radius: var(--radius) !important; }
 .border-grid { border: 1px solid var(--border-color); }
 
+/* ANIMATIONS */
+@keyframes pulse {
+  0% { opacity: 0.8; }
+  100% { opacity: 0.3; }
+}
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 1px) }
+  40% { transform: translate(-1px, -1px) }
+  60% { transform: translate(2px, 1px) }
+  80% { transform: translate(1px, -1px) }
+  100% { transform: translate(0) }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s cubic-bezier(0, 0, 0.2, 1), transform 0.6s cubic-bezier(0, 0, 0.2, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ══════════════════════════════════════════════════════════════
-   PHASE 2: GLOBAL LAYOUT & NAVIGATION
+   GLOBAL LAYOUT & NAVIGATION
    ══════════════════════════════════════════════════════════════ */
 .container {
   width: 100%;
@@ -87,9 +100,9 @@ ul { list-style: none; }
 .dot-matrix-bg {
   background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
   background-size: 8px 8px;
+  animation: pulse 6s infinite alternate;
 }
 
-/* Nav */
 #nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -131,7 +144,7 @@ ul { list-style: none; }
 @media (max-width: 768px) { .nav-links { display: none; } }
 
 /* ══════════════════════════════════════════════════════════════
-   PHASE 3: HERO & ABOUT SECTIONS
+   HERO & ABOUT SECTIONS
    ══════════════════════════════════════════════════════════════ */
 .hero-section {
   min-height: 100vh;
@@ -142,9 +155,11 @@ ul { list-style: none; }
 }
 .hero-content { max-width: 800px; }
 .glitch-text {
+  display: inline-block;
   color: var(--accent-glare);
   text-shadow: 0 0 15px rgba(255,0,0,0.5);
 }
+.glitch-text:hover { animation: glitch 0.2s linear infinite; }
 
 .brutalist-btn {
   display: inline-flex;
@@ -204,7 +219,7 @@ ul { list-style: none; }
 .readout-label { color: var(--accent-glare); margin-bottom: 16px; }
 
 /* ══════════════════════════════════════════════════════════════
-   PHASE 4: EXPERIENCE & PROJECTS
+   EXPERIENCE & PROJECTS (GALLERY VIEW)
    ══════════════════════════════════════════════════════════════ */
 .list-section, .projects-section {
   padding: 100px 0;
@@ -240,12 +255,48 @@ ul { list-style: none; }
 .card-subtitle { color: var(--accent-glare); font-size: 14px; }
 .card-meta { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); }
 
-.project-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
+/* MUSEUM GALLERY SETUP */
+.gallery-container {
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 32px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-glare) var(--surface-base);
 }
-@media (max-width: 768px) { .project-grid { grid-template-columns: 1fr; } }
+.gallery-container::-webkit-scrollbar { height: 6px; }
+.gallery-container::-webkit-scrollbar-track { background: var(--surface-base); border: 1px solid var(--border-color); }
+.gallery-container::-webkit-scrollbar-thumb { background: var(--accent-glare); }
+
+.project-grid {
+  display: flex;
+  gap: 32px;
+  width: max-content;
+  padding: 16px 0;
+}
+.project-card-gallery {
+  scroll-snap-align: center;
+  width: 80vw;
+  max-width: 800px;
+  background: var(--surface-container);
+  border: 1px solid var(--border-color);
+  padding: 48px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+@media (max-width: 768px) { .project-card-gallery { width: 90vw; padding: 24px; } }
+.project-card-gallery:hover {
+  border-color: var(--accent-glare);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+}
+.placard-text {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-left: 2px solid var(--accent-glare);
+  padding-left: 16px;
+  margin-bottom: 32px;
+}
 .chip {
   display: inline-block;
   padding: 4px 8px;
@@ -259,7 +310,7 @@ ul { list-style: none; }
 }
 
 /* ══════════════════════════════════════════════════════════════
-   PHASE 5: CONTACT & FOOTER
+   CONTACT & FOOTER
    ══════════════════════════════════════════════════════════════ */
 .contact-section {
   padding: 100px 0;
@@ -327,7 +378,7 @@ footer {
   <main style="padding-top: 60px;">
     
     <!-- HERO -->
-    <section id="hero" class="hero-section dot-matrix-bg">
+    <section id="hero" class="hero-section dot-matrix-bg reveal">
       <div class="container hero-content">
         <h1 class="display-lg" style="margin-bottom: 24px;">
           Saiyed Noor Mohammad<br>
@@ -345,7 +396,7 @@ footer {
 
     <!-- ABOUT -->
     <section id="about" class="about-section">
-      <div class="container">
+      <div class="container reveal">
         <h2 class="headline-lg" style="margin-bottom: 48px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px;">System_Profile</h2>
         <div class="about-grid">
           <div>
@@ -371,7 +422,7 @@ footer {
 
     <!-- EDUCATION / EXPERIENCE -->
     <section id="experience" class="list-section">
-      <div class="container">
+      <div class="container reveal">
         <h2 class="headline-lg" style="margin-bottom: 48px;">Education_Log</h2>
         
         <div class="brutalist-card">
@@ -408,36 +459,46 @@ footer {
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- PROJECTS (GALLERY VIEW) -->
     <section id="projects" class="projects-section dot-matrix-bg">
-      <div class="container">
-        <h2 class="headline-lg" style="margin-bottom: 48px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px;">Deployed_Artifacts</h2>
+      <div class="container reveal">
+        <h2 class="headline-lg" style="margin-bottom: 48px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px;">Deployed_Artifacts <span style="font-size: 12px; color: var(--text-secondary); font-weight: 400;">// Scroll to view</span></h2>
         
-        <div class="project-grid">
-          <!-- Project 1 -->
-          <div class="brutalist-card">
-            <h3 class="card-title" style="margin-bottom: 8px;">ByteShare</h3>
-            <div class="card-meta" style="margin-bottom: 16px;">Peer-to-Peer File Transfer</div>
-            <p style="color: var(--text-secondary); margin-bottom: 24px;">A WebRTC-based platform for decentralized, high-speed file sharing directly between browsers without intermediate storage.</p>
-            <div style="margin-bottom: 24px;">
-              <span class="chip">WebRTC</span>
-              <span class="chip">Node.js</span>
-              <span class="chip">Socket.io</span>
+        <div class="gallery-container">
+          <div class="project-grid">
+            <!-- Project 1 -->
+            <div class="project-card-gallery">
+              <h3 class="card-title" style="margin-bottom: 8px; font-size: 32px;">ByteShare</h3>
+              <div class="card-meta" style="margin-bottom: 32px;">Peer-to-Peer File Transfer</div>
+              
+              <div class="placard-text">
+                A WebRTC-based platform for decentralized, high-speed file sharing directly between browsers without intermediate storage. Engineered for privacy and maximum throughput.
+              </div>
+              
+              <div style="margin-bottom: 32px;">
+                <span class="chip">WebRTC</span>
+                <span class="chip">Node.js</span>
+                <span class="chip">Socket.io</span>
+              </div>
+              <a href="#" class="brutalist-btn">Execute_Link</a>
             </div>
-            <a href="#" class="brutalist-btn">Execute_Link</a>
-          </div>
 
-          <!-- Project 2 -->
-          <div class="brutalist-card">
-            <h3 class="card-title" style="margin-bottom: 8px;">DevSpace</h3>
-            <div class="card-meta" style="margin-bottom: 16px;">Real-time Collaborative Editor</div>
-            <p style="color: var(--text-secondary); margin-bottom: 24px;">A seamless, multi-user code editing environment featuring real-time synchronization and syntax highlighting for technical teams.</p>
-            <div style="margin-bottom: 24px;">
-              <span class="chip">React</span>
-              <span class="chip">Express</span>
-              <span class="chip">WebSockets</span>
+            <!-- Project 2 -->
+            <div class="project-card-gallery">
+              <h3 class="card-title" style="margin-bottom: 8px; font-size: 32px;">DevSpace</h3>
+              <div class="card-meta" style="margin-bottom: 32px;">Real-time Collaborative Editor</div>
+              
+              <div class="placard-text">
+                A seamless, multi-user code editing environment featuring real-time synchronization and syntax highlighting for technical teams. Built for high-frequency state updates.
+              </div>
+              
+              <div style="margin-bottom: 32px;">
+                <span class="chip">React</span>
+                <span class="chip">Express</span>
+                <span class="chip">WebSockets</span>
+              </div>
+              <a href="#" class="brutalist-btn">Execute_Link</a>
             </div>
-            <a href="#" class="brutalist-btn">Execute_Link</a>
           </div>
         </div>
       </div>
@@ -445,7 +506,7 @@ footer {
 
     <!-- CONTACT -->
     <section id="contact" class="contact-section">
-      <div class="container contact-grid">
+      <div class="container contact-grid reveal">
         <div>
           <h2 class="headline-lg" style="margin-bottom: 24px;">Establish_Connection</h2>
           <p style="color: var(--text-secondary); margin-bottom: 32px;">Ready to collaborate on robust, scalable systems? Transmit your message below.</p>
@@ -476,10 +537,10 @@ footer {
     </div>
   </footer>
 
-  <!-- EmailJS Logic -->
+  <!-- Scripts -->
   <script>
+    /* EmailJS Logic */
     (function() {
-      // PRESERVED EXACTLY
       emailjs.init("cF3wK97L1mlSzPQhB");
     })();
 
@@ -489,16 +550,33 @@ footer {
       const statusElement = document.getElementById('form-status');
       statusElement.textContent = "> Transmission_Initiated...";
 
-      // PRESERVED EXACTLY
       emailjs.sendForm('portfolioredirect', 'template_3y0zuhd', this)
         .then(function() {
           statusElement.textContent = "> Transmission_Successful.";
-          statusElement.style.color = "#4edea3"; // Green success color
+          statusElement.style.color = "#4edea3"; 
           document.getElementById('contact-form').reset();
         }, function(error) {
           statusElement.textContent = "> Transmission_Failed. Error: " + JSON.stringify(error);
           statusElement.style.color = "var(--accent-glare)";
         });
+    });
+
+    /* Animation Reveal Logic */
+    document.addEventListener("DOMContentLoaded", function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      
+      // Trigger first section manually if already in view
+      const firstSection = document.querySelector('.hero-section');
+      if (firstSection) firstSection.classList.add('active');
     });
   </script>
 </body>
