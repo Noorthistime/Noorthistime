@@ -294,16 +294,54 @@ ul { list-style: none; }
 .placard-text { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); border-left: 2px solid var(--accent-glare); padding-left: 16px; margin-bottom: 32px; }
 .chip { display: inline-block; padding: 4px 8px; border: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; color: var(--text-secondary); margin-right: 8px; margin-bottom: 8px; }
 
+
 /* ══════════════════════════════════════════════════════════════
-   CONTACT & FOOTER
+   CONTACT TERMINAL (STITCH STYLE)
    ══════════════════════════════════════════════════════════════ */
-.contact-section { padding: 100px 0; background: var(--surface-base); }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
-@media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 32px; } }
-.brutalist-input { width: 100%; background: var(--surface-base); border: none; border-bottom: 1px solid var(--border-color); color: var(--text-primary); font-family: var(--font-mono); font-size: 14px; padding: 12px 0; margin-bottom: 32px; transition: all 0.2s ease; }
-.brutalist-input:focus { outline: none; border-bottom-color: var(--accent-glare); box-shadow: 0 4px 10px -4px rgba(255, 0, 0, 0.4); }
-.brutalist-input::placeholder { color: var(--text-secondary); }
-textarea.brutalist-input { resize: vertical; min-height: 100px; }
+.contact-section { 
+  padding: 120px 0 160px; 
+  background: var(--surface-base); 
+  min-height: 100vh; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+.terminal-header { width: 100%; max-width: 800px; margin-bottom: 32px; }
+.terminal-title { font-family: var(--font-mono); font-size: 24px; color: var(--text-primary); letter-spacing: 0.1em; margin-bottom: 4px; }
+.terminal-sub { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); letter-spacing: 0.1em; margin-bottom: 12px; text-transform: uppercase; }
+.terminal-meta { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); letter-spacing: 0.1em; text-transform: uppercase; }
+
+.terminal-box {
+  width: 100%;
+  max-width: 800px;
+  background: var(--surface-container);
+  padding: 48px;
+  position: relative;
+}
+/* Targeting Corners */
+.corner-tl { position: absolute; top: 0; left: 0; width: 12px; height: 12px; border-top: 1px solid var(--text-secondary); border-left: 1px solid var(--text-secondary); }
+.corner-tr { position: absolute; top: 0; right: 0; width: 12px; height: 12px; border-top: 1px solid var(--text-secondary); border-right: 1px solid var(--text-secondary); }
+.corner-bl { position: absolute; bottom: 0; left: 0; width: 12px; height: 12px; border-bottom: 1px solid var(--text-secondary); border-left: 1px solid var(--text-secondary); }
+.corner-br { position: absolute; bottom: 0; right: 0; width: 12px; height: 12px; border-bottom: 1px solid var(--text-secondary); border-right: 1px solid var(--text-secondary); }
+
+.input-group { margin-bottom: 32px; }
+.input-group label { display: block; font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); letter-spacing: 0.1em; margin-bottom: 8px; }
+.term-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border-color); color: var(--text-primary); font-family: var(--font-body); font-size: 14px; padding: 8px 0; transition: border-color 0.2s; }
+.term-input:focus { outline: none; border-bottom-color: var(--text-secondary); }
+.term-input::placeholder { color: #555; }
+.input-meta { font-family: var(--font-mono); font-size: 8px; color: #555; letter-spacing: 0.1em; margin-top: 4px; text-transform: uppercase; }
+
+.term-input-box { width: 100%; background: transparent; border: 1px solid var(--border-color); color: var(--text-primary); font-family: var(--font-body); font-size: 14px; padding: 16px; min-height: 120px; resize: vertical; transition: border-color 0.2s; }
+.term-input-box:focus { outline: none; border-color: var(--text-secondary); }
+.term-input-box::placeholder { color: #555; }
+
+.terminal-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 48px; }
+.term-readout { font-family: var(--font-mono); font-size: 9px; color: #555; line-height: 1.6; letter-spacing: 0.1em; }
+.term-submit { border-color: var(--border-color); color: var(--text-secondary); }
+.term-submit:hover { border-color: var(--text-primary); color: var(--text-primary); }
+
+.connection-status { margin-top: 48px; display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); letter-spacing: 0.2em; text-transform: uppercase; }
+.connection-status svg { color: var(--accent-glare); }
 </style>
 </head>
 <body>
@@ -319,8 +357,8 @@ textarea.brutalist-input { resize: vertical; min-height: 100px; }
           <div class="nav-links">
             <a href="#hero">WORK</a>
             <a href="#projects">ARCHIVE</a>
-            <a href="#intel" class="active">INTEL</a>
-            <a href="#contact">CONTACT</a>
+            <a href="#intel">INTEL</a>
+            <a href="#contact" class="active">CONTACT</a>
           </div>
           <div class="user-icon">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#131313" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
@@ -521,30 +559,61 @@ textarea.brutalist-input { resize: vertical; min-height: 100px; }
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- CONTACT TERMINAL -->
     <section id="contact" class="contact-section dot-matrix-bg">
-      <div class="container contact-grid reveal">
-        <div>
-          <h2 class="headline-lg" style="font-family:var(--font-mono); margin-bottom: 24px;">ESTABLISH_CONNECTION</h2>
-          <p style="color: var(--text-secondary); margin-bottom: 32px;">Ready to collaborate on robust, scalable systems? Transmit your message below.</p>
-          <div style="font-family: var(--font-mono); font-size: 12px; line-height: 2.5; letter-spacing:0.1em;">
-            <div>> Email: <a href="mailto:noorsayyed.atwork@gmail.com" style="color: var(--accent-glare);">noorsayyed.atwork@gmail.com</a></div>
-            <div>> GitHub: <a href="https://github.com/Noorthistime" style="color: var(--text-primary);">github.com/Noorthistime</a></div>
-            <div>> LinkedIn: <a href="https://www.linkedin.com/in/noor-saiyed" style="color: var(--text-primary);">linkedin.com/in/noor-saiyed</a></div>
+      <div class="container reveal" style="display:flex; flex-direction:column; align-items:center;">
+        
+        <!-- Header -->
+        <div class="terminal-header">
+          <h2 class="terminal-title">COMMUNICATION LINK</h2>
+          <div class="terminal-sub">SECURE CHANNEL // 0XFF98.4</div>
+          <div class="terminal-meta">
+            <span>LOC: MAHARASHTRA, INDIA</span>
+            <span><span class="red-square" style="width:6px;height:6px;"></span> SYS.ONLINE</span>
           </div>
         </div>
         
-        <div>
-          <div class="intel-module" style="margin-bottom:0;">
-            <h3 class="module-title" style="margin-bottom:32px;"><span class="red-square"></span> TRANSMISSION_PROTOCOL</h3>
-            <form id="contact-form">
-              <input type="text" name="user_name" class="brutalist-input" placeholder="> Input_Name" required>
-              <input type="email" name="user_email" class="brutalist-input" placeholder="> Input_Email" required>
-              <textarea name="message" class="brutalist-input" placeholder="> Transmit_Payload" required></textarea>
-              <button type="submit" class="hud-btn" style="border-color:var(--accent-glare); color:var(--accent-glare); margin-top:16px;">Transmit</button>
-              <p id="form-status" style="margin-top: 16px; font-family: var(--font-mono); font-size: 10px; color: var(--accent-glare); text-transform:uppercase;"></p>
-            </form>
-          </div>
+        <!-- Terminal Box -->
+        <div class="terminal-box">
+          <div class="corner-tl"></div>
+          <div class="corner-tr"></div>
+          <div class="corner-bl"></div>
+          <div class="corner-br"></div>
+          
+          <form id="contact-form">
+            <div class="input-group">
+              <label>> [NAME]</label>
+              <input type="text" name="user_name" class="term-input" placeholder="ENTER IDENTIFIER" required>
+              <div class="input-meta">LOC: MAHARASHTRA, INDIA</div>
+            </div>
+            
+            <div class="input-group">
+              <label>> [EMAIL]</label>
+              <input type="email" name="user_email" class="term-input" placeholder="noorsayyed.atwork@gmail.com" required>
+            </div>
+            
+            <div class="input-group">
+              <label>> [MESSAGE]</label>
+              <textarea name="message" class="term-input-box" placeholder="INPUT DIRECTIVE..." required></textarea>
+            </div>
+            
+            <div class="terminal-footer">
+              <div class="term-readout">
+                <div>ENC: RSA-4096</div>
+                <div>LAT: 12MS</div>
+                <div>GH: <a href="https://github.com/Noorthistime" target="_blank" class="highlight-red">/NOORTHISTIME</a></div>
+                <div>LI: <a href="https://www.linkedin.com/in/noor-saiyed" target="_blank" class="highlight-red">/NOOR-SAIYED</a></div>
+              </div>
+              
+              <button type="submit" class="hud-btn term-submit">TRANSMIT &nbsp;&nbsp; ▷</button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Status -->
+        <div class="connection-status">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <span id="form-status">CONNECTION: SECURED</span>
         </div>
       </div>
     </section>
@@ -563,17 +632,17 @@ textarea.brutalist-input { resize: vertical; min-height: 100px; }
       event.preventDefault();
       
       const statusElement = document.getElementById('form-status');
-      statusElement.textContent = "> Transmission_Initiated...";
+      statusElement.textContent = "TRANSMISSION: INITIATED...";
 
       // PRESERVED EXACTLY
       emailjs.sendForm('portfolioredirect', 'template_3y0zuhd', this)
         .then(function() {
-          statusElement.textContent = "> Transmission_Successful.";
-          statusElement.style.color = "#ff5540"; 
+          statusElement.textContent = "TRANSMISSION: SUCCESS";
+          document.querySelector('.connection-status svg').style.color = "#4edea3"; 
           document.getElementById('contact-form').reset();
         }, function(error) {
-          statusElement.textContent = "> Transmission_Failed. Error: " + JSON.stringify(error);
-          statusElement.style.color = "var(--accent-glare)";
+          statusElement.textContent = "TRANSMISSION: FAILED";
+          document.querySelector('.connection-status svg').style.color = "var(--accent-glare)";
         });
     });
 
