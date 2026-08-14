@@ -60,12 +60,14 @@ ul { list-style: none; }
 }
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s cubic-bezier(0, 0, 0.2, 1), transform 0.6s cubic-bezier(0, 0, 0.2, 1);
+  transform: perspective(1000px) translateY(50px) rotateX(-10deg) scale(0.95);
+  filter: drop-shadow(0 0 20px rgba(255, 85, 64, 0.8));
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 1s ease-out;
 }
 .reveal.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: perspective(1000px) translateY(0) rotateX(0deg) scale(1);
+  filter: drop-shadow(0 0 0 rgba(255, 85, 64, 0));
 }
 
 /* ══════════════════════════════════════════════════════════════
