@@ -29,15 +29,6 @@
       cursor: none;
     }
 
-    /* INTERACTIVE CANVAS GRID */
-    #interactive-grid {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-    }
-
     /* CUSTOM CURSOR (HOVER ONLY) */
     .custom-cursor {
       position: fixed;
@@ -66,6 +57,13 @@
       60% { transform: translate(-48%, -52%) skewX(5deg); }
       80% { transform: translate(-50%, -50%) skewX(-5deg); }
       100% { transform: translate(-50%, -50%) skewX(0deg); }
+    }
+
+    #cursor-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 9998; transform: translate(-50%, -50%);
     }
 
     .error-container {
@@ -133,7 +131,7 @@
   </style>
 </head>
 <body>
-  <canvas id="interactive-grid"></canvas>
+  <canvas id="cursor-canvas" width="60" height="60"></canvas>
   <div class="custom-cursor" id="custom-cursor"></div>
 
   <div class="error-container">
@@ -157,74 +155,73 @@
       customCursor.style.top = e.clientY + 'px';
     });
 
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', () => customCursor.classList.add('hover-glitch'));
-      el.addEventListener('mouseleave', () => customCursor.classList.remove('hover-glitch'));
-    });
-
     // ══════════════════════════════════════════════════════════════
-    // INTERACTIVE CANVAS GRID LOGIC
+    // 3D RIPPLING CANVAS CURSOR LOGIC
     // ══════════════════════════════════════════════════════════════
-    const canvas = document.getElementById('interactive-grid');
-    const ctx = canvas.getContext('2d');
-    let width, height;
+    const cursorCanvas = document.getElementById('cursor-canvas');
+    const ctx = cursorCanvas.getContext('2d');
     let mouseX = -1000;
     let mouseY = -1000;
-    
-    function resizeCanvas() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    }
-    
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
     
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      cursorCanvas.style.left = mouseX + 'px';
+      cursorCanvas.style.top = mouseY + 'px';
     });
     
-    const SPACING = 24;
-    const HIGHLIGHT_RADIUS = 250;
+    const SPACING = 6; 
+    const CENTER = 30; 
     
-    function drawGrid() {
-      ctx.clearRect(0, 0, width, height);
+    function drawCursor() {
+      ctx.clearRect(0, 0, 60, 60);
+      const time = Date.now() / 150;
       
-      const time = Date.now() / 200; 
-      
-      for (let x = 0; x < width; x += SPACING) {
-        for (let y = 0; y < height; y += SPACING) {
-          const dx = x - mouseX;
-          const dy = y - mouseY;
+      for (let x = 0; x <= 60; x += SPACING) {
+        for (let y = 0; y <= 60; y += SPACING) {
+          const dx = x - CENTER;
+          const dy = y - CENTER;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          let radius = 1;
-          let r = 255, g = 255, b = 255, a = 0.05; 
-          
-          if (distance < HIGHLIGHT_RADIUS) {
-            const intensity = 1 - (distance / HIGHLIGHT_RADIUS);
-            const ripple = Math.sin(time - (distance / 20));
-            radius = 1 + (ripple * 1.5 * intensity);
+          if (distance < 24) {
+            const intensity = 1 - (distance / 24);
+            const ripple = Math.sin(time - (distance / 4));
             
-            r = 255; 
-            g = 255 - (170 * intensity); 
-            b = 255 - (191 * intensity); 
-            a = 0.05 + (0.7 * intensity);
+            // 3D pop-out effect
+            const radius = 1.5 + (ripple * 2 * intensity);
+            const z = Math.max(0, ripple * intensity);
+            
+            ctx.shadowBlur = z * 10;
+            ctx.shadowColor = 'rgba(255, 85, 64, 0.8)';
+            
+            const r = 255; 
+            const g = 255 - (170 * intensity); 
+            const b = 255 - (191 * intensity); 
+            const a = 0.1 + (0.9 * intensity);
+            
+            ctx.beginPath();
+            ctx.arc(x, y, Math.max(0.1, radius), 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
+            ctx.fill();
           }
-          
-          ctx.beginPath();
-          ctx.arc(x, y, Math.max(0.1, radius), 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
-          ctx.fill();
         }
       }
-      
-      requestAnimationFrame(drawGrid);
+      requestAnimationFrame(drawCursor);
     }
     
-    drawGrid();
+    drawCursor();
+
+    const interactiveElements = document.querySelectorAll('a, button');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursorCanvas.style.display = 'none';
+        customCursor.classList.add('hover-glitch');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursorCanvas.style.display = 'block';
+        customCursor.classList.remove('hover-glitch');
+      });
+    });
   </script>
 </body>
 </html>

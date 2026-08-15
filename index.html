@@ -166,13 +166,18 @@
       }
     }
 
-    /* INTERACTIVE CANVAS GRID */
-    #interactive-grid {
+    /* GRID BACKGROUND */
+    .dot-matrix-bg {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    #cursor-canvas {
       position: fixed;
       top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: 0; /* Behind content */
       pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
     }
 
     #nav {
@@ -1078,7 +1083,7 @@
 </head>
 
 <body>
-  <canvas id="interactive-grid"></canvas>
+  <canvas id="cursor-canvas" width="60" height="60"></canvas>
   <div class="custom-cursor" id="custom-cursor"></div>
 
   <!-- PRELOADER -->
@@ -1088,7 +1093,7 @@
     </div>
   </div>
 
-  <div id="hero" class="landing-wrapper">
+  <div id="hero" class="landing-wrapper dot-matrix-bg">
     <!-- NAV -->
     <nav id="nav">
       <div class="nav-inner">
@@ -1193,7 +1198,7 @@
   <main>
 
     <!-- INTEL SECTION (ABOUT + EXPERIENCE) -->
-    <section id="intel" class="intel-section">
+    <section id="intel" class="intel-section dot-matrix-bg">
       <div class="container intel-grid reveal">
 
         <!-- Left Column -->
@@ -1344,7 +1349,7 @@
     </section>
 
     <!-- CONTACT TERMINAL -->
-    <section id="contact" class="contact-section">
+    <section id="contact" class="contact-section dot-matrix-bg">
       <div class="container reveal" style="display:flex; flex-direction:column; align-items:center;">
 
         <!-- Header -->
@@ -1427,74 +1432,71 @@
     });
 
     // ══════════════════════════════════════════════════════════════
-    // INTERACTIVE CANVAS GRID LOGIC
+    // 3D RIPPLING CANVAS CURSOR LOGIC
     // ══════════════════════════════════════════════════════════════
-    const canvas = document.getElementById('interactive-grid');
-    const ctx = canvas.getContext('2d');
-    let width, height;
+    const cursorCanvas = document.getElementById('cursor-canvas');
+    const ctx = cursorCanvas.getContext('2d');
     let mouseX = -1000;
     let mouseY = -1000;
-    
-    function resizeCanvas() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    }
-    
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
     
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      cursorCanvas.style.left = mouseX + 'px';
+      cursorCanvas.style.top = mouseY + 'px';
     });
     
-    const SPACING = 24;
-    const HIGHLIGHT_RADIUS = 250;
+    const SPACING = 6; 
+    const CENTER = 30; 
     
-    function drawGrid() {
-      ctx.clearRect(0, 0, width, height);
+    function drawCursor() {
+      ctx.clearRect(0, 0, 60, 60);
+      const time = Date.now() / 150;
       
-      const time = Date.now() / 200; // Speed of the ripple
-      
-      for (let x = 0; x < width; x += SPACING) {
-        for (let y = 0; y < height; y += SPACING) {
-          const dx = x - mouseX;
-          const dy = y - mouseY;
+      for (let x = 0; x <= 60; x += SPACING) {
+        for (let y = 0; y <= 60; y += SPACING) {
+          const dx = x - CENTER;
+          const dy = y - CENTER;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          let radius = 1;
-          let r = 255, g = 255, b = 255, a = 0.05; // Base color (faint white/gray)
-          
-          if (distance < HIGHLIGHT_RADIUS) {
-            // Highlight intensity based on distance to mouse
-            const intensity = 1 - (distance / HIGHLIGHT_RADIUS);
+          if (distance < 24) {
+            const intensity = 1 - (distance / 24);
+            const ripple = Math.sin(time - (distance / 4));
             
-            // Flowing out ripple effect (sine wave based on time and distance)
-            const ripple = Math.sin(time - (distance / 20));
+            // 3D pop-out effect
+            const radius = 1.5 + (ripple * 2 * intensity);
+            const z = Math.max(0, ripple * intensity);
             
-            // Apply ripple to radius
-            radius = 1 + (ripple * 1.5 * intensity);
+            ctx.shadowBlur = z * 10;
+            ctx.shadowColor = 'rgba(255, 85, 64, 0.8)';
             
-            // Transition color from faint white to glowing red (var(--accent-glare) = #ff5540)
-            r = 255; 
-            g = 255 - (170 * intensity); // 255 -> 85
-            b = 255 - (191 * intensity); // 255 -> 64
-            a = 0.05 + (0.7 * intensity);
+            const r = 255; 
+            const g = 255 - (170 * intensity); 
+            const b = 255 - (191 * intensity); 
+            const a = 0.1 + (0.9 * intensity);
+            
+            ctx.beginPath();
+            ctx.arc(x, y, Math.max(0.1, radius), 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
+            ctx.fill();
           }
-          
-          ctx.beginPath();
-          ctx.arc(x, y, Math.max(0.1, radius), 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
-          ctx.fill();
         }
       }
-      
-      requestAnimationFrame(drawGrid);
+      requestAnimationFrame(drawCursor);
     }
     
-    drawGrid();
+    drawCursor();
+
+    // Hide canvas when hovering buttons to show the [ ] brackets
+    const interactiveElements = document.querySelectorAll('a, button, .project-card-gallery, .hud-btn, .blinking-dots span, .hud-icon-btn, .footer-link');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursorCanvas.style.display = 'none';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursorCanvas.style.display = 'block';
+      });
+    });
 
     /* EmailJS Logic */
     (function () {
