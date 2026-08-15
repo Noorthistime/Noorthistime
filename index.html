@@ -1488,7 +1488,6 @@
     drawCursor();
 
     // Hide canvas when hovering buttons to show the [ ] brackets
-    const interactiveElements = document.querySelectorAll('a, button, .project-card-gallery, .hud-btn, .blinking-dots span, .hud-icon-btn, .footer-link');
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => {
         cursorCanvas.style.display = 'none';

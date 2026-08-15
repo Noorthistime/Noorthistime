@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ERROR 404 — DIRECTIVE NOT FOUND</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --surface-base: #141313;
@@ -14,8 +17,15 @@
       --text-primary: #e6e1e1;
       --font-mono: 'Space Mono', monospace;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       background: var(--surface-base);
       color: var(--text-primary);
@@ -32,38 +42,64 @@
     /* CUSTOM CURSOR (HOVER ONLY) */
     .custom-cursor {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       pointer-events: none;
-      z-index: 9999; transform: translate(-50%, -50%);
+      z-index: 9999;
+      transform: translate(-50%, -50%);
     }
+
     .custom-cursor.hover-glitch {
       background: none;
     }
+
     .custom-cursor.hover-glitch::before {
       content: '[  ]';
       position: absolute;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       font-family: var(--font-mono);
-      font-size: 24px; font-weight: 700;
+      font-size: 24px;
+      font-weight: 700;
       color: var(--accent-glare);
       white-space: pre;
       animation: cursorGlitch 0.2s infinite alternate;
     }
+
     @keyframes cursorGlitch {
-      0% { transform: translate(-50%, -50%) skewX(0deg); }
-      20% { transform: translate(-52%, -50%) skewX(10deg); }
-      40% { transform: translate(-50%, -48%) skewX(-10deg); }
-      60% { transform: translate(-48%, -52%) skewX(5deg); }
-      80% { transform: translate(-50%, -50%) skewX(-5deg); }
-      100% { transform: translate(-50%, -50%) skewX(0deg); }
+      0% {
+        transform: translate(-50%, -50%) skewX(0deg);
+      }
+
+      20% {
+        transform: translate(-52%, -50%) skewX(10deg);
+      }
+
+      40% {
+        transform: translate(-50%, -48%) skewX(-10deg);
+      }
+
+      60% {
+        transform: translate(-48%, -52%) skewX(5deg);
+      }
+
+      80% {
+        transform: translate(-50%, -50%) skewX(-5deg);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) skewX(0deg);
+      }
     }
 
     #cursor-canvas {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       pointer-events: none;
-      z-index: 9998; transform: translate(-50%, -50%);
+      z-index: 9998;
+      transform: translate(-50%, -50%);
     }
 
     .error-container {
@@ -72,11 +108,27 @@
       border: 1px solid #393939;
       position: relative;
     }
+
     .error-container::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 10px; height: 10px; border-top: 2px solid var(--accent-glare); border-left: 2px solid var(--accent-glare);
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      border-top: 2px solid var(--accent-glare);
+      border-left: 2px solid var(--accent-glare);
     }
+
     .error-container::after {
-      content: ''; position: absolute; bottom: 0; right: 0; width: 10px; height: 10px; border-bottom: 2px solid var(--accent-glare); border-right: 2px solid var(--accent-glare);
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 10px;
+      height: 10px;
+      border-bottom: 2px solid var(--accent-glare);
+      border-right: 2px solid var(--accent-glare);
     }
 
     .status-code {
@@ -94,7 +146,7 @@
       text-transform: uppercase;
       letter-spacing: 2px;
     }
-    
+
     .sys-log {
       color: #8e9192;
       font-size: 12px;
@@ -116,20 +168,38 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .return-btn:hover {
       border-color: var(--accent-glare);
       color: var(--accent-glare);
     }
 
     @keyframes textGlitch {
-      0%, 100% { transform: none; opacity: 1; }
-      5% { transform: skewX(5deg); opacity: 0.8; }
-      10% { transform: skewX(-5deg); opacity: 0.8; }
-      15% { transform: none; opacity: 1; }
+
+      0%,
+      100% {
+        transform: none;
+        opacity: 1;
+      }
+
+      5% {
+        transform: skewX(5deg);
+        opacity: 0.8;
+      }
+
+      10% {
+        transform: skewX(-5deg);
+        opacity: 0.8;
+      }
+
+      15% {
+        transform: none;
+        opacity: 1;
+      }
     }
   </style>
 </head>
+
 <body>
   <canvas id="cursor-canvas" width="60" height="60"></canvas>
   <div class="custom-cursor" id="custom-cursor"></div>
@@ -149,7 +219,7 @@
   <script>
     const customCursor = document.getElementById('custom-cursor');
     const interactiveElements = document.querySelectorAll('a, button');
-    
+
     document.addEventListener('mousemove', (e) => {
       customCursor.style.left = e.clientX + 'px';
       customCursor.style.top = e.clientY + 'px';
@@ -162,43 +232,43 @@
     const ctx = cursorCanvas.getContext('2d');
     let mouseX = -1000;
     let mouseY = -1000;
-    
+
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       cursorCanvas.style.left = mouseX + 'px';
       cursorCanvas.style.top = mouseY + 'px';
     });
-    
-    const SPACING = 6; 
-    const CENTER = 30; 
-    
+
+    const SPACING = 6;
+    const CENTER = 30;
+
     function drawCursor() {
       ctx.clearRect(0, 0, 60, 60);
       const time = Date.now() / 150;
-      
+
       for (let x = 0; x <= 60; x += SPACING) {
         for (let y = 0; y <= 60; y += SPACING) {
           const dx = x - CENTER;
           const dy = y - CENTER;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          
+
           if (distance < 24) {
             const intensity = 1 - (distance / 24);
             const ripple = Math.sin(time - (distance / 4));
-            
+
             // 3D pop-out effect
             const radius = 1.5 + (ripple * 2 * intensity);
             const z = Math.max(0, ripple * intensity);
-            
+
             ctx.shadowBlur = z * 10;
             ctx.shadowColor = 'rgba(255, 85, 64, 0.8)';
-            
-            const r = 255; 
-            const g = 255 - (170 * intensity); 
-            const b = 255 - (191 * intensity); 
+
+            const r = 255;
+            const g = 255 - (170 * intensity);
+            const b = 255 - (191 * intensity);
             const a = 0.1 + (0.9 * intensity);
-            
+
             ctx.beginPath();
             ctx.arc(x, y, Math.max(0.1, radius), 0, Math.PI * 2);
             ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
@@ -208,10 +278,9 @@
       }
       requestAnimationFrame(drawCursor);
     }
-    
+
     drawCursor();
 
-    const interactiveElements = document.querySelectorAll('a, button');
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => {
         cursorCanvas.style.display = 'none';
@@ -224,4 +293,5 @@
     });
   </script>
 </body>
+
 </html>
