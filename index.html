@@ -209,7 +209,7 @@
       bottom: 0;
       pointer-events: none;
       z-index: -1;
-      background-image: radial-gradient(rgba(255, 180, 80, 0.45) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(255, 40, 40, 0.45) 1px, transparent 1px);
       background-size: 24px 24px;
       -webkit-mask-image: radial-gradient(circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), black 0%, transparent 150px);
       mask-image: radial-gradient(circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), black 0%, transparent 150px);
@@ -1544,9 +1544,9 @@
       // start: PI, end: 2*PI (top half of ellipse)
       ctx.ellipse(cx, cy, 48, 12, 0, Math.PI, Math.PI * 2);
       ctx.lineWidth = 3;
-      ctx.strokeStyle = 'rgba(255, 180, 80, 0.5)';
+      ctx.strokeStyle = 'rgba(220, 30, 30, 0.5)';
       ctx.shadowBlur = 10;
-      ctx.shadowColor = 'rgba(255, 100, 20, 0.8)';
+      ctx.shadowColor = 'rgba(180, 0, 0, 0.8)';
       ctx.stroke();
 
       // 2. Gravitational Lensing (Photon Ring wrapping around)
@@ -1557,13 +1557,13 @@
       ctx.lineWidth = 4;
 
       const grad = ctx.createLinearGradient(cx, cy - r - 5, cx, cy + r + 5);
-      grad.addColorStop(0, 'rgba(255, 230, 180, 1)'); // Top bright
-      grad.addColorStop(0.5, 'rgba(255, 150, 50, 0.2)'); // Sides dim
-      grad.addColorStop(1, 'rgba(255, 180, 100, 0.8)'); // Bottom glowing
+      grad.addColorStop(0, 'rgba(255, 80, 80, 1)'); // Top bright
+      grad.addColorStop(0.5, 'rgba(150, 0, 0, 0.2)'); // Sides dim
+      grad.addColorStop(1, 'rgba(255, 30, 30, 0.8)'); // Bottom glowing
 
       ctx.strokeStyle = grad;
       ctx.shadowBlur = 15;
-      ctx.shadowColor = 'rgba(255, 100, 20, 1)';
+      ctx.shadowColor = 'rgba(200, 0, 0, 1)';
       ctx.stroke();
 
       // 3. The Event Horizon (The Black Void)
@@ -1578,7 +1578,7 @@
       ctx.beginPath();
       ctx.arc(cx, cy, r, 0, Math.PI * 2);
       ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(255, 150, 50, 0.3)';
+      ctx.strokeStyle = 'rgba(200, 0, 0, 0.3)';
       ctx.stroke();
 
       // 4. Front of the Accretion Disk (In front of Black Hole)
@@ -1588,9 +1588,9 @@
       // start: 0, end: PI (bottom half of ellipse)
       ctx.ellipse(cx, cy, 48, 12, 0, 0, Math.PI);
       ctx.lineWidth = 4;
-      ctx.strokeStyle = 'rgba(255, 240, 200, 1)';
+      ctx.strokeStyle = 'rgba(255, 100, 100, 1)';
       ctx.shadowBlur = 20;
-      ctx.shadowColor = 'rgba(255, 120, 40, 1)';
+      ctx.shadowColor = 'rgba(255, 0, 0, 1)';
       ctx.stroke();
 
       // Inner bright core of the front disk
@@ -1599,7 +1599,7 @@
       ctx.beginPath();
       ctx.ellipse(cx, cy, 48, 12, 0, 0, Math.PI);
       ctx.lineWidth = 1.5;
-      ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
+      ctx.strokeStyle = 'rgba(255, 200, 200, 1)';
       ctx.shadowBlur = 5;
       ctx.stroke();
 
