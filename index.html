@@ -1083,7 +1083,7 @@
 </head>
 
 <body>
-  <canvas id="cursor-canvas" width="60" height="60"></canvas>
+  <canvas id="cursor-canvas" width="80" height="80"></canvas>
   <div class="custom-cursor" id="custom-cursor"></div>
 
   <!-- PRELOADER -->
@@ -1446,38 +1446,48 @@
       cursorCanvas.style.top = mouseY + 'px';
     });
     
-    const SPACING = 6; 
-    const CENTER = 30; 
+    const SPACING = 4; 
+    const CENTER = 40; 
     
     function drawCursor() {
-      ctx.clearRect(0, 0, 60, 60);
+      ctx.clearRect(0, 0, 80, 80);
       const time = Date.now() / 150;
       
-      for (let x = 0; x <= 60; x += SPACING) {
-        for (let y = 0; y <= 60; y += SPACING) {
-          const dx = x - CENTER;
-          const dy = y - CENTER;
+      for (let gridX = 0; gridX <= 80; gridX += SPACING) {
+        for (let gridY = 0; gridY <= 80; gridY += SPACING) {
+          const dx = gridX - CENTER;
+          const dy = gridY - CENTER;
           const distance = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < 24) {
-            const intensity = 1 - (distance / 24);
-            const ripple = Math.sin(time - (distance / 4));
+          if (distance < 36) {
+            const intensity = Math.max(0, 1 - (distance / 36));
             
-            // 3D pop-out effect
-            const radius = 1.5 + (ripple * 2 * intensity);
-            const z = Math.max(0, ripple * intensity);
+            // 3D Peak: center is lifted high
+            const peak = Math.pow(intensity, 2) * 15;
             
-            ctx.shadowBlur = z * 10;
-            ctx.shadowColor = 'rgba(255, 85, 64, 0.8)';
+            // Waterfall ripples flowing outward
+            const ripple = Math.sin(time - (distance / 4)) * 2 * intensity;
             
-            const r = 255; 
-            const g = 255 - (170 * intensity); 
-            const b = 255 - (191 * intensity); 
-            const a = 0.1 + (0.9 * intensity);
+            // Total elevation
+            const z = peak + ripple;
+            
+            // 3D Projection (lift UP and push slightly outward)
+            const perspectiveX = dx * (z / 40); 
+            const perspectiveY = dy * (z / 40);
+            
+            const renderX = gridX + perspectiveX;
+            const renderY = gridY - z + perspectiveY;
+            
+            // Size & Color
+            const radius = 1 + (z / 10);
+            const alpha = 0.2 + (0.8 * intensity);
+            
+            ctx.shadowBlur = z;
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
             
             ctx.beginPath();
-            ctx.arc(x, y, Math.max(0.1, radius), 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
+            ctx.arc(renderX, renderY, Math.max(0.5, radius), 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
             ctx.fill();
           }
         }
