@@ -60,7 +60,8 @@
     /* CUSTOM CURSOR (HOVER ONLY) */
     .custom-cursor {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       pointer-events: none;
       z-index: 9999;
       transform: translate(-50%, -50%);
@@ -69,22 +70,41 @@
     .custom-cursor.hover-glitch::before {
       content: '[  ]';
       position: absolute;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
       font-family: var(--font-mono);
-      font-size: 24px; font-weight: 700;
+      font-size: 24px;
+      font-weight: 700;
       color: var(--accent-glare);
       white-space: pre;
       animation: cursorGlitch 0.2s infinite alternate;
     }
 
     @keyframes cursorGlitch {
-      0% { transform: translate(-50%, -50%) skewX(0deg); }
-      20% { transform: translate(-52%, -50%) skewX(10deg); }
-      40% { transform: translate(-50%, -48%) skewX(-10deg); }
-      60% { transform: translate(-48%, -52%) skewX(5deg); }
-      80% { transform: translate(-50%, -50%) skewX(-5deg); }
-      100% { transform: translate(-50%, -50%) skewX(0deg); }
+      0% {
+        transform: translate(-50%, -50%) skewX(0deg);
+      }
+
+      20% {
+        transform: translate(-52%, -50%) skewX(10deg);
+      }
+
+      40% {
+        transform: translate(-50%, -48%) skewX(-10deg);
+      }
+
+      60% {
+        transform: translate(-48%, -52%) skewX(5deg);
+      }
+
+      80% {
+        transform: translate(-50%, -50%) skewX(-5deg);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) skewX(0deg);
+      }
     }
 
     h1,
@@ -167,14 +187,38 @@
     }
 
     /* GRID BACKGROUND */
-    .dot-matrix-bg {
-      background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: -2;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.2) 1.5px, transparent 1.5px);
       background-size: 24px 24px;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      z-index: -1;
+      background-image: radial-gradient(rgba(255, 180, 80, 0.9) 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+      -webkit-mask-image: radial-gradient(circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), black 0%, transparent 150px);
+      mask-image: radial-gradient(circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), black 0%, transparent 150px);
     }
 
     #cursor-canvas {
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       pointer-events: none;
       z-index: 9998;
       transform: translate(-50%, -50%);
@@ -1071,10 +1115,17 @@
     }
 
     @keyframes bootBlink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
     }
-    
+
     body.no-scroll {
       overflow: hidden;
       height: 100vh;
@@ -1093,7 +1144,7 @@
     </div>
   </div>
 
-  <div id="hero" class="landing-wrapper dot-matrix-bg">
+  <div id="hero" class="landing-wrapper">
     <!-- NAV -->
     <nav id="nav">
       <div class="nav-inner">
@@ -1198,7 +1249,7 @@
   <main>
 
     <!-- INTEL SECTION (ABOUT + EXPERIENCE) -->
-    <section id="intel" class="intel-section dot-matrix-bg">
+    <section id="intel" class="intel-section">
       <div class="container intel-grid reveal">
 
         <!-- Left Column -->
@@ -1349,7 +1400,7 @@
     </section>
 
     <!-- CONTACT TERMINAL -->
-    <section id="contact" class="contact-section dot-matrix-bg">
+    <section id="contact" class="contact-section">
       <div class="container reveal" style="display:flex; flex-direction:column; align-items:center;">
 
         <!-- Header -->
@@ -1438,24 +1489,26 @@
     const ctx = cursorCanvas.getContext('2d');
     let mouseX = -1000;
     let mouseY = -1000;
-    
+
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
       cursorCanvas.style.left = mouseX + 'px';
       cursorCanvas.style.top = mouseY + 'px';
+      document.body.style.setProperty('--mouse-x', mouseX + 'px');
+      document.body.style.setProperty('--mouse-y', mouseY + 'px');
     });
-    
+
     let time = 0;
-    
+
     function drawCursor() {
       ctx.clearRect(0, 0, 120, 120);
       time += 0.03;
-      
+
       const cx = 60;
       const cy = 60;
       const r = 16; // Event Horizon Radius
-      
+
       // 1. Back of the Accretion Disk (Behind Black Hole)
       ctx.setLineDash([12, 8, 25, 10, 5, 10]);
       ctx.lineDashOffset = -time * 30;
@@ -1467,24 +1520,24 @@
       ctx.shadowBlur = 10;
       ctx.shadowColor = 'rgba(255, 100, 20, 0.8)';
       ctx.stroke();
-      
+
       // 2. Gravitational Lensing (Photon Ring wrapping around)
       ctx.setLineDash([15, 10, 30, 15, 8, 12]);
       ctx.lineDashOffset = time * 20; // Moves in slightly different speed
       ctx.beginPath();
       ctx.arc(cx, cy, r + 3, 0, Math.PI * 2);
       ctx.lineWidth = 4;
-      
+
       const grad = ctx.createLinearGradient(cx, cy - r - 5, cx, cy + r + 5);
       grad.addColorStop(0, 'rgba(255, 230, 180, 1)'); // Top bright
       grad.addColorStop(0.5, 'rgba(255, 150, 50, 0.2)'); // Sides dim
       grad.addColorStop(1, 'rgba(255, 180, 100, 0.8)'); // Bottom glowing
-      
+
       ctx.strokeStyle = grad;
       ctx.shadowBlur = 15;
       ctx.shadowColor = 'rgba(255, 100, 20, 1)';
       ctx.stroke();
-      
+
       // 3. The Event Horizon (The Black Void)
       ctx.setLineDash([]);
       ctx.beginPath();
@@ -1492,14 +1545,14 @@
       ctx.fillStyle = '#000000';
       ctx.shadowBlur = 0; // NO glow inside the void
       ctx.fill();
-      
+
       // Subtle rim light inside the void to give it spherical volume
       ctx.beginPath();
       ctx.arc(cx, cy, r, 0, Math.PI * 2);
       ctx.lineWidth = 1;
       ctx.strokeStyle = 'rgba(255, 150, 50, 0.3)';
       ctx.stroke();
-      
+
       // 4. Front of the Accretion Disk (In front of Black Hole)
       ctx.setLineDash([12, 8, 25, 10, 5, 10]);
       ctx.lineDashOffset = -time * 30;
@@ -1511,7 +1564,7 @@
       ctx.shadowBlur = 20;
       ctx.shadowColor = 'rgba(255, 120, 40, 1)';
       ctx.stroke();
-      
+
       // Inner bright core of the front disk
       ctx.setLineDash([8, 12, 20, 15]);
       ctx.lineDashOffset = -time * 40;
@@ -1521,12 +1574,12 @@
       ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
       ctx.shadowBlur = 5;
       ctx.stroke();
-      
+
       ctx.setLineDash([]);
-      
+
       requestAnimationFrame(drawCursor);
     }
-    
+
     drawCursor();
 
     // Hide canvas when hovering buttons to show the [ ] brackets
@@ -1565,13 +1618,13 @@
 
     /* Preloader & Animation Reveal Logic */
     document.addEventListener("DOMContentLoaded", function () {
-      
+
       // Preloader Boot Sequence
       document.body.classList.add('no-scroll');
       const bootText = "> SYSTEM BOOT SEQUENCE INITIATED...\n> LOADING KERNEL...\n> DECRYPTING ASSETS...\n> DIRECTIVES LOADED.\n> WELCOME, SAIYED.";
       const typewriterEl = document.getElementById('boot-typewriter');
       let i = 0;
-      
+
       function typeWriter() {
         if (i < bootText.length) {
           typewriterEl.innerHTML += bootText.charAt(i) === '\n' ? '<br>' : bootText.charAt(i);
@@ -1579,14 +1632,14 @@
           setTimeout(typeWriter, 8); // extremely fast typing
         }
       }
-      
+
       typeWriter();
 
       setTimeout(() => {
         const preloader = document.getElementById('boot-preloader');
         preloader.classList.add('hidden');
         document.body.classList.remove('no-scroll');
-        
+
         // Start scroll animations ONLY after preloader finishes
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
