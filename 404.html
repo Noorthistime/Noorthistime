@@ -29,36 +29,33 @@
       cursor: none;
     }
 
-    /* CUSTOM CURSOR */
+    /* INTERACTIVE CANVAS GRID */
+    #interactive-grid {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* CUSTOM CURSOR (HOVER ONLY) */
     .custom-cursor {
       position: fixed;
-      top: 0; left: 0; width: 12px; height: 12px;
-      background: linear-gradient(var(--accent-glare), var(--accent-glare)) center/2px 100% no-repeat,
-                  linear-gradient(var(--accent-glare), var(--accent-glare)) center/100% 2px no-repeat;
+      top: 0; left: 0;
       pointer-events: none;
       z-index: 9999; transform: translate(-50%, -50%);
-      transition: background 0.2s;
-    }
-    .custom-cursor::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 30px; height: 30px;
-      border: 1px solid var(--accent-glare);
-      border-radius: 50%;
-      transition: all 0.2s ease;
     }
     .custom-cursor.hover-glitch {
       background: none;
     }
     .custom-cursor.hover-glitch::before {
       content: '[  ]';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
       font-family: var(--font-mono);
       font-size: 24px; font-weight: 700;
       color: var(--accent-glare);
-      border: none; border-radius: 0;
-      width: auto; height: auto;
       white-space: pre;
       animation: cursorGlitch 0.2s infinite alternate;
     }
@@ -136,6 +133,7 @@
   </style>
 </head>
 <body>
+  <canvas id="interactive-grid"></canvas>
   <div class="custom-cursor" id="custom-cursor"></div>
 
   <div class="error-container">
@@ -152,14 +150,81 @@
 
   <script>
     const customCursor = document.getElementById('custom-cursor');
+    const interactiveElements = document.querySelectorAll('a, button');
+    
     document.addEventListener('mousemove', (e) => {
       customCursor.style.left = e.clientX + 'px';
       customCursor.style.top = e.clientY + 'px';
     });
 
-    const btn = document.querySelector('.return-btn');
-    btn.addEventListener('mouseenter', () => customCursor.classList.add('hover-glitch'));
-    btn.addEventListener('mouseleave', () => customCursor.classList.remove('hover-glitch'));
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => customCursor.classList.add('hover-glitch'));
+      el.addEventListener('mouseleave', () => customCursor.classList.remove('hover-glitch'));
+    });
+
+    // ══════════════════════════════════════════════════════════════
+    // INTERACTIVE CANVAS GRID LOGIC
+    // ══════════════════════════════════════════════════════════════
+    const canvas = document.getElementById('interactive-grid');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let mouseX = -1000;
+    let mouseY = -1000;
+    
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+    
+    const SPACING = 24;
+    const HIGHLIGHT_RADIUS = 250;
+    
+    function drawGrid() {
+      ctx.clearRect(0, 0, width, height);
+      
+      const time = Date.now() / 200; 
+      
+      for (let x = 0; x < width; x += SPACING) {
+        for (let y = 0; y < height; y += SPACING) {
+          const dx = x - mouseX;
+          const dy = y - mouseY;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          let radius = 1;
+          let r = 255, g = 255, b = 255, a = 0.05; 
+          
+          if (distance < HIGHLIGHT_RADIUS) {
+            const intensity = 1 - (distance / HIGHLIGHT_RADIUS);
+            const ripple = Math.sin(time - (distance / 20));
+            radius = 1 + (ripple * 1.5 * intensity);
+            
+            r = 255; 
+            g = 255 - (170 * intensity); 
+            b = 255 - (191 * intensity); 
+            a = 0.05 + (0.7 * intensity);
+          }
+          
+          ctx.beginPath();
+          ctx.arc(x, y, Math.max(0.1, radius), 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
+          ctx.fill();
+        }
+      }
+      
+      requestAnimationFrame(drawGrid);
+    }
+    
+    drawGrid();
   </script>
 </body>
 </html>
