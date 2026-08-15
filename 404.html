@@ -32,11 +32,12 @@
     /* CUSTOM CURSOR */
     .custom-cursor {
       position: fixed;
-      top: 0; left: 0; width: 6px; height: 6px;
-      background-color: var(--accent-glare);
-      border-radius: 50%; pointer-events: none;
+      top: 0; left: 0; width: 12px; height: 12px;
+      background: linear-gradient(var(--accent-glare), var(--accent-glare)) center/2px 100% no-repeat,
+                  linear-gradient(var(--accent-glare), var(--accent-glare)) center/100% 2px no-repeat;
+      pointer-events: none;
       z-index: 9999; transform: translate(-50%, -50%);
-      transition: background-color 0.2s;
+      transition: background 0.2s;
     }
     .custom-cursor::before {
       content: '';
@@ -49,7 +50,7 @@
       transition: all 0.2s ease;
     }
     .custom-cursor.hover-glitch {
-      background-color: transparent;
+      background: none;
     }
     .custom-cursor.hover-glitch::before {
       content: '[  ]';
