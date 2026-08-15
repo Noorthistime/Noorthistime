@@ -29,19 +29,13 @@
       cursor: none;
     }
 
-    /* INTERACTIVE CANVAS GRID */
-    #interactive-grid {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* CUSTOM CURSOR (HOVER ONLY) */
+    /* CUSTOM CURSOR */
     .custom-cursor {
       position: fixed;
       top: 0; left: 0;
+      width: 12px; height: 12px;
+      background-image: radial-gradient(var(--accent-glare) 1px, transparent 1.5px);
+      background-size: 4px 4px;
       pointer-events: none;
       z-index: 9999; transform: translate(-50%, -50%);
     }
@@ -133,7 +127,6 @@
   </style>
 </head>
 <body>
-  <canvas id="interactive-grid"></canvas>
   <div class="custom-cursor" id="custom-cursor"></div>
 
   <div class="error-container">
@@ -161,70 +154,6 @@
       el.addEventListener('mouseenter', () => customCursor.classList.add('hover-glitch'));
       el.addEventListener('mouseleave', () => customCursor.classList.remove('hover-glitch'));
     });
-
-    // ══════════════════════════════════════════════════════════════
-    // INTERACTIVE CANVAS GRID LOGIC
-    // ══════════════════════════════════════════════════════════════
-    const canvas = document.getElementById('interactive-grid');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let mouseX = -1000;
-    let mouseY = -1000;
-    
-    function resizeCanvas() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    }
-    
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-    
-    const SPACING = 24;
-    const HIGHLIGHT_RADIUS = 250;
-    
-    function drawGrid() {
-      ctx.clearRect(0, 0, width, height);
-      
-      const time = Date.now() / 200; 
-      
-      for (let x = 0; x < width; x += SPACING) {
-        for (let y = 0; y < height; y += SPACING) {
-          const dx = x - mouseX;
-          const dy = y - mouseY;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          let radius = 1;
-          let r = 255, g = 255, b = 255, a = 0.05; 
-          
-          if (distance < HIGHLIGHT_RADIUS) {
-            const intensity = 1 - (distance / HIGHLIGHT_RADIUS);
-            const ripple = Math.sin(time - (distance / 20));
-            radius = 1 + (ripple * 1.5 * intensity);
-            
-            r = 255; 
-            g = 255 - (170 * intensity); 
-            b = 255 - (191 * intensity); 
-            a = 0.05 + (0.7 * intensity);
-          }
-          
-          ctx.beginPath();
-          ctx.arc(x, y, Math.max(0.1, radius), 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
-          ctx.fill();
-        }
-      }
-      
-      requestAnimationFrame(drawGrid);
-    }
-    
-    drawGrid();
   </script>
 </body>
 </html>
