@@ -265,15 +265,43 @@
     });
 
     let time = 0;
-    
+    let targetAngle = 0;
+    let currentAngle = 0;
+    let prevMouseX = -1000;
+    let prevMouseY = -1000;
+
     function drawCursor() {
       ctx.clearRect(0, 0, 120, 120);
       time += 0.03;
+
+      // Calculate rotation based on movement
+      const dx = mouseX - prevMouseX;
+      const dy = mouseY - prevMouseY;
       
+      // Update target angle only if moving to prevent snapping back
+      if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
+        targetAngle = Math.atan2(dy, dx);
+      }
+      
+      // Smooth interpolation for the angle
+      let diff = targetAngle - currentAngle;
+      while (diff < -Math.PI) diff += Math.PI * 2;
+      while (diff > Math.PI) diff -= Math.PI * 2;
+      currentAngle += diff * 0.15;
+      
+      prevMouseX = mouseX;
+      prevMouseY = mouseY;
+
       const cx = 60;
       const cy = 60;
       const r = 16; 
       
+      ctx.save();
+      // Apply rotation around the center
+      ctx.translate(cx, cy);
+      ctx.rotate(currentAngle);
+      ctx.translate(-cx, -cy);
+
       // 1. Back of the Accretion Disk (Behind Black Hole)
       ctx.setLineDash([12, 8, 25, 10, 5, 10]);
       ctx.lineDashOffset = -time * 30;
@@ -342,6 +370,7 @@
       
       ctx.setLineDash([]);
       
+      ctx.restore();
       requestAnimationFrame(drawCursor);
     }
 
