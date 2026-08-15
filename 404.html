@@ -42,7 +42,10 @@
     body::before {
       content: '';
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       pointer-events: none;
       z-index: -2;
       background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
@@ -52,7 +55,10 @@
     body::after {
       content: '';
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       pointer-events: none;
       z-index: -1;
       background-image: radial-gradient(rgba(255, 180, 80, 0.45) 1px, transparent 1px);
@@ -277,25 +283,25 @@
       // Calculate rotation based on movement
       const dx = mouseX - prevMouseX;
       const dy = mouseY - prevMouseY;
-      
+
       // Update target angle only if moving to prevent snapping back
       if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
         targetAngle = Math.atan2(dy, dx);
       }
-      
+
       // Smooth interpolation for the angle
       let diff = targetAngle - currentAngle;
       while (diff < -Math.PI) diff += Math.PI * 2;
       while (diff > Math.PI) diff -= Math.PI * 2;
       currentAngle += diff * 0.15;
-      
+
       prevMouseX = mouseX;
       prevMouseY = mouseY;
 
       const cx = 60;
       const cy = 60;
-      const r = 16; 
-      
+      const r = 16;
+
       ctx.save();
       // Apply rotation around the center
       ctx.translate(cx, cy);
@@ -313,39 +319,39 @@
       ctx.shadowBlur = 10;
       ctx.shadowColor = 'rgba(255, 100, 20, 0.8)';
       ctx.stroke();
-      
+
       // 2. Gravitational Lensing (Photon Ring wrapping around)
       ctx.setLineDash([15, 10, 30, 15, 8, 12]);
-      ctx.lineDashOffset = time * 20; 
+      ctx.lineDashOffset = time * 20;
       ctx.beginPath();
       ctx.arc(cx, cy, r + 3, 0, Math.PI * 2);
       ctx.lineWidth = 4;
-      
+
       const grad = ctx.createLinearGradient(cx, cy - r - 5, cx, cy + r + 5);
-      grad.addColorStop(0, 'rgba(255, 230, 180, 1)'); 
-      grad.addColorStop(0.5, 'rgba(255, 150, 50, 0.2)'); 
-      grad.addColorStop(1, 'rgba(255, 180, 100, 0.8)'); 
-      
+      grad.addColorStop(0, 'rgba(255, 230, 180, 1)');
+      grad.addColorStop(0.5, 'rgba(255, 150, 50, 0.2)');
+      grad.addColorStop(1, 'rgba(255, 180, 100, 0.8)');
+
       ctx.strokeStyle = grad;
       ctx.shadowBlur = 15;
       ctx.shadowColor = 'rgba(255, 100, 20, 1)';
       ctx.stroke();
-      
+
       // 3. The Event Horizon (The Black Void)
       ctx.setLineDash([]);
       ctx.beginPath();
       ctx.arc(cx, cy, r, 0, Math.PI * 2);
       ctx.fillStyle = '#000000';
-      ctx.shadowBlur = 0; 
+      ctx.shadowBlur = 0;
       ctx.fill();
-      
+
       // Subtle rim light inside the void to give it spherical volume
       ctx.beginPath();
       ctx.arc(cx, cy, r, 0, Math.PI * 2);
       ctx.lineWidth = 1;
       ctx.strokeStyle = 'rgba(255, 150, 50, 0.3)';
       ctx.stroke();
-      
+
       // 4. Front of the Accretion Disk (In front of Black Hole)
       ctx.setLineDash([12, 8, 25, 10, 5, 10]);
       ctx.lineDashOffset = -time * 30;
@@ -357,7 +363,7 @@
       ctx.shadowBlur = 20;
       ctx.shadowColor = 'rgba(255, 120, 40, 1)';
       ctx.stroke();
-      
+
       // Inner bright core of the front disk
       ctx.setLineDash([8, 12, 20, 15]);
       ctx.lineDashOffset = -time * 40;
@@ -367,9 +373,9 @@
       ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
       ctx.shadowBlur = 5;
       ctx.stroke();
-      
+
       ctx.setLineDash([]);
-      
+
       ctx.restore();
       requestAnimationFrame(drawCursor);
     }

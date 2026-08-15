@@ -1512,25 +1512,25 @@
       // Calculate rotation based on movement
       const dx = mouseX - prevMouseX;
       const dy = mouseY - prevMouseY;
-      
+
       // Update target angle only if moving to prevent snapping back
       if (Math.abs(dx) > 1 || Math.abs(dy) > 1) {
         targetAngle = Math.atan2(dy, dx);
       }
-      
+
       // Smooth interpolation for the angle
       let diff = targetAngle - currentAngle;
       while (diff < -Math.PI) diff += Math.PI * 2;
       while (diff > Math.PI) diff -= Math.PI * 2;
       currentAngle += diff * 0.15;
-      
+
       prevMouseX = mouseX;
       prevMouseY = mouseY;
 
       const cx = 60;
       const cy = 60;
       const r = 16; // Event Horizon Radius
-      
+
       ctx.save();
       // Apply rotation around the center
       ctx.translate(cx, cy);
@@ -1604,7 +1604,7 @@
       ctx.stroke();
 
       ctx.setLineDash([]);
-      
+
       ctx.restore();
       requestAnimationFrame(drawCursor);
     }
