@@ -1033,11 +1033,58 @@
     .connection-status svg {
       color: var(--accent-glare);
     }
+
+    /* PRELOADER */
+    .boot-preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: var(--surface-base);
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      color: var(--accent-glare);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .boot-preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .boot-blinking-cursor {
+      animation: bootBlink 1s step-end infinite;
+    }
+
+    @keyframes bootBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    
+    body.no-scroll {
+      overflow: hidden;
+      height: 100vh;
+    }
   </style>
 </head>
 
 <body>
   <div class="custom-cursor" id="custom-cursor"></div>
+
+  <!-- PRELOADER -->
+  <div id="boot-preloader" class="boot-preloader">
+    <div class="boot-terminal-text">
+      <span id="boot-typewriter"></span><span class="boot-blinking-cursor">_</span>
+    </div>
+  </div>
 
   <div id="hero" class="landing-wrapper dot-matrix-bg">
     <!-- NAV -->
