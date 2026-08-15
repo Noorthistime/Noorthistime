@@ -223,7 +223,7 @@
 </head>
 
 <body>
-  <canvas id="cursor-canvas" width="80" height="80"></canvas>
+  <canvas id="cursor-canvas" width="120" height="120"></canvas>
   <div class="custom-cursor" id="custom-cursor"></div>
 
   <div class="error-container">
@@ -248,7 +248,7 @@
     });
 
     // ══════════════════════════════════════════════════════════════
-    // 3D RIPPLING CANVAS CURSOR LOGIC
+    // BLACK HOLE CURSOR LOGIC (GARGANTUA)
     // ══════════════════════════════════════════════════════════════
     const cursorCanvas = document.getElementById('cursor-canvas');
     const ctx = cursorCanvas.getContext('2d');
@@ -264,52 +264,84 @@
       document.body.style.setProperty('--mouse-y', mouseY + 'px');
     });
 
-    const SPACING = 4; 
-    const CENTER = 40; 
+    let time = 0;
     
     function drawCursor() {
-      ctx.clearRect(0, 0, 80, 80);
-      const time = Date.now() / 150;
+      ctx.clearRect(0, 0, 120, 120);
+      time += 0.03;
       
-      for (let gridX = 0; gridX <= 80; gridX += SPACING) {
-        for (let gridY = 0; gridY <= 80; gridY += SPACING) {
-          const dx = gridX - CENTER;
-          const dy = gridY - CENTER;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 36) {
-            const intensity = Math.max(0, 1 - (distance / 36));
-            
-            // 3D Peak: center is lifted high
-            const peak = Math.pow(intensity, 2) * 15;
-            
-            // Waterfall ripples flowing outward
-            const ripple = Math.sin(time - (distance / 4)) * 2 * intensity;
-            
-            // Total elevation
-            const z = peak + ripple;
-            
-            // 3D Projection (lift UP and push slightly outward)
-            const perspectiveX = dx * (z / 40); 
-            const perspectiveY = dy * (z / 40);
-            
-            const renderX = gridX + perspectiveX;
-            const renderY = gridY - z + perspectiveY;
-            
-            // Size & Color
-            const radius = 1 + (z / 10);
-            const alpha = 0.2 + (0.8 * intensity);
-            
-            ctx.shadowBlur = z;
-            ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
-            
-            ctx.beginPath();
-            ctx.arc(renderX, renderY, Math.max(0.5, radius), 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-            ctx.fill();
-          }
-        }
-      }
+      const cx = 60;
+      const cy = 60;
+      const r = 16; 
+      
+      // 1. Back of the Accretion Disk (Behind Black Hole)
+      ctx.setLineDash([12, 8, 25, 10, 5, 10]);
+      ctx.lineDashOffset = -time * 30;
+      ctx.beginPath();
+      // start: PI, end: 2*PI (top half of ellipse)
+      ctx.ellipse(cx, cy, 48, 12, 0, Math.PI, Math.PI * 2);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = 'rgba(255, 180, 80, 0.5)';
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = 'rgba(255, 100, 20, 0.8)';
+      ctx.stroke();
+      
+      // 2. Gravitational Lensing (Photon Ring wrapping around)
+      ctx.setLineDash([15, 10, 30, 15, 8, 12]);
+      ctx.lineDashOffset = time * 20; 
+      ctx.beginPath();
+      ctx.arc(cx, cy, r + 3, 0, Math.PI * 2);
+      ctx.lineWidth = 4;
+      
+      const grad = ctx.createLinearGradient(cx, cy - r - 5, cx, cy + r + 5);
+      grad.addColorStop(0, 'rgba(255, 230, 180, 1)'); 
+      grad.addColorStop(0.5, 'rgba(255, 150, 50, 0.2)'); 
+      grad.addColorStop(1, 'rgba(255, 180, 100, 0.8)'); 
+      
+      ctx.strokeStyle = grad;
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = 'rgba(255, 100, 20, 1)';
+      ctx.stroke();
+      
+      // 3. The Event Horizon (The Black Void)
+      ctx.setLineDash([]);
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fillStyle = '#000000';
+      ctx.shadowBlur = 0; 
+      ctx.fill();
+      
+      // Subtle rim light inside the void to give it spherical volume
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255, 150, 50, 0.3)';
+      ctx.stroke();
+      
+      // 4. Front of the Accretion Disk (In front of Black Hole)
+      ctx.setLineDash([12, 8, 25, 10, 5, 10]);
+      ctx.lineDashOffset = -time * 30;
+      ctx.beginPath();
+      // start: 0, end: PI (bottom half of ellipse)
+      ctx.ellipse(cx, cy, 48, 12, 0, 0, Math.PI);
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = 'rgba(255, 240, 200, 1)';
+      ctx.shadowBlur = 20;
+      ctx.shadowColor = 'rgba(255, 120, 40, 1)';
+      ctx.stroke();
+      
+      // Inner bright core of the front disk
+      ctx.setLineDash([8, 12, 20, 15]);
+      ctx.lineDashOffset = -time * 40;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, 48, 12, 0, 0, Math.PI);
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
+      ctx.shadowBlur = 5;
+      ctx.stroke();
+      
+      ctx.setLineDash([]);
+      
       requestAnimationFrame(drawCursor);
     }
 
