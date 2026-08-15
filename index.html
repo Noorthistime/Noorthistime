@@ -1448,19 +1448,43 @@
         });
     });
 
-    /* Animation Reveal Logic */
+    /* Preloader & Animation Reveal Logic */
     document.addEventListener("DOMContentLoaded", function () {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-          } else {
-            entry.target.classList.remove('active');
-          }
-        });
-      }, { threshold: 0.1 });
+      
+      // Preloader Boot Sequence
+      document.body.classList.add('no-scroll');
+      const bootText = "> SYSTEM BOOT SEQUENCE INITIATED...\n> LOADING KERNEL...\n> DECRYPTING ASSETS...\n> DIRECTIVES LOADED.\n> WELCOME, SAIYED.";
+      const typewriterEl = document.getElementById('boot-typewriter');
+      let i = 0;
+      
+      function typeWriter() {
+        if (i < bootText.length) {
+          typewriterEl.innerHTML += bootText.charAt(i) === '\n' ? '<br>' : bootText.charAt(i);
+          i++;
+          setTimeout(typeWriter, 8); // extremely fast typing
+        }
+      }
+      
+      typeWriter();
 
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      setTimeout(() => {
+        const preloader = document.getElementById('boot-preloader');
+        preloader.classList.add('hidden');
+        document.body.classList.remove('no-scroll');
+        
+        // Start scroll animations ONLY after preloader finishes
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+            } else {
+              entry.target.classList.remove('active');
+            }
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      }, 1500);
 
       /* 3D Museum Tilt Logic */
       const cards = document.querySelectorAll('.project-card-gallery');
