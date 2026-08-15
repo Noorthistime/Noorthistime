@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ERROR 404 — DIRECTIVE NOT FOUND</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --surface-base: #141313;
+      --accent-glare: #ff5540;
+      --text-primary: #e6e1e1;
+      --font-mono: 'Space Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: var(--surface-base);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      cursor: none;
+    }
+
+    /* CUSTOM CURSOR */
+    .custom-cursor {
+      position: fixed;
+      top: 0; left: 0; width: 10px; height: 10px;
+      background-color: var(--accent-glare);
+      border-radius: 50%; pointer-events: none;
+      z-index: 9999; transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, background-color 0.2s, border-radius 0.2s;
+    }
+    .custom-cursor.hover-glitch {
+      width: 30px; height: 30px; background-color: transparent;
+      border: 2px solid var(--accent-glare); border-radius: 4px;
+      animation: cursorGlitch 0.2s infinite alternate;
+    }
+    @keyframes cursorGlitch {
+      0% { transform: translate(-50%, -50%) skewX(0deg); }
+      20% { transform: translate(-52%, -50%) skewX(10deg); }
+      40% { transform: translate(-50%, -48%) skewX(-10deg); }
+      60% { transform: translate(-48%, -52%) skewX(5deg); }
+      80% { transform: translate(-50%, -50%) skewX(-5deg); }
+      100% { transform: translate(-50%, -50%) skewX(0deg); }
+    }
+
+    .error-container {
+      max-width: 600px;
+      padding: 40px;
+      border: 1px solid #393939;
+      position: relative;
+    }
+    .error-container::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 10px; height: 10px; border-top: 2px solid var(--accent-glare); border-left: 2px solid var(--accent-glare);
+    }
+    .error-container::after {
+      content: ''; position: absolute; bottom: 0; right: 0; width: 10px; height: 10px; border-bottom: 2px solid var(--accent-glare); border-right: 2px solid var(--accent-glare);
+    }
+
+    .status-code {
+      font-size: 80px;
+      color: var(--accent-glare);
+      margin-bottom: 10px;
+      letter-spacing: -2px;
+      font-weight: 700;
+      animation: textGlitch 2s infinite;
+    }
+
+    .error-msg {
+      font-size: 18px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .sys-log {
+      color: #8e9192;
+      font-size: 12px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+
+    .return-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid #393939;
+      text-decoration: none;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .return-btn:hover {
+      border-color: var(--accent-glare);
+      color: var(--accent-glare);
+    }
+
+    @keyframes textGlitch {
+      0%, 100% { transform: none; opacity: 1; }
+      5% { transform: skewX(5deg); opacity: 0.8; }
+      10% { transform: skewX(-5deg); opacity: 0.8; }
+      15% { transform: none; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="custom-cursor" id="custom-cursor"></div>
+
+  <div class="error-container">
+    <div class="status-code">404</div>
+    <div class="error-msg">ERROR: DIRECTIVE NOT FOUND</div>
+    <div class="sys-log">
+      > ATTEMPTING TO RESOLVE PATH... [FAILED]<br>
+      > QUERYING ROOT DIRECTORY... [FAILED]<br>
+      > TARGET SECTOR CORRUPTED OR UNAVAILABLE.<br>
+      > AWAITING USER INPUT.
+    </div>
+    <a href="index.html" class="return-btn">RETURN TO ROOT ▷</a>
+  </div>
+
+  <script>
+    const customCursor = document.getElementById('custom-cursor');
+    document.addEventListener('mousemove', (e) => {
+      customCursor.style.left = e.clientX + 'px';
+      customCursor.style.top = e.clientY + 'px';
+    });
+
+    const btn = document.querySelector('.return-btn');
+    btn.addEventListener('mouseenter', () => customCursor.classList.add('hover-glitch'));
+    btn.addEventListener('mouseleave', () => customCursor.classList.remove('hover-glitch'));
+  </script>
+</body>
+</html>
