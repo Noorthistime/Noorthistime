@@ -32,15 +32,33 @@
     /* CUSTOM CURSOR */
     .custom-cursor {
       position: fixed;
-      top: 0; left: 0; width: 10px; height: 10px;
+      top: 0; left: 0; width: 6px; height: 6px;
       background-color: var(--accent-glare);
       border-radius: 50%; pointer-events: none;
       z-index: 9999; transform: translate(-50%, -50%);
-      transition: width 0.2s, height 0.2s, background-color 0.2s, border-radius 0.2s;
+      transition: background-color 0.2s;
+    }
+    .custom-cursor::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px; height: 30px;
+      border: 1px solid var(--accent-glare);
+      border-radius: 50%;
+      transition: all 0.2s ease;
     }
     .custom-cursor.hover-glitch {
-      width: 30px; height: 30px; background-color: transparent;
-      border: 2px solid var(--accent-glare); border-radius: 4px;
+      background-color: transparent;
+    }
+    .custom-cursor.hover-glitch::before {
+      content: '[  ]';
+      font-family: var(--font-mono);
+      font-size: 24px; font-weight: 700;
+      color: var(--accent-glare);
+      border: none; border-radius: 0;
+      width: auto; height: auto;
+      white-space: pre;
       animation: cursorGlitch 0.2s infinite alternate;
     }
     @keyframes cursorGlitch {
