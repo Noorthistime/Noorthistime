@@ -1775,7 +1775,7 @@
         heatmapContainer.innerHTML = '<div style="color:var(--text-secondary); font-family:var(--font-mono); font-size:12px; padding:16px;">[SYSTEM]: FETCHING GITHUB DIRECTIVES...</div>';
         
         // Step 1: API Integration
-        fetch('https://github-contributions.vercel.app/api/v1/Noorthistime')
+        fetch('https://corsproxy.io/?' + encodeURIComponent('https://github-contributions.vercel.app/api/v1/Noorthistime'))
           .then(res => res.json())
           .then(data => {
             // Step 2: Data Parser
