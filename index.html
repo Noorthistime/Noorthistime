@@ -1728,6 +1728,45 @@
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
       }, 1500);
 
+      /* Heatmap Logic (Dataset & Render) */
+      const heatmapContainer = document.getElementById('activity-heatmap');
+      if (heatmapContainer) {
+        // Generate dataset (3 months ~ 13 weeks)
+        const columns = 13;
+        const rows = 7;
+        const dataset = [];
+        for (let c = 0; c < columns; c++) {
+          const colData = [];
+          for (let r = 0; r < rows; r++) {
+            let level = 0;
+            const rand = Math.random();
+            if (rand > 0.85) level = 4;
+            else if (rand > 0.70) level = 3;
+            else if (rand > 0.50) level = 2;
+            else if (rand > 0.25) level = 1;
+            colData.push({ level });
+          }
+          dataset.push(colData);
+        }
+
+        // Render DOM
+        const grid = document.createElement('div');
+        grid.className = 'heatmap-grid';
+        
+        dataset.forEach(colData => {
+          const colEl = document.createElement('div');
+          colEl.className = 'heatmap-col';
+          colData.forEach(cellData => {
+            const cell = document.createElement('div');
+            cell.className = 'heatmap-cell';
+            cell.setAttribute('data-level', cellData.level);
+            colEl.appendChild(cell);
+          });
+          grid.appendChild(colEl);
+        });
+        heatmapContainer.appendChild(grid);
+      }
+
       /* 3D Museum Tilt Logic */
       const cards = document.querySelectorAll('.project-card-gallery');
       cards.forEach(card => {
