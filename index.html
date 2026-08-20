@@ -684,6 +684,46 @@
     .heatmap-cell[data-level="3"] { background: #d32020; box-shadow: 0 0 5px #d32020; }
     .heatmap-cell[data-level="4"] { background: var(--accent-glare); box-shadow: 0 0 10px var(--accent-glare); }
 
+    /* HEATMAP TOOLTIP */
+    .heatmap-tooltip {
+      position: absolute;
+      background: rgba(10, 10, 10, 0.95);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 6px 10px;
+      font-size: 11px;
+      font-family: var(--font-mono);
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+      transform: translate(-50%, -100%);
+      margin-top: -8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    }
+    .heatmap-tooltip.visible {
+      opacity: 1;
+    }
+
+    /* HEATMAP RESPONSIVE & SCROLLBAR */
+    .heatmap-container::-webkit-scrollbar {
+      height: 4px;
+    }
+    .heatmap-container::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+    }
+    @media (max-width: 768px) {
+      .heatmap-container {
+        padding: 12px;
+      }
+      .heatmap-cell {
+        width: 10px;
+        height: 10px;
+      }
+    }
+
     .module-title {
       font-family: var(--font-mono);
       font-size: 14px;
@@ -1753,6 +1793,11 @@
         const grid = document.createElement('div');
         grid.className = 'heatmap-grid';
         
+        // Tooltip element
+        const tooltip = document.createElement('div');
+        tooltip.className = 'heatmap-tooltip';
+        document.body.appendChild(tooltip);
+        
         dataset.forEach(colData => {
           const colEl = document.createElement('div');
           colEl.className = 'heatmap-col';
@@ -1760,6 +1805,25 @@
             const cell = document.createElement('div');
             cell.className = 'heatmap-cell';
             cell.setAttribute('data-level', cellData.level);
+            
+            // Tooltip interactivity
+            const count = cellData.level === 0 ? 0 : cellData.level * 3 + Math.floor(Math.random() * 4);
+            const today = new Date();
+            const cellDate = new Date(today);
+            cellDate.setDate(today.getDate() - ((13 - cellData.week) * 7 + (7 - cellData.day)));
+            const dateStr = cellDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+            
+            cell.addEventListener('mouseenter', (e) => {
+              const rect = cell.getBoundingClientRect();
+              tooltip.innerHTML = `<span style="color:var(--accent-glare)">${count} actions</span> on ${dateStr}`;
+              tooltip.style.left = rect.left + rect.width / 2 + 'px';
+              tooltip.style.top = rect.top + window.scrollY + 'px';
+              tooltip.classList.add('visible');
+            });
+            cell.addEventListener('mouseleave', () => {
+              tooltip.classList.remove('visible');
+            });
+            
             colEl.appendChild(cell);
           });
           grid.appendChild(colEl);
