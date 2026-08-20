@@ -1774,42 +1774,41 @@
         // Step 4: Loading State
         heatmapContainer.innerHTML = '<div style="color:var(--text-secondary); font-family:var(--font-mono); font-size:12px; padding:16px;">[SYSTEM]: FETCHING GITHUB DIRECTIVES...</div>';
         
-        // Step 1: API Integration
-        fetch('https://corsproxy.io/?' + encodeURIComponent('https://github-contributions.vercel.app/api/v1/Noorthistime'))
-          .then(res => res.json())
-          .then(data => {
+        // Step 1: API Integration (Scraping Raw HTML for exact true counts)
+        fetch('https://corsproxy.io/?' + encodeURIComponent('https://github.com/users/Noorthistime/contributions'))
+          .then(res => res.text())
+          .then(html => {
             // Step 2: Data Parser
-            if (!data || !data.contributions || data.contributions.length === 0) {
-                throw new Error('No contribution data found');
-            }
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+            const cells = Array.from(doc.querySelectorAll('td.ContributionCalendar-day, rect.ContributionCalendar-day'));
             
-            // The API returns data newest-first. Filter out future dates.
-            const todayStr = new Date().toISOString().split('T')[0];
+            if (!cells || cells.length === 0) throw new Error('No contribution data found');
             
-            // Extract the last 182 days (approx 6 months = 26 weeks) and reverse to oldest-first
-            const recentDays = data.contributions
-              .filter(c => c.date <= todayStr)
-              .slice(0, 182)
-              .reverse();
+            // Extract the last 182 days (approx 6 months = 26 weeks)
+            const recentCells = cells.slice(-182);
             
             const dataset = [];
-            for (let i = 0; i < recentDays.length; i += 7) {
-              const weekChunk = recentDays.slice(i, i + 7);
-              dataset.push(weekChunk.map(day => {
-                const levelStr = day.intensity;
+            for (let i = 0; i < recentCells.length; i += 7) {
+              const weekChunk = recentCells.slice(i, i + 7);
+              dataset.push(weekChunk.map(cell => {
+                const levelStr = cell.getAttribute('data-level');
                 const level = levelStr ? parseInt(levelStr) : 0;
-                const dateStr = day.date || 'Unknown date';
+                const dateStr = cell.getAttribute('data-date') || 'Unknown date';
                 
-                // Fallback logic for API bug returning 0 count when intensity > 0
-                let actualCount = day.count || 0;
-                if (actualCount === 0 && level > 0) {
-                    if (level === 1) actualCount = Math.floor(Math.random() * 3) + 1; // 1-3
-                    else if (level === 2) actualCount = Math.floor(Math.random() * 3) + 4; // 4-6
-                    else if (level === 3) actualCount = Math.floor(Math.random() * 3) + 7; // 7-9
-                    else if (level === 4) actualCount = Math.floor(Math.random() * 6) + 10; // 10-15
+                // Extract exact true count from GitHub's tool-tip element
+                let countStr = "0 contributions";
+                const id = cell.getAttribute('id');
+                if (id) {
+                   const tt = doc.querySelector(`tool-tip[for="${id}"]`);
+                   if (tt) {
+                       const text = tt.textContent.trim();
+                       const match = text.match(/^([\d,]+|No)\s+contributions/i);
+                       if (match) {
+                           countStr = match[0].replace(/No/i, '0');
+                       }
+                   }
                 }
-                
-                const countStr = actualCount > 0 ? `${actualCount} contribution${actualCount > 1 ? 's' : ''}` : "0 contributions";
                 
                 return { level, dateStr, countStr };
               }));
