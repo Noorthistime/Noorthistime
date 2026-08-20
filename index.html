@@ -1775,36 +1775,31 @@
         heatmapContainer.innerHTML = '<div style="color:var(--text-secondary); font-family:var(--font-mono); font-size:12px; padding:16px;">[SYSTEM]: FETCHING GITHUB DIRECTIVES...</div>';
         
         // Step 1: API Integration
-        fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://github.com/users/Noorthistime/contributions'))
-          .then(res => res.text())
+        fetch('https://github-contributions.vercel.app/api/v1/Noorthistime')
+          .then(res => res.json())
           .then(data => {
             // Step 2: Data Parser
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(data, 'text/html');
-            const cells = Array.from(doc.querySelectorAll('td.ContributionCalendar-day, rect.ContributionCalendar-day'));
+            if (!data || !data.contributions || data.contributions.length === 0) {
+                throw new Error('No contribution data found');
+            }
             
-            if (!cells || cells.length === 0) throw new Error('No contribution data found');
+            // The API returns data newest-first. Filter out future dates.
+            const todayStr = new Date().toISOString().split('T')[0];
             
-            // Extract the last 182 days (approx 6 months = 26 weeks)
-            const recentCells = cells.slice(-182);
+            // Extract the last 182 days (approx 6 months = 26 weeks) and reverse to oldest-first
+            const recentDays = data.contributions
+              .filter(c => c.date <= todayStr)
+              .slice(0, 182)
+              .reverse();
             
             const dataset = [];
-            for (let i = 0; i < recentCells.length; i += 7) {
-              const weekChunk = recentCells.slice(i, i + 7);
-              dataset.push(weekChunk.map(cell => {
-                const levelStr = cell.getAttribute('data-level');
+            for (let i = 0; i < recentDays.length; i += 7) {
+              const weekChunk = recentDays.slice(i, i + 7);
+              dataset.push(weekChunk.map(day => {
+                const levelStr = day.intensity;
                 const level = levelStr ? parseInt(levelStr) : 0;
-                const dateStr = cell.getAttribute('data-date') || 'Unknown date';
-                
-                // Extract count text
-                let countStr = level > 0 ? "Contributions" : "0 contributions";
-                const id = cell.getAttribute('id');
-                if (id) {
-                   const tt = doc.getElementById(id + '-tooltip');
-                   if (tt) countStr = tt.textContent.trim().split(' on ')[0];
-                } else if (cell.textContent.trim()) {
-                   countStr = cell.textContent.trim().split(' on ')[0];
-                }
+                const dateStr = day.date || 'Unknown date';
+                const countStr = day.count > 0 ? `${day.count} contributions` : "0 contributions";
                 
                 return { level, dateStr, countStr };
               }));
