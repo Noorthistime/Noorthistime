@@ -1825,7 +1825,35 @@
                 
                 cell.addEventListener('mouseenter', (e) => {
                   const rect = cell.getBoundingClientRect();
-                  tooltip.innerHTML = `<span style="color:var(--accent-glare)">${cellData.countStr}</span> on ${cellData.dateStr}`;
+                  
+                  // Parse Date
+                  const parts = cellData.dateStr.split('-');
+                  let fullDate = cellData.dateStr;
+                  let weekday = '';
+                  if (parts.length === 3) {
+                    const dateObj = new Date(parts[0], parseInt(parts[1]) - 1, parts[2]);
+                    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                    const month = months[dateObj.getMonth()];
+                    weekday = weekdays[dateObj.getDay()];
+                    const day = dateObj.getDate();
+                    const year = dateObj.getFullYear();
+                    
+                    let suffix = 'th';
+                    if (day % 10 === 1 && day !== 11) suffix = 'st';
+                    else if (day % 10 === 2 && day !== 12) suffix = 'nd';
+                    else if (day % 10 === 3 && day !== 13) suffix = 'rd';
+                    
+                    fullDate = `${month} ${day}${suffix} ${year}`;
+                  }
+
+                  tooltip.innerHTML = `
+                    <div style="font-weight:bold; font-size:12px; margin-bottom:2px; color:#fff; text-align:left;">${fullDate}</div>
+                    <div style="color:var(--text-secondary); margin-bottom:8px; text-align:left;">${weekday}</div>
+                    <hr style="border:none; border-top:1px solid var(--border-color); margin:0 0 8px 0; opacity:0.4;" />
+                    <div style="color:var(--accent-glare); text-align:left;">${cellData.countStr}</div>
+                  `;
+                  
                   tooltip.style.left = rect.left + rect.width / 2 + 'px';
                   tooltip.style.top = rect.top + window.scrollY + 'px';
                   tooltip.classList.add('visible');
