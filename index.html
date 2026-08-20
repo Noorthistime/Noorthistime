@@ -1795,8 +1795,8 @@
                   return dateA - dateB;
               });
             
-            // Extract the last 182 days (approx 6 months = 26 weeks)
-            const recentCells = sortedCells.slice(-182);
+            // Extract the last 364 days (approx 12 months = 52 weeks)
+            const recentCells = sortedCells.slice(-364);
             
             const dataset = [];
             for (let i = 0; i < recentCells.length; i += 7) {
@@ -1834,9 +1834,27 @@
             tooltip.className = 'heatmap-tooltip';
             document.body.appendChild(tooltip);
             
-            dataset.forEach(colData => {
+            dataset.forEach((colData, colIndex) => {
               const colEl = document.createElement('div');
               colEl.className = 'heatmap-col';
+              
+              // Develop dynamic month boundary detection algorithm
+              let isNewMonth = false;
+              if (colIndex > 0 && colData.length > 0 && dataset[colIndex - 1].length > 0) {
+                  const currentMonth = new Date(colData[0].dateStr).getMonth();
+                  const prevMonth = new Date(dataset[colIndex - 1][0].dateStr).getMonth();
+                  if (currentMonth !== prevMonth) {
+                      isNewMonth = true;
+                  }
+              }
+              
+              // Inject custom stylized month separators matching aesthetic
+              if (isNewMonth) {
+                  colEl.style.borderLeft = '1px solid rgba(255, 51, 51, 0.25)';
+                  colEl.style.marginLeft = '4px';
+                  colEl.style.paddingLeft = '4px';
+              }
+              
               colData.forEach(cellData => {
                 const cell = document.createElement('div');
                 cell.className = 'heatmap-cell';
