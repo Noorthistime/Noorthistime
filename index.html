@@ -1775,18 +1775,18 @@
         heatmapContainer.innerHTML = '<div style="color:var(--text-secondary); font-family:var(--font-mono); font-size:12px; padding:16px;">[SYSTEM]: FETCHING GITHUB DIRECTIVES...</div>';
         
         // Step 1: API Integration
-        fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://github.com/users/Noorthistime/contributions'))
-          .then(res => res.json())
+        fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://github.com/users/Noorthistime/contributions'))
+          .then(res => res.text())
           .then(data => {
             // Step 2: Data Parser
             const parser = new DOMParser();
-            const doc = parser.parseFromString(data.contents, 'text/html');
+            const doc = parser.parseFromString(data, 'text/html');
             const cells = Array.from(doc.querySelectorAll('td.ContributionCalendar-day, rect.ContributionCalendar-day'));
             
             if (!cells || cells.length === 0) throw new Error('No contribution data found');
             
-            // Extract the last 91 days (approx 13 weeks)
-            const recentCells = cells.slice(-91);
+            // Extract the last 182 days (approx 6 months = 26 weeks)
+            const recentCells = cells.slice(-182);
             
             const dataset = [];
             for (let i = 0; i < recentCells.length; i += 7) {
